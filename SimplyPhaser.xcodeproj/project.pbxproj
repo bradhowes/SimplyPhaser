@@ -93,6 +93,14 @@
 		BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDB7CEA0249FC162009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE92249EC556009580D5 /* Accelerate.framework */; };
+		BDC3C93225F6522F004EC1AC /* fxobjects.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C92E25F6522F004EC1AC /* fxobjects.h */; };
+		BDC3C93325F6522F004EC1AC /* fxobjects.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C92E25F6522F004EC1AC /* fxobjects.h */; };
+		BDC3C93425F6522F004EC1AC /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C92F25F6522F004EC1AC /* readme.txt */; };
+		BDC3C93525F6522F004EC1AC /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C92F25F6522F004EC1AC /* readme.txt */; };
+		BDC3C93625F6522F004EC1AC /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
+		BDC3C93725F6522F004EC1AC /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
+		BDC3C93825F6522F004EC1AC /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C93125F6522F004EC1AC /* filters.h */; };
+		BDC3C93925F6522F004EC1AC /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C93125F6522F004EC1AC /* filters.h */; };
 		BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF524A3DF24004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
@@ -296,6 +304,10 @@
 		BDB7CE96249F7209009580D5 /* ValueChangeDetector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ValueChangeDetector.hpp; sourceTree = "<group>"; };
 		BDB7CE99249FC026009580D5 /* AUAudioUnitPreset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AUAudioUnitPreset+Extensions.swift"; sourceTree = "<group>"; };
 		BDB7CE9D249FC152009580D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.5.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		BDC3C92E25F6522F004EC1AC /* fxobjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fxobjects.h; sourceTree = "<group>"; };
+		BDC3C92F25F6522F004EC1AC /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		BDC3C93025F6522F004EC1AC /* fxobjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fxobjects.cpp; sourceTree = "<group>"; };
+		BDC3C93125F6522F004EC1AC /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
 		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
@@ -485,6 +497,7 @@
 		BDB11A5124A114D700DD8EF9 /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
+				BDC3C92D25F6522F004EC1AC /* Pirkle */,
 				BD578F0D25D2C4720040D83D /* README.md */,
 				BD24B3FB25F1133500338362 /* Biquad.h */,
 				BD1F7BAB249FF7EF00960DA3 /* DelayBuffer.h */,
@@ -497,6 +510,17 @@
 				C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */,
 			);
 			path = Kernel;
+			sourceTree = "<group>";
+		};
+		BDC3C92D25F6522F004EC1AC /* Pirkle */ = {
+			isa = PBXGroup;
+			children = (
+				BDC3C92E25F6522F004EC1AC /* fxobjects.h */,
+				BDC3C92F25F6522F004EC1AC /* readme.txt */,
+				BDC3C93025F6522F004EC1AC /* fxobjects.cpp */,
+				BDC3C93125F6522F004EC1AC /* filters.h */,
+			);
+			path = Pirkle;
 			sourceTree = "<group>";
 		};
 		C437FE2F2223672C008D6C09 = {
@@ -706,6 +730,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C93825F6522F004EC1AC /* filters.h in Headers */,
 				C4BEE8172223736F001E6B6D /* FilterFramework.h in Headers */,
 				BD50D29A25D6D76E00375455 /* FilterDSPKernelAdapter.h in Headers */,
 				BD1F7BAE249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
@@ -715,6 +740,7 @@
 				C4BEE7EF22236F24001E6B6D /* RampingValueChangeDetector.hpp in Headers */,
 				BD24B3FC25F1133500338362 /* Biquad.h in Headers */,
 				BDB7CE90249D3C00009580D5 /* NonCopyable.hpp in Headers */,
+				BDC3C93225F6522F004EC1AC /* fxobjects.h in Headers */,
 				C4BEE7EE22236F24001E6B6D /* FilterDSPKernel.h in Headers */,
 				C4BEE7F022236F24001E6B6D /* KernelEventProcessor.h in Headers */,
 			);
@@ -724,6 +750,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C93925F6522F004EC1AC /* filters.h in Headers */,
 				C496341422238CFA001D1F5B /* FilterFramework.h in Headers */,
 				BD50D29B25D6D76E00375455 /* FilterDSPKernelAdapter.h in Headers */,
 				BD1F7BAF249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
@@ -733,6 +760,7 @@
 				C4BEE7F322236F27001E6B6D /* RampingValueChangeDetector.hpp in Headers */,
 				BD24B3FD25F1133500338362 /* Biquad.h in Headers */,
 				BDB7CE91249D3C00009580D5 /* NonCopyable.hpp in Headers */,
+				BDC3C93325F6522F004EC1AC /* fxobjects.h in Headers */,
 				C4BEE7F222236F27001E6B6D /* FilterDSPKernel.h in Headers */,
 				C4BEE7F422236F27001E6B6D /* KernelEventProcessor.h in Headers */,
 			);
@@ -1033,6 +1061,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C93425F6522F004EC1AC /* readme.txt in Resources */,
 				BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1060,6 +1089,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C93525F6522F004EC1AC /* readme.txt in Resources */,
 				C46B8B8122418B6000E00B1E /* FilterViewController.xib in Resources */,
 				BD77DEFD25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
@@ -1142,6 +1172,7 @@
 				BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */,
 				BD72F2E525D1D4CE0031E422 /* InputBuffer.h in Sources */,
 				BD06772C24CF9FA00039F161 /* Optional+Extensions.swift in Sources */,
+				BDC3C93625F6522F004EC1AC /* fxobjects.cpp in Sources */,
 				BD71E31925E1AFB5005C5E1E /* FilterPreset.swift in Sources */,
 				C4BEE80422236F6F001E6B6D /* TypeAliases.swift in Sources */,
 				BD66842E25F11F77009CF8ED /* KnobController.swift in Sources */,
@@ -1192,6 +1223,7 @@
 				BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */,
 				BDB11A5924A13CB200DD8EF9 /* CALayer+Extensions.swift in Sources */,
 				BDB11A5D24A13F8800DD8EF9 /* Color+Extensions.swift in Sources */,
+				BDC3C93725F6522F004EC1AC /* fxobjects.cpp in Sources */,
 				BD71E31125E1AFB4005C5E1E /* FilterPreset.swift in Sources */,
 				BD2FD3EE259B5104004A3196 /* AUParameterTree+Extensions.swift in Sources */,
 				BD66842F25F11F77009CF8ED /* KnobController.swift in Sources */,

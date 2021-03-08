@@ -7,10 +7,9 @@ import os
  Address definitions for AUParameter settings.
  */
 @objc public enum FilterParameterAddress: UInt64, CaseIterable {
-    case depth = 0
-    case rate
-    case delay
-    case feedback
+    case rate = 0
+    case depth
+    case intensity
     case dryMix
     case wetMix
 }
@@ -29,13 +28,11 @@ public final class AudioUnitParameters: NSObject {
     static public let maxDelayMilliseconds: AUValue = 15.0
 
     public let parameters: [AUParameter] = [
+        AUParameterTree.createParameter(withIdentifier: "rate", name: "Rate", address: .rate,
+                                        min: 0.02, max: 20.0, unit: .hertz),
         AUParameterTree.createParameter(withIdentifier: "depth", name: "Depth", address: .depth,
                                         min: 0.0, max: 100.0, unit: .percent),
-        AUParameterTree.createParameter(withIdentifier: "rate", name: "Rate", address: .rate,
-                                        min: 0.01, max: 10.0, unit: .hertz),
-        AUParameterTree.createParameter(withIdentifier: "delay", name: "Delay", address: .delay,
-                                        min: 0.01, max: AudioUnitParameters.maxDelayMilliseconds, unit: .milliseconds),
-        AUParameterTree.createParameter(withIdentifier: "feedback", name: "Feedback", address: .feedback,
+        AUParameterTree.createParameter(withIdentifier: "intensity", name: "Intensity", address: .intensity,
                                         min: 0.0, max: 100.0, unit: .percent),
         AUParameterTree.createParameter(withIdentifier: "dry", name: "Dry", address: .dryMix,
                                         min: 0.0, max: 100.0, unit: .percent),
@@ -46,10 +43,9 @@ public final class AudioUnitParameters: NSObject {
     /// AUParameterTree created with the parameter definitions for the audio unit
     public let parameterTree: AUParameterTree
 
-    public var depth: AUParameter { parameters[.depth] }
     public var rate: AUParameter { parameters[.rate] }
-    public var delay: AUParameter { parameters[.delay] }
-    public var feedback: AUParameter { parameters[.feedback] }
+    public var depth: AUParameter { parameters[.depth] }
+    public var intensity: AUParameter { parameters[.intensity] }
     public var dryMix: AUParameter { parameters[.dryMix] }
     public var wetMix: AUParameter { parameters[.wetMix] }
 
@@ -87,7 +83,7 @@ extension AudioUnitParameters {
 
         let separator: String = {
             switch address {
-            case .rate, .delay: return " "
+            case .rate: return " "
             default: return ""
             }
         }()
@@ -108,10 +104,9 @@ extension AudioUnitParameters {
      AudioUnit.
      */
     public func setValues(_ preset: FilterPreset) {
-        self.depth.value = preset.depth
         self.rate.value = preset.rate
-        self.delay.value = preset.delay
-        self.feedback.value = preset.feedback
+        self.depth.value = preset.depth
+        self.intensity.value = preset.intensity
         self.dryMix.value = preset.dryMix
         self.wetMix.value = preset.wetMix
     }
@@ -120,9 +115,8 @@ extension AudioUnitParameters {
 extension AudioUnitParameters {
     private func formatting(_ address: FilterParameterAddress) -> String {
         switch address {
-        case .depth, .feedback: return "%.2f"
         case .rate: return "%.2f"
-        case .delay: return "%.2f"
+        case .depth, .intensity: return "%.2f"
         case .dryMix, .wetMix: return "%.0f"
         default: return "?"
         }

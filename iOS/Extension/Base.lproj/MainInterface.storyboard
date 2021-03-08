@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTt-pC-dYn" userLabel="Controls">
-                                <rect key="frame" x="167.5" y="89.5" width="332" height="196"/>
+                                <rect key="frame" x="206.5" y="89.5" width="254" height="196"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hui-tD-xRO" customClass="Knob" customModule="FilterFramework">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -29,10 +29,10 @@
                                             <constraint firstAttribute="width" constant="80" id="wlx-rv-DBt"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="depthChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fq7-6I-YOj"/>
+                                            <action selector="rateChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Uy6-cJ-5uL"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-Sd-KDy" userLabel="Value">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-Sd-KDy">
                                         <rect key="frame" x="26" y="72" width="28" height="16"/>
                                         <accessibility key="accessibilityConfiguration" identifier="0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -42,7 +42,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHo-9f-pLo" userLabel="TapEdit">
                                         <rect key="frame" x="0.0" y="72" width="80" height="22"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF3-lq-xlE" customClass="Knob" customModule="FilterFramework">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF3-lq-xlE" userLabel="Depth" customClass="Knob" customModule="FilterFramework">
                                         <rect key="frame" x="84" y="0.0" width="80" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <accessibility key="accessibilityConfiguration" identifier="1"/>
@@ -51,11 +51,11 @@
                                             <constraint firstAttribute="width" constant="80" id="rGa-hf-xLW"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="rateChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="TyQ-Gi-fQf"/>
+                                            <action selector="depthChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uZl-ea-lRc"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-HR-UOg" userLabel="Value">
-                                        <rect key="frame" x="110" y="72" width="28" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Depth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-HR-UOg" userLabel="Value">
+                                        <rect key="frame" x="105.5" y="72" width="37" height="16"/>
                                         <accessibility key="accessibilityConfiguration" identifier="1"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,11 +73,11 @@
                                             <constraint firstAttribute="height" constant="80" id="jf1-Ig-22b"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="delayChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rhW-go-Hzy"/>
+                                            <action selector="intensityChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="xcE-Xa-sRi"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TX-4e-MBG" userLabel="Value">
-                                        <rect key="frame" x="194" y="72" width="28" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Intensity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TX-4e-MBG" userLabel="Intensity">
+                                        <rect key="frame" x="182" y="72" width="52" height="16"/>
                                         <accessibility key="accessibilityConfiguration" identifier="2"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,30 +86,8 @@
                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdN-B7-7c6" userLabel="TapEdit">
                                         <rect key="frame" x="168" y="72" width="80" height="22"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqE-Fz-AGz" customClass="Knob" customModule="FilterFramework">
-                                        <rect key="frame" x="252" y="0.0" width="80" height="80"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="EOU-Ix-oTY"/>
-                                            <constraint firstAttribute="height" constant="80" id="URe-tZ-2Yl"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="feedbackChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="UU1-6z-Yjd"/>
-                                        </connections>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alX-QB-0LM" userLabel="Value">
-                                        <rect key="frame" x="278" y="72" width="28" height="16"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbp-ks-Vdp" userLabel="TapEdit">
-                                        <rect key="frame" x="252" y="72" width="80" height="22"/>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUC-u4-A8f" userLabel="Mixes">
-                                        <rect key="frame" x="82" y="102" width="168" height="94"/>
+                                        <rect key="frame" x="43" y="102" width="168" height="94"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzc-6g-Fgq" customClass="Knob" customModule="FilterFramework">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -181,36 +159,28 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3TX-4e-MBG" secondAttribute="trailing" constant="20" symbolic="YES" id="0gR-7r-JH7"/>
                                     <constraint firstItem="vUC-u4-A8f" firstAttribute="top" secondItem="8ki-wy-l3o" secondAttribute="bottom" constant="8" id="4dK-Zn-R5G"/>
                                     <constraint firstItem="mHo-9f-pLo" firstAttribute="top" secondItem="T5c-Sd-KDy" secondAttribute="top" id="8rm-ar-hRK"/>
                                     <constraint firstItem="vUC-u4-A8f" firstAttribute="centerX" secondItem="GTt-pC-dYn" secondAttribute="centerX" id="AwA-HB-v8b"/>
-                                    <constraint firstItem="alX-QB-0LM" firstAttribute="top" secondItem="tqE-Fz-AGz" secondAttribute="bottom" constant="-8" id="D1V-Bi-CEZ"/>
                                     <constraint firstItem="3TX-4e-MBG" firstAttribute="top" secondItem="Mvw-nZ-fi3" secondAttribute="bottom" constant="-8" id="Fod-aH-dVY"/>
-                                    <constraint firstItem="bbp-ks-Vdp" firstAttribute="leading" secondItem="tqE-Fz-AGz" secondAttribute="leading" id="GJQ-gL-p2u"/>
                                     <constraint firstItem="GCP-HR-UOg" firstAttribute="top" secondItem="hF3-lq-xlE" secondAttribute="bottom" constant="-8" id="HID-5a-O8m"/>
                                     <constraint firstItem="OdN-B7-7c6" firstAttribute="top" secondItem="3TX-4e-MBG" secondAttribute="top" id="KTz-t7-4S7"/>
-                                    <constraint firstItem="bbp-ks-Vdp" firstAttribute="trailing" secondItem="tqE-Fz-AGz" secondAttribute="trailing" id="N5A-lr-fX7"/>
                                     <constraint firstItem="hui-tD-xRO" firstAttribute="leading" secondItem="GTt-pC-dYn" secondAttribute="leading" id="NCF-LU-In3"/>
                                     <constraint firstItem="hui-tD-xRO" firstAttribute="top" secondItem="GTt-pC-dYn" secondAttribute="top" id="NZQ-TW-K3u"/>
                                     <constraint firstItem="GCP-HR-UOg" firstAttribute="centerX" secondItem="hF3-lq-xlE" secondAttribute="centerX" id="NuN-us-vYP"/>
                                     <constraint firstItem="OdN-B7-7c6" firstAttribute="leading" secondItem="Mvw-nZ-fi3" secondAttribute="leading" id="OYS-aO-Bbn"/>
                                     <constraint firstItem="T5c-Sd-KDy" firstAttribute="centerX" secondItem="hui-tD-xRO" secondAttribute="centerX" id="Ty2-15-qdD"/>
-                                    <constraint firstItem="bbp-ks-Vdp" firstAttribute="top" secondItem="alX-QB-0LM" secondAttribute="top" id="W5J-vX-jqO"/>
                                     <constraint firstItem="T5c-Sd-KDy" firstAttribute="top" secondItem="hui-tD-xRO" secondAttribute="bottom" constant="-8" id="XHR-3B-WTr"/>
-                                    <constraint firstItem="tqE-Fz-AGz" firstAttribute="leading" secondItem="Mvw-nZ-fi3" secondAttribute="trailing" constant="4" id="Xcu-FY-C5F"/>
                                     <constraint firstItem="hF3-lq-xlE" firstAttribute="centerY" secondItem="hui-tD-xRO" secondAttribute="centerY" id="Xpg-gg-1Iz"/>
                                     <constraint firstItem="8ki-wy-l3o" firstAttribute="leading" secondItem="hF3-lq-xlE" secondAttribute="leading" id="YZf-OR-fg5"/>
                                     <constraint firstItem="3TX-4e-MBG" firstAttribute="centerX" secondItem="Mvw-nZ-fi3" secondAttribute="centerX" id="a30-mh-MlU"/>
                                     <constraint firstItem="8ki-wy-l3o" firstAttribute="top" secondItem="GCP-HR-UOg" secondAttribute="top" id="atM-NR-aX0"/>
-                                    <constraint firstAttribute="trailing" secondItem="tqE-Fz-AGz" secondAttribute="trailing" id="bO0-Xf-RZ8"/>
                                     <constraint firstItem="8ki-wy-l3o" firstAttribute="trailing" secondItem="hF3-lq-xlE" secondAttribute="trailing" id="cFY-BD-iGC"/>
                                     <constraint firstAttribute="bottom" secondItem="vUC-u4-A8f" secondAttribute="bottom" id="d7M-di-kct"/>
-                                    <constraint firstItem="alX-QB-0LM" firstAttribute="centerX" secondItem="tqE-Fz-AGz" secondAttribute="centerX" id="emN-IL-qyp"/>
                                     <constraint firstItem="Mvw-nZ-fi3" firstAttribute="leading" secondItem="hF3-lq-xlE" secondAttribute="trailing" constant="4" id="fNQ-UY-2iV"/>
                                     <constraint firstItem="mHo-9f-pLo" firstAttribute="bottom" secondItem="T5c-Sd-KDy" secondAttribute="bottom" constant="6" id="glz-pl-NQT"/>
                                     <constraint firstItem="OdN-B7-7c6" firstAttribute="trailing" secondItem="Mvw-nZ-fi3" secondAttribute="trailing" id="gtn-9S-Q13"/>
-                                    <constraint firstItem="bbp-ks-Vdp" firstAttribute="bottom" secondItem="alX-QB-0LM" secondAttribute="bottom" constant="6" id="hXF-j3-x2f"/>
-                                    <constraint firstItem="tqE-Fz-AGz" firstAttribute="centerY" secondItem="hui-tD-xRO" secondAttribute="centerY" id="iwT-yv-PVo"/>
                                     <constraint firstItem="mHo-9f-pLo" firstAttribute="trailing" secondItem="hui-tD-xRO" secondAttribute="trailing" id="jsM-NK-Zfr"/>
                                     <constraint firstItem="Mvw-nZ-fi3" firstAttribute="centerY" secondItem="hui-tD-xRO" secondAttribute="centerY" id="kFE-gb-Cs0"/>
                                     <constraint firstItem="OdN-B7-7c6" firstAttribute="bottom" secondItem="3TX-4e-MBG" secondAttribute="bottom" constant="6" id="mmQ-qB-iTc"/>
@@ -273,25 +243,22 @@
                     </view>
                     <connections>
                         <outlet property="controlsView" destination="GTt-pC-dYn" id="ZEV-JI-t9U"/>
-                        <outlet property="delayControl" destination="Mvw-nZ-fi3" id="Oi6-m2-vS3"/>
-                        <outlet property="delayTapEdit" destination="OdN-B7-7c6" id="7SC-dR-C8x"/>
-                        <outlet property="delayValueLabel" destination="3TX-4e-MBG" id="Ynm-XW-nbD"/>
-                        <outlet property="depthControl" destination="hui-tD-xRO" id="p7l-vd-KRC"/>
-                        <outlet property="depthTapEdit" destination="mHo-9f-pLo" id="cum-Ov-JPM"/>
-                        <outlet property="depthValueLabel" destination="T5c-Sd-KDy" id="oJw-6o-wLh"/>
+                        <outlet property="depthControl" destination="hF3-lq-xlE" id="DAB-nM-aTy"/>
+                        <outlet property="depthTapEdit" destination="8ki-wy-l3o" id="F9H-uu-I9w"/>
+                        <outlet property="depthValueLabel" destination="GCP-HR-UOg" id="JtK-V1-kyU"/>
                         <outlet property="dryMixControl" destination="Jzc-6g-Fgq" id="bse-aZ-kuw"/>
                         <outlet property="dryMixTapEdit" destination="rYA-kZ-hpS" id="neD-xu-2Gp"/>
                         <outlet property="dryMixValueLabel" destination="N2N-20-gAu" id="Y3i-Ja-uxe"/>
                         <outlet property="editingBackground" destination="gry-aw-80i" id="3lD-fA-5dE"/>
-                        <outlet property="editingLabel" destination="0gm-sU-zom" id="uue-9h-waZ"/>
+                        <outlet property="editingLabel" destination="0gm-sU-zom" id="Zl8-Jy-EGe"/>
                         <outlet property="editingValue" destination="5xm-4x-x9O" id="Ha9-ja-vUZ"/>
-                        <outlet property="editingView" destination="uNx-0G-OWZ" id="QYG-go-1OT"/>
-                        <outlet property="feedbackControl" destination="tqE-Fz-AGz" id="856-wz-4sh"/>
-                        <outlet property="feedbackTapEdit" destination="bbp-ks-Vdp" id="V6V-aC-Bxf"/>
-                        <outlet property="feedbackValueLabel" destination="alX-QB-0LM" id="3fl-W9-5HI"/>
-                        <outlet property="rateControl" destination="hF3-lq-xlE" id="Os9-bs-hcc"/>
-                        <outlet property="rateTapEdit" destination="8ki-wy-l3o" id="J24-33-9kh"/>
-                        <outlet property="rateValueLabel" destination="GCP-HR-UOg" id="R7f-vX-qPY"/>
+                        <outlet property="editingView" destination="uNx-0G-OWZ" id="2QP-Oi-Lv0"/>
+                        <outlet property="intensityControl" destination="Mvw-nZ-fi3" id="W1o-QD-ylj"/>
+                        <outlet property="intensityTapEdit" destination="OdN-B7-7c6" id="ZMG-G0-q2Y"/>
+                        <outlet property="intensityValueLabel" destination="3TX-4e-MBG" id="1gP-Cd-vuZ"/>
+                        <outlet property="rateControl" destination="hui-tD-xRO" id="KOf-qV-Fr7"/>
+                        <outlet property="rateTapEdit" destination="mHo-9f-pLo" id="8Y3-hi-EKH"/>
+                        <outlet property="rateValueLabel" destination="T5c-Sd-KDy" id="bFE-RV-3fX"/>
                         <outlet property="wetMixControl" destination="xjB-dE-KcA" id="ctu-DR-LOS"/>
                         <outlet property="wetMixTapEdit" destination="lM5-yt-nYm" id="DNW-UC-Fto"/>
                         <outlet property="wetMixValueLabel" destination="OFy-GK-jEJ" id="cUQ-mp-I71"/>

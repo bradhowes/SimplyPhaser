@@ -213,6 +213,8 @@ public:
      */
     explicit Filter(const Coefficients& coefficients) : coefficients_{coefficients}, state_{} {}
 
+    Filter() : Filter(Coefficients()) {}
+
     /**
      Use a new set of biquad coefficients.
      */

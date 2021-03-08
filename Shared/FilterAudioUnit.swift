@@ -137,9 +137,11 @@ public final class FilterAudioUnit: AUAudioUnit {
                                                 maxDelayMilliseconds: AudioUnitParameters.maxDelayMilliseconds)
 
     private let factoryPresetValues:[(name: String, preset: FilterPreset)] = [
-        ("Flangie", FilterPreset(depth: 100, rate: 0.14, delay: 0.72, feedback: 50, dryMix: 50, wetMix: 50)),
-        ("Sweeper", FilterPreset(depth: 100, rate: 0.14, delay: 1.51, feedback: 80, dryMix: 50, wetMix: 50)),
-        ("Lord Tremolo", FilterPreset(depth: 100, rate: 8.6, delay: 0.07, feedback: 90, dryMix: 0, wetMix: 100))
+        ("Gently Sweeps", FilterPreset(rate: 0.04, depth: 50,intensity: 75, dryMix: 50, wetMix: 50)),
+        ("Slo-Jo", FilterPreset(rate: 0.10, depth: 100,intensity: 90, dryMix: 50, wetMix: 50)),
+        ("Psycho Phase", FilterPreset(rate: 1.0, depth: 40, intensity: 90, dryMix: 0, wetMix: 100)),
+        ("Phaser Blast", FilterPreset(rate: 1.0, depth: 100, intensity: 90, dryMix: 0, wetMix: 100)),
+        ("Noxious", FilterPreset(rate: 20.0, depth: 30, intensity: 75, dryMix: 0, wetMix: 100))
     ]
 
     private var _currentPreset: AUAudioUnitPreset? {
