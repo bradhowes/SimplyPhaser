@@ -35,13 +35,16 @@
                                 <constraint firstAttribute="width" constant="80" id="QUK-PT-mqw"/>
                                 <constraint firstAttribute="height" constant="80" id="vAd-uR-9t8"/>
                             </constraints>
+                            <connections>
+                                <action selector="rateChanged:" target="-2" id="s61-Ex-roh"/>
+                            </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Rate" customClass="FocusAwareTextField" customModule="FilterFramework">
                             <rect key="frame" x="18" y="96" width="84" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="wMm-uE-pHU"/>
                             </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Depth" usesSingleLineMode="YES" id="k91-bk-kf4">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="k91-bk-kf4">
                                 <font key="font" usesAppearanceFont="YES"/>
                                 <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,6 +56,9 @@
                                 <constraint firstAttribute="width" constant="80" id="EDP-SX-7Vf"/>
                                 <constraint firstAttribute="height" constant="80" id="V2V-kw-xaN"/>
                             </constraints>
+                            <connections>
+                                <action selector="depthChanged:" target="-2" id="SJS-tv-d4m"/>
+                            </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Depth" customClass="FocusAwareTextField" customModule="FilterFramework">
                             <rect key="frame" x="106" y="96" width="84" height="16"/>
@@ -71,6 +77,9 @@
                                 <constraint firstAttribute="height" constant="80" id="C1h-AW-fOA"/>
                                 <constraint firstAttribute="width" constant="80" id="nK3-Ah-NbH"/>
                             </constraints>
+                            <connections>
+                                <action selector="intensityChanged:" target="-2" id="g77-dz-7Q1"/>
+                            </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Intensity" customClass="FocusAwareTextField" customModule="FilterFramework">
                             <rect key="frame" x="194" y="96" width="84" height="16"/>
@@ -92,6 +101,9 @@
                                         <constraint firstAttribute="height" constant="80" id="Vze-vS-v09"/>
                                         <constraint firstAttribute="width" constant="80" id="cgS-KS-MTB"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="dryMixChanged:" target="-2" id="XLm-KQ-Hdd"/>
+                                    </connections>
                                 </customView>
                                 <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="FilterFramework">
                                     <rect key="frame" x="-2" y="0.0" width="84" height="16"/>
@@ -110,6 +122,9 @@
                                         <constraint firstAttribute="height" constant="80" id="6WU-mH-P2b"/>
                                         <constraint firstAttribute="width" constant="80" id="czU-wj-DBM"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="wetMixChanged:" target="-2" id="APJ-Pt-cH3"/>
+                                    </connections>
                                 </customView>
                                 <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="FilterFramework">
                                     <rect key="frame" x="86" y="0.0" width="84" height="16"/>
