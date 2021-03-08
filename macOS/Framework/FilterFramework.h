@@ -9,3 +9,4 @@ FOUNDATION_EXPORT const unsigned char Framework_macOSVersionString[];
 
 @class FilterAudioUnit;
 @class FilterViewController;
+@class Knob;

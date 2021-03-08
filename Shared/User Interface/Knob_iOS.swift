@@ -12,7 +12,7 @@ import os
  Visual representation of the knob is done via CoreAnimation components, namely CAShapeLayer and UIBezierPath. The diameter of the arc of the knob is
  defined by the min(width, height) of the view's frame. The start and end of the arc is controlled by the `startAngle` and `endAngle` settings.
  */
-open class Knob: UIControl {
+@objc open class Knob: UIControl {
 
     /// The minimum value reported by the control.
     open var minimumValue: Float = 0.0 { didSet { setValue(clampedValue(value), animated: false) } }

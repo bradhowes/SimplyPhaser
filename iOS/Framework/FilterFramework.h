@@ -9,3 +9,4 @@ FOUNDATION_EXPORT const unsigned char FilterFramework_iOSVersionString[];
 
 @class FilterAudioUnit;
 @class FilterViewController;
+@class Knob;

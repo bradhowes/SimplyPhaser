@@ -93,7 +93,7 @@ import os
         self.viewConfig = viewConfig
     }
 
-    @IBAction public func rateChanged(_: Knob) { controls[.rate]?.knobChanged() }
+    @IBAction @objc public func rateChanged(_: Knob) { controls[.rate]?.knobChanged() }
     @IBAction public func depthChanged(_: Knob) { controls[.depth]?.knobChanged()}
     @IBAction public func intensityChanged(_: Knob) { controls[.intensity]?.knobChanged() }
     @IBAction public func dryMixChanged(_: Knob) { controls[.dryMix]?.knobChanged() }
