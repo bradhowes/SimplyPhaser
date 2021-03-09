@@ -6,7 +6,7 @@ import os
 /**
  Controller for a knob and text view / label.
  */
-final class KnobController: AUParameterControl {
+final class KnobController: NSObject, AUParameterControl {
     private let log = Logging.logger("KnobController")
 
     private let logSliderMinValue: Float = 0.0
@@ -33,6 +33,7 @@ final class KnobController: AUParameterControl {
         self.knob = knob
         self.label = label
         self.useLogValues = logValues
+        super.init()
 
         self.label.text = parameter.displayName
         #if os(macOS)

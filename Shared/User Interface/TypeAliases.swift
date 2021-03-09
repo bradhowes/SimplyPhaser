@@ -45,6 +45,13 @@ public extension NSTextField {
     }
 }
 
+public extension NSSwitch {
+    var isOn: Bool {
+        get { state == .on }
+        set { state = newValue ? .on : .off }
+    }
+}
+
 public extension NSSlider {
     var minimumValue: Float {
         get { Float(self.minValue) }

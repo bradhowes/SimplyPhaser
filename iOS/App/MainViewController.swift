@@ -12,11 +12,9 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var bypassButton: UIButton!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var preset1Button: UIButton!
-    @IBOutlet weak var preset2Button: UIButton!
-    @IBOutlet weak var preset3Button: UIButton!
-    @IBOutlet weak var preset4Button: UIButton!
-    @IBOutlet weak var preset5Button: UIButton!
+    @IBOutlet weak var presetSelection: UISegmentedControl!
+
+    private var filterViewController: FilterViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +31,8 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        usePreset(preset1Button)
+        presetSelection.selectedSegmentIndex = 0
+        usePreset()
         
         let showedAlertKey = "showedInitialAlert"
         guard UserDefaults.standard.bool(forKey: showedAlertKey) == false else { return }
@@ -81,11 +80,9 @@ This app uses the component to demonstrate how it works and sounds.
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    @IBAction func usePreset(_ sender: UIButton) {
-        for button in [preset1Button, preset2Button, preset3Button, preset4Button, preset5Button] {
-            button?.setTitleColor(sender == button ? .systemYellow : .systemTeal, for: .normal)
-        }
-        audioUnitManager.audioUnit?.currentPreset = audioUnitManager.audioUnit?.factoryPresets[sender.tag]
+    @IBAction func usePreset(_ sender: UISegmentedControl? = nil) {
+        audioUnitManager.audioUnit?.currentPreset =
+            audioUnitManager.audioUnit?.factoryPresets[presetSelection.selectedSegmentIndex]
     }
 
     @IBAction private func reviewApp(_ sender: UIButton) {
@@ -104,6 +101,7 @@ extension MainViewController {
 
     private func connectFilterView() {
         let viewController = audioUnitManager.viewController
+        filterViewController = viewController
         guard let filterView = viewController.view else { fatalError("no view found from audio unit") }
         containerView.addSubview(filterView)
         filterView.pinToSuperviewEdges()

@@ -15,6 +15,7 @@
                 <outlet property="dryMixValueLabel" destination="k3X-9K-MVH" id="IqB-ct-MY7"/>
                 <outlet property="intensityControl" destination="1VT-Na-dOb" id="Flz-Vv-FhP"/>
                 <outlet property="intensityValueLabel" destination="aOT-T3-0Np" id="4Nz-q8-fZ0"/>
+                <outlet property="odd90Switch" destination="jyv-e6-r9o" id="dDd-L7-uqt"/>
                 <outlet property="rateControl" destination="vJE-Qk-G6z" id="gq5-bQ-Hof"/>
                 <outlet property="rateValueLabel" destination="FNZ-OF-PRt" id="UjA-ZJ-dAp"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -109,10 +110,27 @@
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="zql-up-Qa5" userLabel="Mix">
-                            <rect key="frame" x="124" y="0.0" width="168" height="88"/>
+                            <rect key="frame" x="86" y="0.0" width="244" height="88"/>
                             <subviews>
+                                <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
+                                    <rect key="frame" x="14" y="35" width="48" height="25"/>
+                                    <connections>
+                                        <action selector="odd90Toggled:" target="-2" id="ncZ-Rl-h16"/>
+                                    </connections>
+                                </switch>
+                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-ZU-SPb" customClass="FocusAwareTextField" customModule="FilterFramework">
+                                    <rect key="frame" x="6" y="13" width="64" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="lHb-Bo-DgF"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Odd 90°" usesSingleLineMode="YES" id="oA4-IM-ibz">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" red="1" green="0.76140111399999999" blue="0.40116951080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </textFieldCell>
+                                </textField>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="8" width="80" height="80"/>
+                                    <rect key="frame" x="76" y="8" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="Vze-vS-v09"/>
                                         <constraint firstAttribute="width" constant="80" id="cgS-KS-MTB"/>
@@ -122,7 +140,7 @@
                                     </connections>
                                 </customView>
                                 <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="FilterFramework">
-                                    <rect key="frame" x="-2" y="0.0" width="84" height="16"/>
+                                    <rect key="frame" x="74" y="0.0" width="84" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="Ob0-G4-Fbi"/>
                                     </constraints>
@@ -133,7 +151,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="KfU-K8-Mrs" userLabel="WetMix" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
-                                    <rect key="frame" x="88" y="8" width="80" height="80"/>
+                                    <rect key="frame" x="164" y="8" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="6WU-mH-P2b"/>
                                         <constraint firstAttribute="width" constant="80" id="czU-wj-DBM"/>
@@ -143,7 +161,7 @@
                                     </connections>
                                 </customView>
                                 <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="FilterFramework">
-                                    <rect key="frame" x="86" y="0.0" width="84" height="16"/>
+                                    <rect key="frame" x="162" y="0.0" width="84" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="7Ss-uv-eri"/>
                                     </constraints>
@@ -155,15 +173,20 @@
                                 </textField>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="jyv-e6-r9o" firstAttribute="leading" secondItem="zql-up-Qa5" secondAttribute="leading" constant="16" id="2kL-8H-TwM"/>
+                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="lJd-ZU-SPb" secondAttribute="trailing" constant="8" symbolic="YES" id="56n-qF-j5k"/>
                                 <constraint firstItem="oTi-Ii-NHh" firstAttribute="top" secondItem="zql-up-Qa5" secondAttribute="top" id="7Gr-af-KAv"/>
                                 <constraint firstItem="k3X-9K-MVH" firstAttribute="centerX" secondItem="oTi-Ii-NHh" secondAttribute="centerX" id="BQQ-MT-t0D"/>
-                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="zql-up-Qa5" secondAttribute="leading" id="Gy4-bI-5YP"/>
                                 <constraint firstItem="KfU-K8-Mrs" firstAttribute="top" secondItem="zql-up-Qa5" secondAttribute="top" id="Hlc-JU-guo"/>
                                 <constraint firstAttribute="trailing" secondItem="KfU-K8-Mrs" secondAttribute="trailing" id="Law-GS-MHj"/>
                                 <constraint firstItem="k3X-9K-MVH" firstAttribute="top" secondItem="oTi-Ii-NHh" secondAttribute="bottom" constant="-8" id="Xnf-l5-RJI"/>
                                 <constraint firstAttribute="bottom" secondItem="k3X-9K-MVH" secondAttribute="bottom" id="dLI-dO-T5N"/>
+                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="jyv-e6-r9o" secondAttribute="trailing" constant="16" id="hn5-4C-GFU"/>
+                                <constraint firstItem="lJd-ZU-SPb" firstAttribute="centerX" secondItem="jyv-e6-r9o" secondAttribute="centerX" id="htf-Jg-GAQ"/>
+                                <constraint firstItem="lJd-ZU-SPb" firstAttribute="top" secondItem="jyv-e6-r9o" secondAttribute="bottom" constant="8" id="iFo-Mz-j91"/>
                                 <constraint firstItem="Bgn-eW-ymD" firstAttribute="top" secondItem="KfU-K8-Mrs" secondAttribute="bottom" constant="-8" id="kb8-hv-gEv"/>
                                 <constraint firstItem="Bgn-eW-ymD" firstAttribute="centerX" secondItem="KfU-K8-Mrs" secondAttribute="centerX" id="lEk-ll-Lrd"/>
+                                <constraint firstItem="jyv-e6-r9o" firstAttribute="centerY" secondItem="oTi-Ii-NHh" secondAttribute="centerY" id="u7b-pX-snv"/>
                                 <constraint firstItem="KfU-K8-Mrs" firstAttribute="leading" secondItem="oTi-Ii-NHh" secondAttribute="trailing" constant="8" symbolic="YES" id="yvw-rB-zR7"/>
                             </constraints>
                         </customView>

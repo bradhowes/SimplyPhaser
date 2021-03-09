@@ -30,7 +30,7 @@ import os
     @IBOutlet weak var dryMixControl: Knob!
     @IBOutlet weak var wetMixControl: Knob!
 
-    @IBOutlet weak var odd90Switch: UISwitch!
+    @IBOutlet weak var odd90Switch: Switch!
 
     #if os(iOS)
     @IBOutlet weak var rateTapEdit: UIView!
@@ -56,6 +56,9 @@ import os
             }
         }
     }
+
+    private var constraintValue: CGFloat = 120.0
+    private var constraintWidth: CGFloat = 0.0
 
     #if os(macOS)
 
@@ -103,6 +106,44 @@ import os
         depthControl.indicatorLineWidth = 8;
         intensityControl.indicatorLineWidth = 8;
     }
+
+    #if os(iOS)
+    
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        os_log(.info, log: log, "viewDidLayoutSubviews - x: %f y: %f width: %f height: %f",
+               controlsView.frame.origin.x, controlsView.frame.origin.y,
+               controlsView.frame.width, controlsView.frame.height)
+        if controlsView.frame.origin.x < 0.0 {
+            constraintValue = 120.0 - ceil(controlsView.frame.origin.x * -2.0 / 3.0)
+            if view.frame.width != constraintWidth {
+                constraintWidth = view.frame.width
+                resizeKnob(rateControl, constraintValue)
+                resizeKnob(depthControl, constraintValue)
+                resizeKnob(intensityControl, constraintValue)
+            }
+        }
+        else {
+            if view.frame.width != constraintWidth {
+                constraintValue = 120.0
+                constraintWidth = view.frame.width
+                resizeKnob(rateControl, constraintValue)
+                resizeKnob(depthControl, constraintValue)
+                resizeKnob(intensityControl, constraintValue)
+            }
+        }
+    }
+
+    private func resizeKnob(_ control: UIView, _ value: CGFloat) {
+        for constraint in control.constraints {
+            switch constraint.firstAttribute {
+            case .width, .height: constraint.constant = value
+            default: break
+            }
+        }
+    }
+
+    #endif
 
     public func selectViewConfiguration(_ viewConfig: AUAudioUnitViewConfiguration) {
         guard self.viewConfig != viewConfig else { return }
