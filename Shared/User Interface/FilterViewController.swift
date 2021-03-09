@@ -30,6 +30,8 @@ import os
     @IBOutlet weak var dryMixControl: Knob!
     @IBOutlet weak var wetMixControl: Knob!
 
+    @IBOutlet weak var odd90Switch: UISwitch!
+
     #if os(iOS)
     @IBOutlet weak var rateTapEdit: UIView!
     @IBOutlet weak var depthTapEdit: UIView!
@@ -43,7 +45,7 @@ import os
     @IBOutlet weak var editingBackground: UIView!
     #endif
 
-    var controls = [FilterParameterAddress : KnobController]()
+    var controls = [FilterParameterAddress : AUParameterControl]()
 
     public var audioUnit: FilterAudioUnit? {
         didSet {
@@ -107,11 +109,12 @@ import os
         self.viewConfig = viewConfig
     }
 
-    @IBAction @objc public func rateChanged(_: Knob) { controls[.rate]?.knobChanged() }
-    @IBAction public func depthChanged(_: Knob) { controls[.depth]?.knobChanged()}
-    @IBAction public func intensityChanged(_: Knob) { controls[.intensity]?.knobChanged() }
-    @IBAction public func dryMixChanged(_: Knob) { controls[.dryMix]?.knobChanged() }
-    @IBAction public func wetMixChanged(_: Knob) { controls[.wetMix]?.knobChanged() }
+    @IBAction public func rateChanged(_: Knob) { controls[.rate]?.controlChanged() }
+    @IBAction public func depthChanged(_: Knob) { controls[.depth]?.controlChanged()}
+    @IBAction public func intensityChanged(_: Knob) { controls[.intensity]?.controlChanged() }
+    @IBAction public func dryMixChanged(_: Knob) { controls[.dryMix]?.controlChanged() }
+    @IBAction public func wetMixChanged(_: Knob) { controls[.wetMix]?.controlChanged() }
+    @IBAction public func odd90Toggled(_: Switch) { controls[.odd90]?.controlChanged() }
 
     #if os(macOS)
     override public func mouseDown(with event: NSEvent) {
@@ -174,6 +177,7 @@ extension FilterViewController {
         controls[.wetMix] = KnobController(parameterObserverToken: parameterObserverToken, parameter: params[.wetMix],
                                            formatter: params.valueFormatter(.wetMix), knob: wetMixControl,
                                            label:  wetMixValueLabel, logValues: false)
+        controls[.odd90] = SwitchController(parameterObserverToken: parameterObserverToken, parameter: params[.odd90], control: odd90Switch)
     }
 
     private func updateDisplay() {
@@ -184,7 +188,7 @@ extension FilterViewController {
     }
 
     private func performOnMain(_ operation: @escaping () -> Void) {
-        (Thread.isMainThread ? operation : { DispatchQueue.main.async { operation() } })()
+        DispatchQueue.main.async { operation() }
     }
 }
 

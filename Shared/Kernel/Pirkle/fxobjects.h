@@ -33,7 +33,7 @@ namespace Pirkle {
 
 // --- constants & enumerations
 //
-// ---  by placing outside the class declaration, these will also be avaialble to anything
+// ---  by placing outside the class declaration, these will also be available to anything
 //      that #includes this file (sometimes needed)
 const double kPi = M_PI;
 const double kTwoPi = 2 * M_PI;
@@ -133,7 +133,7 @@ inline double doLinearInterpolation(double y1, double y2, double fractional_X)
  \param x - Pointer to an array containing the x-coordinates of the input values
  \param y - Pointer to an array containing the y-coordinates of the input values
  \param n - the order of the interpolator, this is also the length of the x,y input arrays
- \param xbar - The x-coorinates whose y-value we want to interpolate
+ \param xbar - The x-coordinates whose y-value we want to interpolate
  \return the interpolated value
  */
 inline double doLagrangeInterpolation(double* x, double* y, int n, double xbar)

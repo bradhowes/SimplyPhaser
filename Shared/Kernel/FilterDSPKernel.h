@@ -18,10 +18,7 @@ public:
     friend super;
 
     FilterDSPKernel(const std::string& name)
-    : super(os_log_create(name.c_str(), "FilterDSPKernel")), lfo_()
-    {
-        lfo_.setWaveform(LFOWaveform::triangle);
-    }
+    : super(os_log_create(name.c_str(), "FilterDSPKernel")), lfo_() { lfo_.setWaveform(LFOWaveform::triangle); }
 
     /**
      Update kernel and buffers to support the given format and channel count
@@ -76,6 +73,10 @@ public:
                 os_log_with_type(log_, OS_LOG_TYPE_INFO, "wetMix - %f", tmp);
                 wetMix_ = tmp;
                 break;
+            case FilterParameterAddressOdd90:
+                odd90_ = value > 0 ? true : false;
+                os_log_with_type(log_, OS_LOG_TYPE_INFO, "odd90 - %d", odd90_);
+                break;
         }
     }
 
@@ -86,6 +87,7 @@ public:
             case FilterParameterAddressIntensity: return intensity_ * 100.0;
             case FilterParameterAddressDryMix: return dryMix_ * 100.0;
             case FilterParameterAddressWetMix: return wetMix_ * 100.0;
+            case FilterParameterAddressOdd90: return odd90_ ? 1.0 : 0.0;
         }
         return 0.0;
     }
@@ -103,7 +105,9 @@ private:
             auto& shifterNew{phaseShifter_[channel]};
             for (int frame = 0; frame < frameCount; ++frame) {
                 auto inputSample = inputs[frame];
-                auto outputSample = shifterNew.process(lfo_.valueAndIncrement() * depth_, inputSample);
+                auto modulation = odd90_ ? ((channel & 1) ? lfo_.quadPhaseValue() : lfo_.value()) : lfo_.value();
+                lfo_.increment();
+                auto outputSample = shifterNew.process(modulation * depth_, inputSample);
                 outputs[frame] = dryMix_ * inputSample + wetMix_ * outputSample;
             }
         }
@@ -122,8 +126,7 @@ private:
     double intensity_;
     double dryMix_;
     double wetMix_;
-
+    bool odd90_;
     LFO<double> lfo_;
-
     std::vector<PhaseShifter<double>> phaseShifter_;
 };

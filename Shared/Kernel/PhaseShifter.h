@@ -42,7 +42,7 @@ public:
         Band{32.0, 1500.0},
         Band{68.0, 3400.0},
         Band{96.0, 4800.0},
-        Band{212.0, 1000.0},
+        Band{212.0, 10000.0},
         Band{320.0, 16000.0},
         Band{636.0, 20480.0}
     };
@@ -72,7 +72,10 @@ public:
 
         // This implements the phaser processing described in "Designing Audio Effect Plugins in C++" by
         // Will C. Pirkle (2019)
-        updateCoefficients(modulation);
+        if (sampleCounter_ == samplesPerUpdate) {
+            updateCoefficients(modulation);
+            sampleCounter_ = 0;
+        }
 
         // Calculate gamma values
         std::vector<T> gammas(1, 1.0);
@@ -96,6 +99,7 @@ public:
             output = filter.transform(output);
         }
 
+        ++sampleCounter_;
         return output; // * 1.25 + 0.125 * input;
     }
 
@@ -110,8 +114,11 @@ private:
         }, filters_.begin(), filters_.end(), bands_.begin(), bands_.end());
     }
 
+    static constexpr int samplesPerUpdate = 8;
+
     const FrequencyBands& bands_;
     double sampleRate_;
     double intensity_;
+    int sampleCounter_{0};
     std::vector<AllPassFilter> filters_;
 };

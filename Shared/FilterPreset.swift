@@ -9,4 +9,5 @@ public struct FilterPreset {
     let intensity: AUValue
     let dryMix: AUValue
     let wetMix: AUValue
+    let odd90: AUValue
 }

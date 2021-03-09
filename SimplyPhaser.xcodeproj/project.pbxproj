@@ -111,6 +111,10 @@
 		BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
 		BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
 		BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C9B025F7A1BE004EC1AC /* SwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */; };
+		BDC3C9B125F7A1BE004EC1AC /* SwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */; };
+		BDC3C9BA25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
+		BDC3C9BB25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
 		BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF524A3DF24004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
@@ -321,6 +325,8 @@
 		BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhaseShifter.h; sourceTree = "<group>"; };
 		BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhaseShifterTests.mm; sourceTree = "<group>"; };
 		BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
+		BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchController.swift; sourceTree = "<group>"; };
+		BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUParameerControl.swift; sourceTree = "<group>"; };
 		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
@@ -723,6 +729,8 @@
 				BD66842D25F11F77009CF8ED /* Knob_iOS.swift */,
 				BD66842C25F11F77009CF8ED /* Knob_macOS.swift */,
 				BD66842B25F11F77009CF8ED /* KnobController.swift */,
+				BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */,
+				BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */,
 				C4BEE7DB22236E99001E6B6D /* TypeAliases.swift */,
 			);
 			path = "User Interface";
@@ -1193,6 +1201,7 @@
 				C4F004A62239B2070014E248 /* FilterAudioUnit.swift in Sources */,
 				BDB11A5824A13CB100DD8EF9 /* CALayer+Extensions.swift in Sources */,
 				BD2FD3ED259B5104004A3196 /* AUParameterTree+Extensions.swift in Sources */,
+				BDC3C9B025F7A1BE004EC1AC /* SwitchController.swift in Sources */,
 				BDB11A6024A13FCF00DD8EF9 /* CATransaction+Extensions.swift in Sources */,
 				C4A3D65B223FF12A002784D4 /* SimplePlayEngine.swift in Sources */,
 				BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */,
@@ -1211,6 +1220,7 @@
 				BD578EED25D278490040D83D /* AudioUnitManager.swift in Sources */,
 				BD18B3A024CB31B200B7CB1E /* AudioUnitParameters.swift in Sources */,
 				BD66843225F11F77009CF8ED /* Knob_iOS.swift in Sources */,
+				BDC3C9BA25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,6 +1254,7 @@
 				C4F07732223AC4F5008FFF06 /* FilterViewController.swift in Sources */,
 				C4BEE80122236F6E001E6B6D /* View+Extensions.swift in Sources */,
 				BDB11A5424A13C4A00DD8EF9 /* Comparble+Extensions.swift in Sources */,
+				BDC3C9B125F7A1BE004EC1AC /* SwitchController.swift in Sources */,
 				BDB7CE9C249FC0AC009580D5 /* AUAudioUnitPreset+Extensions.swift in Sources */,
 				BD72F2E625D1D4CE0031E422 /* InputBuffer.h in Sources */,
 				BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */,
@@ -1262,6 +1273,7 @@
 				BD49661724A35D8900A81F0B /* FourCharCode+Extensions.swift in Sources */,
 				BDB11A6124A13FD000DD8EF9 /* CATransaction+Extensions.swift in Sources */,
 				C4F004A42239B1E10014E248 /* FilterDSPKernelAdapter.mm in Sources */,
+				BDC3C9BB25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

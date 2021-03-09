@@ -12,6 +12,7 @@ import os
     case intensity
     case dryMix
     case wetMix
+    case odd90
 }
 
 private extension Array where Element == AUParameter {
@@ -37,7 +38,8 @@ public final class AudioUnitParameters: NSObject {
         AUParameterTree.createParameter(withIdentifier: "dry", name: "Dry", address: .dryMix,
                                         min: 0.0, max: 100.0, unit: .percent),
         AUParameterTree.createParameter(withIdentifier: "wet", name: "Wet", address: .wetMix,
-                                        min: 0.0, max: 100.0, unit: .percent)
+                                        min: 0.0, max: 100.0, unit: .percent),
+        AUParameterTree.createParameter(withIdentifier: "odd90", name: "Odd 90", address: .odd90, min: 0, max: 1, unit: .boolean)
     ]
 
     /// AUParameterTree created with the parameter definitions for the audio unit
@@ -48,6 +50,7 @@ public final class AudioUnitParameters: NSObject {
     public var intensity: AUParameter { parameters[.intensity] }
     public var dryMix: AUParameter { parameters[.dryMix] }
     public var wetMix: AUParameter { parameters[.wetMix] }
+    public var odd90: AUParameter { parameters[.odd90] }
 
     /**
      Create a new AUParameterTree for the defined filter parameters.
@@ -109,6 +112,7 @@ extension AudioUnitParameters {
         self.intensity.value = preset.intensity
         self.dryMix.value = preset.dryMix
         self.wetMix.value = preset.wetMix
+        self.odd90.value = preset.odd90
     }
 }
 
@@ -118,6 +122,7 @@ extension AudioUnitParameters {
         case .rate: return "%.2f"
         case .depth, .intensity: return "%.2f"
         case .dryMix, .wetMix: return "%.0f"
+        case .odd90: return "%.0f"
         default: return "?"
         }
     }
