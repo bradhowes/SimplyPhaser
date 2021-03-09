@@ -15,3 +15,4 @@ since they are part of RackAFX7 projects as well, but only as 3rd party
 supplies (there is NO RackAFX code in the fxobjects.h and .cpp files).
 
 - Will Pirkle
+
