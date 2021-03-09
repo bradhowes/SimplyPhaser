@@ -44,14 +44,41 @@ public final class AudioUnitManager {
      Create a new instance. Instantiates new FilterAudioUnit and its view controller.
      */
     public init(componentDescription: AudioComponentDescription, appExtension: String) {
-        // self.viewController = Self.loadViewController(appExtension: appExtension)
-        createAudioUnit(componentDescription: componentDescription)
+        let viewController = Self.loadViewController(appExtension: appExtension)
+        createAudioUnit2(componentDescription: componentDescription, viewController: viewController)
     }
 }
 
 extension AudioUnitManager {
 
     private func createAudioUnit(componentDescription: AudioComponentDescription) {
+        os_log(.info, log: log, "createAudioUnit")
+        componentDescription.log(log, type: .info)
+
+        // Uff. So for iOS we need to register the AUv3 so we can see it now. But we do NOT want to do so if we are
+        // running in macOS
+        //
+        #if os(iOS)
+        let bundle = Bundle(for: AudioUnitManager.self)
+        AUAudioUnit.registerSubclass(FilterAudioUnit.self, as: componentDescription, name: bundle.auBaseName,
+                                     version: UInt32.max)
+        #endif
+
+        let componentManager = AVAudioUnitComponentManager.shared();
+        let center = NotificationCenter.default
+        let mainQueue = OperationQueue.main
+        var token: NSObjectProtocol?
+        token = center.addObserver(forName: AVAudioUnitComponentManager.registrationsChangedNotification,
+                                   object: nil, queue: mainQueue) { notification in
+            let found = componentManager.components(matching: componentDescription)
+            if !found.isEmpty {
+                center.removeObserver(token!)
+                self.instantiate(componentDescription: componentDescription)
+            }
+        }
+    }
+
+    private func createAudioUnit2(componentDescription: AudioComponentDescription, viewController: FilterViewController) {
         os_log(.info, log: log, "createAudioUnit")
         componentDescription.log(log, type: .info)
 
@@ -76,17 +103,42 @@ extension AudioUnitManager {
             guard error == nil, let avAudioUnit = avAudioUnit else {
                 fatalError("Could not instantiate audio unit: \(String(describing: error))")
             }
-            avAudioUnit.auAudioUnit.requestViewController { controller in
-                guard let viewController = controller as? FilterViewController else {
-                    fatalError("Did not get FilterViewController")
+            self.wireAudioUnit(avAudioUnit, viewController: viewController)
+        }
+    }
+    private func instantiate(componentDescription: AudioComponentDescription) {
+
+        // AVAudioUnitComponentManager.registrationsChangedNotification
+        // If we are running in macOS we must load the AUv3 in-process in order to be able to use it from within the
+        // app sandbox.
+        //
+        #if os(macOS)
+        let options: AudioComponentInstantiationOptions = .loadInProcess
+        #else
+        let options = AudioComponentInstantiationOptions()
+        #endif
+
+        AVAudioUnit.instantiate(with: componentDescription, options: options) { avAudioUnit, error in
+            guard error == nil, let avAudioUnit = avAudioUnit else {
+                fatalError("Could not instantiate audio unit: \(String(describing: error))")
+            }
+            os_log(.info, log: self.log, "created AVAudioUnit")
+            DispatchQueue.main.async {
+                os_log(.info, log: self.log, "requesting view controller")
+                avAudioUnit.auAudioUnit.requestViewController { controller in
+                    guard let viewController = controller as? FilterViewController else {
+                        os_log(.info, log: self.log, "Did not get FilterViewController")
+                        return
+                    }
+                    os_log(.info, log: self.log, "done")
+                    self.wireAudioUnit(avAudioUnit, viewController: viewController)
                 }
-                self._viewController = viewController
-                self.wireAudioUnit(avAudioUnit, viewController: viewController)
             }
         }
     }
 
     private func wireAudioUnit(_ avAudioUnit: AVAudioUnit, viewController: FilterViewController) {
+        self._viewController = viewController
         guard let auAudioUnit = avAudioUnit.auAudioUnit as? FilterAudioUnit else {
             fatalError("avAudioUnit.auAudioUnit is nil or wrong type")
         }

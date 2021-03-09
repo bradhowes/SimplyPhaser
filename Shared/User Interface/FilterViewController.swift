@@ -67,6 +67,10 @@ import os
         super.init(coder: coder)
     }
 
+    public override func loadView() {
+        super.loadView()
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -86,6 +90,16 @@ import os
         addTapGesture(wetMixTapEdit)
 
         #endif
+
+        rateControl.trackLineWidth = 10;
+        depthControl.trackLineWidth = 10;
+        intensityControl.trackLineWidth = 10;
+        rateControl.progressLineWidth = 8;
+        depthControl.progressLineWidth = 8;
+        intensityControl.progressLineWidth = 8;
+        rateControl.indicatorLineWidth = 8;
+        depthControl.indicatorLineWidth = 8;
+        intensityControl.indicatorLineWidth = 8;
     }
 
     public func selectViewConfiguration(_ viewConfig: AUAudioUnitViewConfiguration) {

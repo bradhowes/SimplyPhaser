@@ -2,6 +2,7 @@
 
 #pragma once
 
+#import <algorithm>
 #import <vector>
 
 #import "Biquad.h"
@@ -19,7 +20,7 @@ void zip(F func, IteratorA aPos, IteratorA aEnd, IteratorB bPos, IteratorB bEnd)
 template <typename T>
 class PhaseShifter {
 public:
-    using AllPassFilter = Biquad::Direct;
+    using AllPassFilter = Biquad::CanonicalTranspose<T>;
 
     struct Band {
         double frequencyMin;
@@ -41,7 +42,7 @@ public:
         Band{32.0, 1500.0},
         Band{68.0, 3400.0},
         Band{96.0, 4800.0},
-        Band{212.0, 10000.0},
+        Band{212.0, 1000.0},
         Band{320.0, 16000.0},
         Band{636.0, 20480.0}
     };
@@ -51,9 +52,14 @@ public:
 
     PhaseShifter() : PhaseShifter(ideal) {}
 
-    void initialize(double sampleRate) {
+    void initialize(double sampleRate, double intensity) {
         sampleRate_ = sampleRate;
+        intensity_ = intensity;
         updateCoefficients(0.0);
+    }
+
+    void setIntensity(double intensity) {
+        intensity_ = intensity;
     }
 
     void reset() {
@@ -62,7 +68,36 @@ public:
         }
     }
 
-    T value(T modulation, T input);
+    T process(T modulation, T input) {
+
+        // This implements the phaser processing described in "Designing Audio Effect Plugins in C++" by
+        // Will C. Pirkle (2019)
+        updateCoefficients(modulation);
+
+        // Calculate gamma values
+        std::vector<T> gammas(1, 1.0);
+        std::for_each(filters_.rbegin(), filters_.rend(), [& gammas](auto& filter) {
+            gammas.push_back(filter.gainValue() * gammas.back());
+        });
+
+        // Calculate weighted state sum to submit to filtering
+        T alpha0 = 1.0 / (1.0 + intensity_ * gammas.back());
+        gammas.pop_back();
+        T weightedSum = 0.0;
+        std::for_each(filters_.begin(), filters_.end(), [&gammas, &weightedSum](auto& filter) {
+            auto gamma = gammas.back();
+            gammas.pop_back();
+            weightedSum += gamma * filter.storageComponent();
+        });
+
+        // Finally, apply the filters in series
+        T output = alpha0 * (input + intensity_ * weightedSum);
+        for (auto& filter : filters_) {
+            output = filter.transform(output);
+        }
+
+        return output; // * 1.25 + 0.125 * input;
+    }
 
 private:
 
@@ -70,12 +105,13 @@ private:
         assert(filters_.size() == bands_.size());
         double sampleRate = sampleRate_;
         zip([sampleRate, modulation](AllPassFilter& filter, const Band& band) {
-            double frequency = DSP::unipolarModulation(modulation, band.frequencyMin, band.frequencyMax);
-            filter.setCoefficients(Biquad::Coefficients::APF1(sampleRate, frequency));
+            double frequency = DSP::bipolarModulation(modulation, band.frequencyMin, band.frequencyMax);
+            filter.setCoefficients(Biquad::Coefficients<T>::APF1(sampleRate, frequency));
         }, filters_.begin(), filters_.end(), bands_.begin(), bands_.end());
     }
 
     const FrequencyBands& bands_;
     double sampleRate_;
+    double intensity_;
     std::vector<AllPassFilter> filters_;
 };

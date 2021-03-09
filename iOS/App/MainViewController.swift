@@ -14,6 +14,9 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var preset1Button: UIButton!
     @IBOutlet weak var preset2Button: UIButton!
+    @IBOutlet weak var preset3Button: UIButton!
+    @IBOutlet weak var preset4Button: UIButton!
+    @IBOutlet weak var preset5Button: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,9 @@ final class MainViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        usePreset(preset1Button)
+        
         let showedAlertKey = "showedInitialAlert"
         guard UserDefaults.standard.bool(forKey: showedAlertKey) == false else { return }
         UserDefaults.standard.set(true, forKey: showedAlertKey)
@@ -75,12 +81,11 @@ This app uses the component to demonstrate how it works and sounds.
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    @IBAction func usePreset1(_ sender: Any) {
-        audioUnitManager.audioUnit?.currentPreset = audioUnitManager.audioUnit?.factoryPresets[1]
-    }
-
-    @IBAction func usePreset2(_ sender: Any) {
-        audioUnitManager.audioUnit?.currentPreset = audioUnitManager.audioUnit?.factoryPresets[2]
+    @IBAction func usePreset(_ sender: UIButton) {
+        for button in [preset1Button, preset2Button, preset3Button, preset4Button, preset5Button] {
+            button?.setTitleColor(sender == button ? .systemYellow : .systemTeal, for: .normal)
+        }
+        audioUnitManager.audioUnit?.currentPreset = audioUnitManager.audioUnit?.factoryPresets[sender.tag]
     }
 
     @IBAction private func reviewApp(_ sender: UIButton) {

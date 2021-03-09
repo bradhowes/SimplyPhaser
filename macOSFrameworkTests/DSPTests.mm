@@ -58,12 +58,12 @@
     }
 }
 
-- (void)testZZZ {
-    for (float modulator = -1.0; modulator <= 1.0; modulator += 0.1) {
-        auto a = DSP::unipolarModulation<float>(DSP::bipolarToUnipolar<float>(modulator), 0.0, 10.0);
-        auto b = DSP::bipolarModulation<float>(modulator, 0.0, 10.0);
-        NSLog(@"%f %f", a, b);
-    }
-}
+//- (void)testZZZ {
+//    for (float modulator = -1.0; modulator <= 1.0; modulator += 0.1) {
+//        auto a = DSP::unipolarModulation<float>(DSP::bipolarToUnipolar<float>(modulator), 0.0, 10.0);
+//        auto b = DSP::bipolarModulation<float>(modulator, 0.0, 10.0);
+//        NSLog(@"%f %f", a, b);
+//    }
+//}
 
 @end

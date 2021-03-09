@@ -20,7 +20,7 @@ class BundlePropertiesTests: XCTestCase {
         XCTAssertEqual("SimplyPhaser", bundle.auBaseName)
         XCTAssertEqual("B-Ray: SimplyPhaser", bundle.auComponentName)
         XCTAssertEqual("aufx", bundle.auComponentType)
-        XCTAssertEqual("flng", bundle.auComponentSubtype)
+        XCTAssertEqual("fazr", bundle.auComponentSubtype)
         XCTAssertEqual("BRay", bundle.auComponentManufacturer)
         XCTAssertEqual("FilterFramework.FilterViewController", bundle.auFactoryFunction)
     }

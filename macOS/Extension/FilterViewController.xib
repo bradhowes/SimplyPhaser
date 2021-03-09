@@ -26,74 +26,90 @@
             <rect key="frame" x="0.0" y="0.0" width="587" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wUu-Yz-l9v" userLabel="v1.0.0">
+                    <rect key="frame" x="444" y="84" width="38" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="v1.1.0" id="p30-Bk-a8R" userLabel="APP_VERSION">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aLd-qq-j2G">
+                    <rect key="frame" x="106" y="82" width="376" height="137"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="PHASER" id="bWS-WG-WZp">
+                        <font key="font" size="120" name="Desdemona"/>
+                        <color key="textColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </textFieldCell>
+                </textField>
                 <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPI-wC-N8q">
-                    <rect key="frame" x="146" y="48" width="296" height="204"/>
+                    <rect key="frame" x="86" y="34" width="416" height="232"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="vJE-Qk-G6z" userLabel="Rate" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
-                            <rect key="frame" x="20" y="104" width="80" height="80"/>
+                            <rect key="frame" x="20" y="112" width="120" height="120"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="QUK-PT-mqw"/>
-                                <constraint firstAttribute="height" constant="80" id="vAd-uR-9t8"/>
+                                <constraint firstAttribute="width" constant="120" id="QUK-PT-mqw"/>
+                                <constraint firstAttribute="height" constant="120" id="vAd-uR-9t8"/>
                             </constraints>
                             <connections>
                                 <action selector="rateChanged:" target="-2" id="s61-Ex-roh"/>
                             </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Rate" customClass="FocusAwareTextField" customModule="FilterFramework">
-                            <rect key="frame" x="18" y="96" width="84" height="16"/>
+                            <rect key="frame" x="38" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="wMm-uE-pHU"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="k91-bk-kf4">
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="system" size="20"/>
                                 <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="25e-Ls-Yhr" userLabel="Depth" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
-                            <rect key="frame" x="108" y="104" width="80" height="80"/>
+                            <rect key="frame" x="148" y="112" width="120" height="120"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="EDP-SX-7Vf"/>
-                                <constraint firstAttribute="height" constant="80" id="V2V-kw-xaN"/>
+                                <constraint firstAttribute="width" constant="120" id="EDP-SX-7Vf"/>
+                                <constraint firstAttribute="height" constant="120" id="V2V-kw-xaN"/>
                             </constraints>
                             <connections>
                                 <action selector="depthChanged:" target="-2" id="SJS-tv-d4m"/>
                             </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Depth" customClass="FocusAwareTextField" customModule="FilterFramework">
-                            <rect key="frame" x="106" y="96" width="84" height="16"/>
+                            <rect key="frame" x="166" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="A7M-iM-efX"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="dUD-TV-FfK">
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="system" size="20"/>
                                 <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1VT-Na-dOb" userLabel="Intensity" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
-                            <rect key="frame" x="196" y="104" width="80" height="80"/>
+                            <rect key="frame" x="276" y="112" width="120" height="120"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="C1h-AW-fOA"/>
-                                <constraint firstAttribute="width" constant="80" id="nK3-Ah-NbH"/>
+                                <constraint firstAttribute="height" constant="120" id="C1h-AW-fOA"/>
+                                <constraint firstAttribute="width" constant="120" id="nK3-Ah-NbH"/>
                             </constraints>
                             <connections>
                                 <action selector="intensityChanged:" target="-2" id="g77-dz-7Q1"/>
                             </connections>
                         </customView>
                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Intensity" customClass="FocusAwareTextField" customModule="FilterFramework">
-                            <rect key="frame" x="194" y="96" width="84" height="16"/>
+                            <rect key="frame" x="294" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="eeP-Bv-mve"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Delay" usesSingleLineMode="YES" id="lqk-lB-PF2">
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="system" size="20"/>
                                 <color key="textColor" red="1" green="0.76140111404684852" blue="0.40116951084983088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="zql-up-Qa5" userLabel="Mix">
-                            <rect key="frame" x="64" y="0.0" width="168" height="88"/>
+                            <rect key="frame" x="124" y="0.0" width="168" height="88"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="8" width="80" height="80"/>
@@ -158,33 +174,27 @@
                         <constraint firstItem="FNZ-OF-PRt" firstAttribute="top" secondItem="vJE-Qk-G6z" secondAttribute="bottom" constant="-8" id="63A-sK-qAg"/>
                         <constraint firstItem="1VT-Na-dOb" firstAttribute="leading" secondItem="25e-Ls-Yhr" secondAttribute="trailing" constant="8" symbolic="YES" id="Bwe-fG-m4H"/>
                         <constraint firstAttribute="bottom" secondItem="zql-up-Qa5" secondAttribute="bottom" id="DkB-Jp-1me"/>
-                        <constraint firstItem="1VT-Na-dOb" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" constant="20" symbolic="YES" id="GWW-R2-rpc"/>
                         <constraint firstItem="YuF-pJ-Rk3" firstAttribute="centerX" secondItem="25e-Ls-Yhr" secondAttribute="centerX" id="Kid-jH-ary"/>
                         <constraint firstItem="zql-up-Qa5" firstAttribute="top" secondItem="YuF-pJ-Rk3" secondAttribute="bottom" constant="8" symbolic="YES" id="LCV-xB-tAl"/>
+                        <constraint firstItem="1VT-Na-dOb" firstAttribute="top" secondItem="25e-Ls-Yhr" secondAttribute="top" id="RpA-ae-yrc"/>
                         <constraint firstItem="25e-Ls-Yhr" firstAttribute="leading" secondItem="vJE-Qk-G6z" secondAttribute="trailing" constant="8" symbolic="YES" id="TmV-fk-YEI"/>
                         <constraint firstAttribute="trailing" secondItem="1VT-Na-dOb" secondAttribute="trailing" constant="20" symbolic="YES" id="VVm-h8-Scw"/>
                         <constraint firstItem="aOT-T3-0Np" firstAttribute="centerX" secondItem="1VT-Na-dOb" secondAttribute="centerX" id="XsO-Ro-BEF"/>
                         <constraint firstItem="vJE-Qk-G6z" firstAttribute="leading" secondItem="oPI-wC-N8q" secondAttribute="leading" constant="20" symbolic="YES" id="aYw-pO-b5Y"/>
-                        <constraint firstItem="25e-Ls-Yhr" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" constant="20" symbolic="YES" id="c1D-UP-xR8"/>
                         <constraint firstItem="YuF-pJ-Rk3" firstAttribute="top" secondItem="25e-Ls-Yhr" secondAttribute="bottom" constant="-8" id="h7e-AV-jk4"/>
                         <constraint firstItem="FNZ-OF-PRt" firstAttribute="centerX" secondItem="vJE-Qk-G6z" secondAttribute="centerX" id="mfn-yq-dHm"/>
-                        <constraint firstItem="vJE-Qk-G6z" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" constant="20" symbolic="YES" id="r9n-sB-ZU2"/>
+                        <constraint firstItem="vJE-Qk-G6z" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" id="r9n-sB-ZU2"/>
+                        <constraint firstItem="25e-Ls-Yhr" firstAttribute="top" secondItem="vJE-Qk-G6z" secondAttribute="top" id="sbf-Uu-gg8"/>
                     </constraints>
                 </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wUu-Yz-l9v" userLabel="v1.0.0">
-                    <rect key="frame" x="544" y="282" width="33" height="14"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="v1.1.0" id="p30-Bk-a8R" userLabel="APP_VERSION">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="oPI-wC-N8q" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="1vI-lz-63x"/>
                 <constraint firstItem="oPI-wC-N8q" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="90I-My-Led"/>
-                <constraint firstItem="wUu-Yz-l9v" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="9UD-XB-iHJ"/>
-                <constraint firstAttribute="trailing" secondItem="wUu-Yz-l9v" secondAttribute="trailing" constant="12" id="W2B-mR-rNV"/>
+                <constraint firstItem="wUu-Yz-l9v" firstAttribute="top" secondItem="aLd-qq-j2G" secondAttribute="bottom" constant="-18" id="LSf-w3-Krc"/>
+                <constraint firstItem="aLd-qq-j2G" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Lua-BV-Itv"/>
+                <constraint firstItem="wUu-Yz-l9v" firstAttribute="trailing" secondItem="aLd-qq-j2G" secondAttribute="trailing" id="Rox-W1-UK4"/>
+                <constraint firstItem="aLd-qq-j2G" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="lOr-PX-6tb"/>
             </constraints>
             <point key="canvasLocation" x="-163" y="-787"/>
         </customView>

@@ -18,66 +18,103 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YiJ-1a-ELQ" userLabel="Controls Header View">
-                                <rect key="frame" x="8" y="0.0" width="359" height="46"/>
+                                <rect key="frame" x="8" y="0.0" width="359" height="68"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2HW-yE-4lC">
-                                        <rect key="frame" x="0.0" y="8" width="359" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-qh-2M5">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="68"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzZ-pe-UL7">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Play">
-                                                    <color key="titleColor" systemColor="systemTealColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="togglePlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kt8-zh-HcD"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="act-OR-R8x">
-                                                <rect key="frame" x="64" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Preset 1">
-                                                    <color key="titleColor" systemColor="systemTealColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="usePreset1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cZ7-bZ-aIk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH0-Qn-oNO" userLabel="Preset 2">
-                                                <rect key="frame" x="153" y="0.0" width="57" height="30"/>
-                                                <state key="normal" title="Preset 2">
-                                                    <color key="titleColor" systemColor="systemTealColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="usePreset2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tqc-qQ-OpY"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJA-Ec-YsF" userLabel="APP_VERSION">
-                                                <rect key="frame" x="244" y="2" width="31" height="26"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="v1.0.0">
-                                                    <color key="titleColor" systemColor="systemTealColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="reviewApp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SIe-10-IRd"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9za-g7-28Y">
-                                                <rect key="frame" x="309" y="0.0" width="50" height="30"/>
-                                                <state key="normal" title="Bypass">
-                                                    <color key="titleColor" systemColor="systemTealColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="toggleBypass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AFb-Cz-SLh"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2HW-yE-4lC">
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzZ-pe-UL7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="Play">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="togglePlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kt8-zh-HcD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJA-Ec-YsF" userLabel="APP_VERSION">
+                                                        <rect key="frame" x="154" y="2" width="31" height="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <state key="normal" title="v1.0.0">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="reviewApp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SIe-10-IRd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9za-g7-28Y">
+                                                        <rect key="frame" x="309" y="0.0" width="50" height="30"/>
+                                                        <state key="normal" title="Bypass">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="toggleBypass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AFb-Cz-SLh"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tvK-dc-agc">
+                                                <rect key="frame" x="0.0" y="38" width="359" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Y9-WW-15d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
+                                                        <state key="normal" title="Preset 1">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="usePreset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EeN-ux-res"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Svi-F5-0KQ">
+                                                        <rect key="frame" x="73.5" y="0.0" width="57" height="30"/>
+                                                        <state key="normal" title="Preset 2">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="usePreset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oMf-TV-P8S"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf5-4G-NSJ">
+                                                        <rect key="frame" x="148.5" y="0.0" width="58" height="30"/>
+                                                        <state key="normal" title="Preset 3">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="usePreset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tve-6S-1nN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0w-hy-Wf5">
+                                                        <rect key="frame" x="225" y="0.0" width="58" height="30"/>
+                                                        <state key="normal" title="Preset 4">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="usePreset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kcu-Oc-3y2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztz-Vr-amx" userLabel="Preset 2">
+                                                        <rect key="frame" x="301" y="0.0" width="58" height="30"/>
+                                                        <state key="normal" title="Preset 5">
+                                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="usePreset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ean-uk-6rK"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="2HW-yE-4lC" secondAttribute="trailing" id="GcU-Dk-0g5"/>
-                                    <constraint firstAttribute="bottom" secondItem="2HW-yE-4lC" secondAttribute="bottom" constant="8" id="NkR-22-mbR"/>
-                                    <constraint firstItem="2HW-yE-4lC" firstAttribute="top" secondItem="YiJ-1a-ELQ" secondAttribute="top" constant="8" id="tRf-ZW-2ej"/>
-                                    <constraint firstItem="2HW-yE-4lC" firstAttribute="leading" secondItem="YiJ-1a-ELQ" secondAttribute="leading" id="xGr-93-D7t"/>
+                                    <constraint firstItem="F4U-qh-2M5" firstAttribute="top" secondItem="YiJ-1a-ELQ" secondAttribute="top" id="IMi-6u-y5h"/>
+                                    <constraint firstAttribute="trailing" secondItem="F4U-qh-2M5" secondAttribute="trailing" id="qkh-3c-4So"/>
+                                    <constraint firstAttribute="bottom" secondItem="F4U-qh-2M5" secondAttribute="bottom" id="skx-1t-cLc"/>
+                                    <constraint firstItem="F4U-qh-2M5" firstAttribute="leading" secondItem="YiJ-1a-ELQ" secondAttribute="leading" id="zVu-GO-1oS"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="198-45-xa8">
@@ -87,7 +124,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68k-M7-cHK">
-                                <rect key="frame" x="8" y="54" width="359" height="605"/>
+                                <rect key="frame" x="8" y="76" width="359" height="583"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -112,8 +149,11 @@
                         <outlet property="bypassButton" destination="9za-g7-28Y" id="Pvy-sY-JhH"/>
                         <outlet property="containerView" destination="68k-M7-cHK" id="Vne-5l-42G"/>
                         <outlet property="playButton" destination="tzZ-pe-UL7" id="Yxx-Rt-URy"/>
-                        <outlet property="preset1Button" destination="act-OR-R8x" id="sQ5-tQ-BFW"/>
-                        <outlet property="preset2Button" destination="SH0-Qn-oNO" id="8gI-Wg-KfT"/>
+                        <outlet property="preset1Button" destination="2Y9-WW-15d" id="gFv-ZP-lIA"/>
+                        <outlet property="preset2Button" destination="Svi-F5-0KQ" id="3cl-DP-PSN"/>
+                        <outlet property="preset3Button" destination="mf5-4G-NSJ" id="3vM-9J-BKf"/>
+                        <outlet property="preset4Button" destination="I0w-hy-Wf5" id="eka-tv-4Dc"/>
+                        <outlet property="preset5Button" destination="Ztz-Vr-amx" id="ncl-ZF-hKc"/>
                         <outlet property="reviewButton" destination="fJA-Ec-YsF" id="wJL-Ig-4Ro"/>
                     </connections>
                 </viewController>

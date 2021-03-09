@@ -23,6 +23,7 @@
 // #include "guiconstants.h"
 // #include "filters.h"
 #include <time.h>       /* time */
+#include <os/log.h>
 
 namespace Pirkle {
 
@@ -229,7 +230,6 @@ inline double doBipolarModulation(double bipolarModulatorValue, double minValue,
     // --- calculate range and midpoint
     double halfRange = (maxValue - minValue) / 2.0;
     double midpoint = halfRange + minValue;
-
     return bipolarModulatorValue*(halfRange) + midpoint;
 }
 
@@ -3593,7 +3593,7 @@ public:
      */
     virtual double processAudioSample(double xn)
     {
-        const PhaserBands& bands = nationalSemiconductorBands;
+        const PhaserBands& bands = idealBands;
 
         SignalGenData lfoData = lfo.renderAudioOutput();
 
@@ -3605,9 +3605,12 @@ public:
         double depth = parameters.lfoDepth_Pct / 100.0;
         double modulatorValue = lfoValue*depth;
 
+        // os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "modulation: %f input: %f", modulatorValue, xn);
+
         // --- calculate modulated values for each APF; note they have different ranges
         AudioFilterParameters params = apf[0].getParameters();
         params.fc = doBipolarModulation(modulatorValue, bands[0].minF, bands[0].maxF);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "modulation: %.12f fc: %.12f [%f %f]", modulatorValue, params.fc, bands[0].minF, bands[0].maxF);
         apf[0].setParameters(params);
 
         params = apf[1].getParameters();
@@ -3632,29 +3635,49 @@ public:
 
         // --- calculate gamma values
         double gamma1 = apf[5].getG_value();
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma1: %f", gamma1);
         double gamma2 = apf[4].getG_value() * gamma1;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma2: %f", gamma2);
         double gamma3 = apf[3].getG_value() * gamma2;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma3: %f", gamma3);
         double gamma4 = apf[2].getG_value() * gamma3;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma4: %f", gamma4);
         double gamma5 = apf[1].getG_value() * gamma4;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma5: %f", gamma5);
         double gamma6 = apf[0].getG_value() * gamma5;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "gamma6: %f", gamma6);
 
         // --- set the alpha0 value
         double K = parameters.intensity_Pct / 100.0;
         double alpha0 = 1.0 / (1.0 + K*gamma6);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "alpha0: %f", alpha0);
 
         // --- create combined feedback
         double Sn = gamma5*apf[0].getS_value() + gamma4*apf[1].getS_value() + gamma3*apf[2].getS_value() + gamma2*apf[3].getS_value() + gamma1*apf[4].getS_value() + apf[5].getS_value();
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF0 sval: %f", apf[0].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF1 sval: %f", apf[1].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF2 sval: %f", apf[2].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF3 sval: %f", apf[3].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF4 sval: %f", apf[4].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF5 sval: %f", apf[5].getS_value());
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "Sn: %f", Sn);
 
         // --- form input to first APF
         double u = alpha0*(xn + K*Sn);
 
         // --- cascade of APFs (could also nest these in one massive line of code)
         double APF1 = apf[0].processAudioSample(u);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF1: %f", APF1);
         double APF2 = apf[1].processAudioSample(APF1);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF2: %f", APF2);
         double APF3 = apf[2].processAudioSample(APF2);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF3: %f", APF3);
         double APF4 = apf[3].processAudioSample(APF3);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF4: %f", APF4);
         double APF5 = apf[4].processAudioSample(APF4);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF5: %f", APF5);
         double APF6 = apf[5].processAudioSample(APF5);
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "APF6: %f", APF6);
 
         // --- sum with -3dB coefficients
         //	double output = 0.707*xn + 0.707*APF6;
@@ -3664,6 +3687,7 @@ public:
         // double output = 0.5*xn + 5.0*APF6;
         // double output = 0.25*xn + 2.5*APF6;
         double output = 0.125*xn + 1.25*APF6;
+//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "output: %f", output);
 
         return output;
     }
@@ -3699,6 +3723,7 @@ protected:
     PhaseShifterParameters parameters;  ///< the object parameters
     AudioFilter apf[PHASER_STAGES];		///< six APF objects
     LFO lfo;							///< the one and only LFO
+    os_log_t log_{os_log_create("Pirkle", "PhaseShifterOld")};
 };
 
 /**

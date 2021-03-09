@@ -101,6 +101,16 @@
 		BDC3C93725F6522F004EC1AC /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
 		BDC3C93825F6522F004EC1AC /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C93125F6522F004EC1AC /* filters.h */; };
 		BDC3C93925F6522F004EC1AC /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C93125F6522F004EC1AC /* filters.h */; };
+		BDC3C94225F65FDF004EC1AC /* PhaseShifter.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */; };
+		BDC3C94325F65FDF004EC1AC /* PhaseShifter.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */; };
+		BDC3C96325F6C05A004EC1AC /* PhaseShifterTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */; };
+		BDC3C96B25F6C05B004EC1AC /* PhaseShifterTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */; };
+		BDC3C97F25F75AB3004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C98725F75AB5004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C98F25F75AB7004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
+		BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
 		BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF524A3DF24004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
@@ -308,6 +318,9 @@
 		BDC3C92F25F6522F004EC1AC /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		BDC3C93025F6522F004EC1AC /* fxobjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fxobjects.cpp; sourceTree = "<group>"; };
 		BDC3C93125F6522F004EC1AC /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
+		BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhaseShifter.h; sourceTree = "<group>"; };
+		BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhaseShifterTests.mm; sourceTree = "<group>"; };
+		BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
 		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
@@ -486,6 +499,7 @@
 				BD938B4F24A6BC1F00892358 /* DelayBufferTests.mm */,
 				BD446BBF25E2B9CD009B7347 /* LFOTests.mm */,
 				BD446BE725E2C654009B7347 /* DSPTests.mm */,
+				BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */,
 				BDB11A6224A1530D00DD8EF9 /* LogScaling.swift */,
 				BD95148424A092E800D8024C /* RampingValueChangeDetectorTests.mm */,
 				BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */,
@@ -508,6 +522,7 @@
 				C4F004A02239B1E10014E248 /* FilterDSPKernelAdapter.mm */,
 				BD72F2E425D1D4CE0031E422 /* InputBuffer.h */,
 				C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */,
+				BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */,
 			);
 			path = Kernel;
 			sourceTree = "<group>";
@@ -658,6 +673,7 @@
 				BDB11A5124A114D700DD8EF9 /* Kernel */,
 				C4DCBAD6223ADE85000D9CB3 /* User Interface */,
 				C4BEE7E422236E99001E6B6D /* Support */,
+				BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */,
 				BD9FA81224A94BA100FA9940 /* Resources */,
 			);
 			path = Shared;
@@ -736,6 +752,7 @@
 				BD1F7BAE249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
 				BD446BB625E2B741009B7347 /* DSP.h in Headers */,
 				BD446BAC25E2B4C5009B7347 /* LFO.h in Headers */,
+				BDC3C94225F65FDF004EC1AC /* PhaseShifter.h in Headers */,
 				BDB7CE97249F7694009580D5 /* ValueChangeDetector.hpp in Headers */,
 				C4BEE7EF22236F24001E6B6D /* RampingValueChangeDetector.hpp in Headers */,
 				BD24B3FC25F1133500338362 /* Biquad.h in Headers */,
@@ -756,6 +773,7 @@
 				BD1F7BAF249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
 				BD446BB725E2B741009B7347 /* DSP.h in Headers */,
 				BD446BAD25E2B4C5009B7347 /* LFO.h in Headers */,
+				BDC3C94325F65FDF004EC1AC /* PhaseShifter.h in Headers */,
 				BDB7CE98249F7694009580D5 /* ValueChangeDetector.hpp in Headers */,
 				C4BEE7F322236F27001E6B6D /* RampingValueChangeDetector.hpp in Headers */,
 				BD24B3FD25F1133500338362 /* Biquad.h in Headers */,
@@ -1053,6 +1071,7 @@
 				BD63B15624AE26020015236D /* LICENSE.md in Resources */,
 				C4BEE7B122236A29001E6B6D /* Assets.xcassets in Resources */,
 				C4BEE7B322236A29001E6B6D /* Main.storyboard in Resources */,
+				BDC3C98F25F75AB7004EC1AC /* Desdemona.ttf in Resources */,
 				BD9FA81B24A9505300FA9940 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1061,6 +1080,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C97F25F75AB3004EC1AC /* Desdemona.ttf in Resources */,
 				BDC3C93425F6522F004EC1AC /* readme.txt in Resources */,
 				BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
@@ -1071,6 +1091,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BEE8132223734E001E6B6D /* MainInterface.storyboard in Resources */,
+				BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,6 +1102,7 @@
 				BD63B15424AE25F80015236D /* LICENSE.md in Resources */,
 				C4BEE7D222236A58001E6B6D /* Main.storyboard in Resources */,
 				C4BEE7D122236A58001E6B6D /* Assets.xcassets in Resources */,
+				BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */,
 				BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1090,6 +1112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDC3C93525F6522F004EC1AC /* readme.txt in Resources */,
+				BDC3C98725F75AB5004EC1AC /* Desdemona.ttf in Resources */,
 				C46B8B8122418B6000E00B1E /* FilterViewController.xib in Resources */,
 				BD77DEFD25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
@@ -1099,6 +1122,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1136,7 @@
 				BD24B40625F113AD00338362 /* BiquadTests.mm in Sources */,
 				BD446BD025E2BA4C009B7347 /* LFOTests.mm in Sources */,
 				BD1D24CD25D48B8E00523748 /* RampingValueChangeDetectorTests.mm in Sources */,
+				BDC3C96B25F6C05B004EC1AC /* PhaseShifterTests.mm in Sources */,
 				BD1D24D425D48B9600523748 /* LogScaling.swift in Sources */,
 				BD1D24E925D48BA800523748 /* NewSwiftTestTemplate.swift in Sources */,
 				BD1D24C625D48B8500523748 /* ValueChangeDetectorTests.mm in Sources */,
@@ -1137,6 +1162,7 @@
 				BD24B40725F113AD00338362 /* BiquadTests.mm in Sources */,
 				BD446BD825E2BA4E009B7347 /* LFOTests.mm in Sources */,
 				BD95147824A08BB600D8024C /* NewSwiftTestTemplate.swift in Sources */,
+				BDC3C96325F6C05A004EC1AC /* PhaseShifterTests.mm in Sources */,
 				BD938B5024A6BC1F00892358 /* DelayBufferTests.mm in Sources */,
 				BD95148524A092E800D8024C /* RampingValueChangeDetectorTests.mm in Sources */,
 				BDB11A6324A1530D00DD8EF9 /* LogScaling.swift in Sources */,
