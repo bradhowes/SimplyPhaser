@@ -20,7 +20,6 @@
 #include "fxobjects.h"
 #include <os/log.h>
 
-
 using namespace Pirkle;
 
 static os_log_t log_{os_log_create("Pirkle", "Coefficients(Old)")};
