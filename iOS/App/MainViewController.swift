@@ -26,6 +26,9 @@ final class MainViewController: UIViewController {
         reviewButton.setTitle(version, for: .normal)
 
         audioUnitManager.delegate = self
+
+        presetSelection.setTitleTextAttributes([.foregroundColor : UIColor.white], for: .normal)
+        presetSelection.setTitleTextAttributes([.foregroundColor : UIColor.black], for: .selected)
     }
 
     override func viewDidAppear(_ animated: Bool) {

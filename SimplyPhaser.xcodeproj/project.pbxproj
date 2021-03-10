@@ -115,6 +115,12 @@
 		BDC3C9B125F7A1BE004EC1AC /* SwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */; };
 		BDC3C9BA25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
 		BDC3C9BB25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
+		BDDCA5C125F8D459009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
+		BDDCA5C225F8D459009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
+		BDDCA5CA25F8DB53009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
+		BDDCA5D225F8DB55009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
+		BDDCA5D325F8DB56009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
+		BDDCA5DB25F8DB57009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
 		BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF524A3DF24004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
@@ -306,7 +312,6 @@
 		BD95147924A08BB600D8024C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ValueChangeDetectorTests.mm; sourceTree = "<group>"; };
 		BD95148424A092E800D8024C /* RampingValueChangeDetectorTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampingValueChangeDetectorTests.mm; sourceTree = "<group>"; };
-		BD9FA81224A94BA100FA9940 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		BD9FA81A24A9505300FA9940 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BDB11A5224A13BFA00DD8EF9 /* Comparble+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparble+Extensions.swift"; sourceTree = "<group>"; };
 		BDB11A5624A13C8900DD8EF9 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
@@ -327,6 +332,7 @@
 		BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
 		BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchController.swift; sourceTree = "<group>"; };
 		BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUParameerControl.swift; sourceTree = "<group>"; };
+		BDDCA5C025F8D459009C1AA7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
@@ -680,7 +686,7 @@
 				C4DCBAD6223ADE85000D9CB3 /* User Interface */,
 				C4BEE7E422236E99001E6B6D /* Support */,
 				BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */,
-				BD9FA81224A94BA100FA9940 /* Resources */,
+				BDDCA5C025F8D459009C1AA7 /* Media.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1080,6 +1086,7 @@
 				C4BEE7B122236A29001E6B6D /* Assets.xcassets in Resources */,
 				C4BEE7B322236A29001E6B6D /* Main.storyboard in Resources */,
 				BDC3C98F25F75AB7004EC1AC /* Desdemona.ttf in Resources */,
+				BDDCA5D325F8DB56009C1AA7 /* Media.xcassets in Resources */,
 				BD9FA81B24A9505300FA9940 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1090,6 +1097,7 @@
 			files = (
 				BDC3C97F25F75AB3004EC1AC /* Desdemona.ttf in Resources */,
 				BDC3C93425F6522F004EC1AC /* readme.txt in Resources */,
+				BDDCA5C125F8D459009C1AA7 /* Media.xcassets in Resources */,
 				BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1099,6 +1107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BEE8132223734E001E6B6D /* MainInterface.storyboard in Resources */,
+				BDDCA5CA25F8DB53009C1AA7 /* Media.xcassets in Resources */,
 				BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1111,6 +1120,7 @@
 				C4BEE7D222236A58001E6B6D /* Main.storyboard in Resources */,
 				C4BEE7D122236A58001E6B6D /* Assets.xcassets in Resources */,
 				BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */,
+				BDDCA5DB25F8DB57009C1AA7 /* Media.xcassets in Resources */,
 				BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1119,6 +1129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDDCA5C225F8D459009C1AA7 /* Media.xcassets in Resources */,
 				BDC3C93525F6522F004EC1AC /* readme.txt in Resources */,
 				BDC3C98725F75AB5004EC1AC /* Desdemona.ttf in Resources */,
 				C46B8B8122418B6000E00B1E /* FilterViewController.xib in Resources */,
@@ -1130,6 +1141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDDCA5D225F8DB55009C1AA7 /* Media.xcassets in Resources */,
 				BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

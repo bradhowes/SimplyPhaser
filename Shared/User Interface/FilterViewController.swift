@@ -105,6 +105,14 @@ import os
         rateControl.indicatorLineWidth = 8;
         depthControl.indicatorLineWidth = 8;
         intensityControl.indicatorLineWidth = 8;
+
+        dryMixControl.trackLineWidth = 8;
+        dryMixControl.progressLineWidth = 6;
+        dryMixControl.indicatorLineWidth = 6;
+
+        wetMixControl.trackLineWidth = 8;
+        wetMixControl.progressLineWidth = 6;
+        wetMixControl.indicatorLineWidth = 6;
     }
 
     #if os(iOS)
