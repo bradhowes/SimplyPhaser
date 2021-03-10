@@ -5,7 +5,7 @@
 FOUNDATION_EXPORT double FilterFramework_macOSVersionNumber;
 FOUNDATION_EXPORT const unsigned char Framework_macOSVersionString[];
 
-#import "FilterFramework/FilterDSPKernelAdapter.h"
+#import "FilterFramework/SimplyPhaserKernelAdapter.h"
 
 @class FilterAudioUnit;
 @class FilterViewController;

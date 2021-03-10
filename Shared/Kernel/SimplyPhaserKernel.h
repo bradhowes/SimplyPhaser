@@ -10,15 +10,15 @@
 #import "KernelEventProcessor.h"
 #import "LFO.h"
 #import "PhaseShifter.h"
-#import "fxobjects.h"
+// #import "fxobjects.h"
 
-class FilterDSPKernel : public KernelEventProcessor<FilterDSPKernel> {
+class SimplyPhaserKernel : public KernelEventProcessor<SimplyPhaserKernel> {
 public:
-    using super = KernelEventProcessor<FilterDSPKernel>;
+    using super = KernelEventProcessor<SimplyPhaserKernel>;
     friend super;
 
-    FilterDSPKernel(const std::string& name)
-    : super(os_log_create(name.c_str(), "FilterDSPKernel")), lfo_() { lfo_.setWaveform(LFOWaveform::triangle); }
+    SimplyPhaserKernel(const std::string& name)
+    : super(os_log_create(name.c_str(), "SimplyPhaserKernel")), lfo_() { lfo_.setWaveform(LFOWaveform::triangle); }
 
     /**
      Update kernel and buffers to support the given format and channel count
