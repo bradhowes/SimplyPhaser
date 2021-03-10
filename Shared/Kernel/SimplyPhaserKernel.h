@@ -6,11 +6,11 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "DelayBuffer.h"
-#import "FilterFramework/FilterFramework-Swift.h"
+#import "SimplyPhaserFramework/SimplyPhaserFramework-Swift.h"
 #import "KernelEventProcessor.h"
 #import "LFO.h"
 #import "PhaseShifter.h"
-// #import "fxobjects.h"
+
 
 class SimplyPhaserKernel : public KernelEventProcessor<SimplyPhaserKernel> {
 public:

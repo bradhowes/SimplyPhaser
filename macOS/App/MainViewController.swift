@@ -1,7 +1,7 @@
 // Copyright © 2021 Brad Howes. All rights reserved.
 
 import Cocoa
-import FilterFramework
+import SimplyPhaserFramework
 
 final class MainViewController: NSViewController {
 

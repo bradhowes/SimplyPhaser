@@ -1,5 +1,5 @@
 // Copyright © 2021 Brad Howes. All rights reserved.
 
-import FilterFramework
+import SimplyPhaserFramework
 
 public let FilterViewControllerExtension = 1

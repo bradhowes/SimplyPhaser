@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="FilterViewController" customModule="FilterFramework" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="FilterViewController" customModule="SimplyPhaserFramework" customModuleProvider="target">
             <connections>
                 <outlet property="controlsView" destination="oPI-wC-N8q" id="4no-7u-hmY"/>
                 <outlet property="depthControl" destination="25e-Ls-Yhr" id="b1K-1a-gj4"/>
@@ -46,7 +46,7 @@
                 <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPI-wC-N8q">
                     <rect key="frame" x="86" y="34" width="416" height="232"/>
                     <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="vJE-Qk-G6z" userLabel="Rate" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="vJE-Qk-G6z" userLabel="Rate" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
                             <rect key="frame" x="20" y="112" width="120" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="QUK-PT-mqw"/>
@@ -56,7 +56,7 @@
                                 <action selector="rateChanged:" target="-2" id="s61-Ex-roh"/>
                             </connections>
                         </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Rate" customClass="FocusAwareTextField" customModule="FilterFramework">
+                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Rate" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                             <rect key="frame" x="38" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="wMm-uE-pHU"/>
@@ -67,7 +67,7 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textFieldCell>
                         </textField>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="25e-Ls-Yhr" userLabel="Depth" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="25e-Ls-Yhr" userLabel="Depth" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
                             <rect key="frame" x="148" y="112" width="120" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="EDP-SX-7Vf"/>
@@ -77,7 +77,7 @@
                                 <action selector="depthChanged:" target="-2" id="SJS-tv-d4m"/>
                             </connections>
                         </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Depth" customClass="FocusAwareTextField" customModule="FilterFramework">
+                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Depth" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                             <rect key="frame" x="166" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="A7M-iM-efX"/>
@@ -88,7 +88,7 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textFieldCell>
                         </textField>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1VT-Na-dOb" userLabel="Intensity" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1VT-Na-dOb" userLabel="Intensity" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
                             <rect key="frame" x="276" y="112" width="120" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="120" id="C1h-AW-fOA"/>
@@ -98,7 +98,7 @@
                                 <action selector="intensityChanged:" target="-2" id="g77-dz-7Q1"/>
                             </connections>
                         </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Intensity" customClass="FocusAwareTextField" customModule="FilterFramework">
+                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Intensity" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                             <rect key="frame" x="294" y="96" width="84" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="eeP-Bv-mve"/>
@@ -118,7 +118,7 @@
                                         <action selector="odd90Toggled:" target="-2" id="ncZ-Rl-h16"/>
                                     </connections>
                                 </switch>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-ZU-SPb" customClass="FocusAwareTextField" customModule="FilterFramework">
+                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-ZU-SPb" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                                     <rect key="frame" x="6" y="13" width="64" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="lHb-Bo-DgF"/>
@@ -129,7 +129,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </textFieldCell>
                                 </textField>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
                                     <rect key="frame" x="76" y="8" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="Vze-vS-v09"/>
@@ -139,7 +139,7 @@
                                         <action selector="dryMixChanged:" target="-2" id="XLm-KQ-Hdd"/>
                                     </connections>
                                 </customView>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="FilterFramework">
+                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                                     <rect key="frame" x="74" y="0.0" width="84" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="Ob0-G4-Fbi"/>
@@ -150,7 +150,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </textFieldCell>
                                 </textField>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="KfU-K8-Mrs" userLabel="WetMix" customClass="Knob" customModule="FilterFramework" customModuleProvider="target">
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="KfU-K8-Mrs" userLabel="WetMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
                                     <rect key="frame" x="164" y="8" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="6WU-mH-P2b"/>
@@ -160,7 +160,7 @@
                                         <action selector="wetMixChanged:" target="-2" id="APJ-Pt-cH3"/>
                                     </connections>
                                 </customView>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="FilterFramework">
+                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
                                     <rect key="frame" x="162" y="0.0" width="84" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="7Ss-uv-eri"/>

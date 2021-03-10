@@ -1,7 +1,7 @@
 // Copyright © 2021 Brad Howes. All rights reserved.
 
 import UIKit
-import FilterFramework
+import SimplyPhaserFramework
 
 final class MainViewController: UIViewController {
 
@@ -33,7 +33,7 @@ final class MainViewController: UIViewController {
 
         presetSelection.selectedSegmentIndex = 0
         usePreset()
-        
+
         let showedAlertKey = "showedInitialAlert"
         guard UserDefaults.standard.bool(forKey: showedAlertKey) == false else { return }
         UserDefaults.standard.set(true, forKey: showedAlertKey)

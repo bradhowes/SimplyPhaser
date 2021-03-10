@@ -2,7 +2,7 @@
 
 import UIKit
 import AVKit
-import FilterFramework
+import SimplyPhaserFramework
 import os
 
 @UIApplicationMain

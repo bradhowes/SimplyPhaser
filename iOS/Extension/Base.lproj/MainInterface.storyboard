@@ -17,7 +17,7 @@
         <!--FilterViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="FilterViewController" customClass="FilterViewController" customModule="FilterFramework" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="FilterViewController" customClass="FilterViewController" customModule="SimplyPhaserFramework" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +38,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTt-pC-dYn" userLabel="Controls">
                                 <rect key="frame" x="149.5" y="65.5" width="368" height="244"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hui-tD-xRO" customClass="Knob" customModule="FilterFramework">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hui-tD-xRO" customClass="Knob" customModule="SimplyPhaserFramework">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                         <accessibility key="accessibilityConfiguration" identifier="0"/>
                                         <constraints>
@@ -59,7 +59,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHo-9f-pLo" userLabel="TapEdit">
                                         <rect key="frame" x="0.0" y="112" width="120" height="30"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF3-lq-xlE" userLabel="Depth" customClass="Knob" customModule="FilterFramework">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF3-lq-xlE" userLabel="Depth" customClass="Knob" customModule="SimplyPhaserFramework">
                                         <rect key="frame" x="124" y="0.0" width="120" height="120"/>
                                         <accessibility key="accessibilityConfiguration" identifier="1"/>
                                         <constraints>
@@ -80,7 +80,7 @@
                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ki-wy-l3o" userLabel="TapEdit">
                                         <rect key="frame" x="124" y="112" width="120" height="30"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-nZ-fi3" customClass="Knob" customModule="FilterFramework">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-nZ-fi3" customClass="Knob" customModule="SimplyPhaserFramework">
                                         <rect key="frame" x="248" y="0.0" width="120" height="120"/>
                                         <accessibility key="accessibilityConfiguration" identifier="2"/>
                                         <constraints>
@@ -118,7 +118,7 @@
                                                 <color key="textColor" red="1" green="0.76140111399999999" blue="0.40116951080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzc-6g-Fgq" customClass="Knob" customModule="FilterFramework">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzc-6g-Fgq" customClass="Knob" customModule="SimplyPhaserFramework">
                                                 <rect key="frame" x="66.5" y="0.0" width="80" height="80"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="4"/>
                                                 <constraints>
@@ -139,7 +139,7 @@
                                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-kZ-hpS" userLabel="TapEdit">
                                                 <rect key="frame" x="66.5" y="72" width="80" height="22"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjB-dE-KcA" customClass="Knob" customModule="FilterFramework">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjB-dE-KcA" customClass="Knob" customModule="SimplyPhaserFramework">
                                                 <rect key="frame" x="154.5" y="0.0" width="80" height="80"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="5"/>
                                                 <constraints>
