@@ -126,26 +126,26 @@ import os
             constraintValue = 120.0 - ceil(controlsView.frame.origin.x * -2.0 / 3.0)
             if view.frame.width != constraintWidth {
                 constraintWidth = view.frame.width
-                resizeKnob(rateControl, constraintValue)
-                resizeKnob(depthControl, constraintValue)
-                resizeKnob(intensityControl, constraintValue)
+                for control in [rateControl, depthControl, intensityControl] {
+                    resizeKnob(control);
+                }
             }
         }
         else {
             if view.frame.width != constraintWidth {
                 constraintValue = 120.0
                 constraintWidth = view.frame.width
-                resizeKnob(rateControl, constraintValue)
-                resizeKnob(depthControl, constraintValue)
-                resizeKnob(intensityControl, constraintValue)
+                for control in [rateControl, depthControl, intensityControl] {
+                    resizeKnob(control);
+                }
             }
         }
     }
 
-    private func resizeKnob(_ control: UIView, _ value: CGFloat) {
-        for constraint in control.constraints {
+    private func resizeKnob(_ control: UIView?) {
+        for constraint in control?.constraints ?? [] {
             switch constraint.firstAttribute {
-            case .width, .height: constraint.constant = value
+            case .width, .height: constraint.constant = constraintValue
             default: break
             }
         }

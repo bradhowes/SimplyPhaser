@@ -23,15 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-H3-AaS" userLabel="Version">
-                                <rect key="frame" x="532" y="239.5" width="39.5" height="18"/>
-                                <accessibility key="accessibilityConfiguration" identifier="APP_VERSION" label="APP_VERSION"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-H3-AaS" userLabel="APP_VERSION">
+                                <rect key="frame" x="478" y="238.5" width="39.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" name="Title"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHASER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Nj-pL-t9n">
-                                <rect key="frame" x="96" y="117.5" width="475.5" height="140"/>
+                                <rect key="frame" x="150" y="118.5" width="367.5" height="138"/>
                                 <fontDescription key="fontDescription" name="Desdemona" family="Desdemona" pointSize="120"/>
                                 <color key="textColor" name="Title"/>
                                 <nil key="highlightedColor"/>
@@ -311,13 +310,13 @@
     </scenes>
     <resources>
         <namedColor name="Labels">
-            <color red="0.0" green="0.83901339769363403" blue="0.84536576271057129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.83899998664855957" blue="0.84500002861022949" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Progress">
             <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Title">
-            <color red="0.0" green="0.81252884864807129" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.81300002336502075" blue="1" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
