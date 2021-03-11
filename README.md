@@ -30,7 +30,7 @@ tests:
 ## Phaser Algorithm
 
 This effect is based on a design described in the excellent book 
-["Designing Audio Effects Plugins in C++"](https://www.amazon.com/Designing-Audio-Effect-Plug-Ins-Processing/dp/0240825152/ref=sr_1_2?ie=UTF8&qid=1350140462&sr=8-2&keywords=will+pirkle) 
+["Designing Audio Effects Plugins in C++"](https://www.amazon.com/Designing-Audio-Effect-Plugins-C-dp-1138591939/dp/1138591939/ref=dp_ob_title_bk)
 by [Will Pirkle](https://www.willpirkle.com). His design uses six all-pass filters to do the phase shifting in 6 overlapping bands ranging from 16Hz to 20kHz.
 In the book, he mentions that his design was "derived from the analog ciruit in the _National Semiconductor (NSC) Audio/Radio Handbook_, a 1970s source of old 
 App Notes from National Semiconductor... The NSC design used six 1st order all-pass stages that were modulated from a common LFO."
