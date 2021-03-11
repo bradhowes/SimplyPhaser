@@ -27,8 +27,15 @@ tests:
 % auval -v aufx phzr BRay
 ```
 
-> :warning: You are free to use the code according to [LICENSE.md](LICENSE.md), but you must not replicate
-> someone's UI, icons, samples, or any other assets if you are going to distribute your effect on the App Store.
+## Phaser Algorithm
+
+This effect is based on a design described in the excellent book 
+["Designing Audio Effects Plugins in C++"](https://www.amazon.com/Designing-Audio-Effect-Plug-Ins-Processing/dp/0240825152/ref=sr_1_2?ie=UTF8&qid=1350140462&sr=8-2&keywords=will+pirkle) 
+by [Will Pirkle](https://www.willpirkle.com). His design uses six all-pass filters to do the phase shifting in 6 overlapping bands ranging from 16Hz to 20kHz.
+In the book, he mentions that his design was "derived from the analog ciruit in the _National Semiconductor (NSC) Audio/Radio Handbook_, a 1970s source of old 
+App Notes from National Semiconductor... The NSC design used six 1st order all-pass stages that were modulated from a common LFO."
+
+You can find Pirkle's implementation in the [fxobjects.h](Shared/Kernel/Pirkle/fxobjects.h) file.
 
 ## Demo Targets
 
@@ -61,3 +68,11 @@ works with both UIView and NSView views to show the effect's controls. Note that
 iOS, but that may not be for the best.
 
 Additional supporting files can be found in [Support](Shared/Support).
+
+## Rolling Your Own
+
+> :warning: You are free to use the code according to [LICENSE.md](LICENSE.md), but you must not replicate
+> someone's UI, icons, samples, or any other assets if you are going to distribute your effect on the App Store.
+
+Feel free to fork and do as you please. If you have improvements, I would definitely welcome your feedback. If you are interested in working out your own AUv3
+plugins have a look at my [AUv3Template](https://github.com/bradhowes/AUv3Template) project which tries to offer a good place to start.
