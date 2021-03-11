@@ -9,7 +9,7 @@ platforms. When configured, it will build an app for each platform and embed in 
 containing the AUv3 component. The apps are designed to load the component and use it to demonstrate how it
 works by playing a sample audio file and routing it through the effect.
 
-https://youtu.be/vH6bEQEkcdo
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vH6bEQEkcdo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Additional features and info:
 
