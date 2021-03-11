@@ -2,7 +2,7 @@
 DEVELOPMENT_TEAM = UP6SS5ES7E
 
 // The unique App Store ID for your macOS/iOS app
-APP_STORE_ID = 1554960150
+APP_STORE_ID = 1557901730
 
 // The name of the AUv3 audio unit
 AU_BASE_NAME = SimplyPhaser
