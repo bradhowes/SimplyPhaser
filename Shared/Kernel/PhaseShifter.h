@@ -47,7 +47,8 @@ public:
         Band{636.0, 20480.0}
     };
 
-    PhaseShifter(const FrequencyBands& bands) : bands_(bands), filters_(bands_.size(), AllPassFilter())
+    PhaseShifter(const FrequencyBands& bands, int samplesPerFilterUpdate = 1)
+    : bands_(bands), samplesPerFilterUpdate_{samplesPerFilterUpdate}, filters_(bands_.size(), AllPassFilter())
     {}
 
     PhaseShifter() : PhaseShifter(ideal) {}
@@ -70,9 +71,10 @@ public:
 
     T process(T modulation, T input) {
 
-        // This implements the phaser processing described in "Designing Audio Effect Plugins in C++" by
-        // Will C. Pirkle (2019)
-        if (sampleCounter_ == samplesPerUpdate) {
+        // With samplersPerFilterUpdate_ == 1, this replicates the phaser processing described in
+        // "Designing Audio Effect Plugins in C++" by Will C. Pirkle (2019).
+        //
+        if (sampleCounter_ >= samplesPerFilterUpdate_) {
             updateCoefficients(modulation);
             sampleCounter_ = 0;
         }
@@ -100,7 +102,7 @@ public:
         }
 
         ++sampleCounter_;
-        return output; // * 1.25 + 0.125 * input;
+        return output;
     }
 
 private:
@@ -114,11 +116,10 @@ private:
         }, filters_.begin(), filters_.end(), bands_.begin(), bands_.end());
     }
 
-    static constexpr int samplesPerUpdate = 8;
-
     const FrequencyBands& bands_;
     double sampleRate_;
     double intensity_;
+    int samplesPerFilterUpdate_;
     int sampleCounter_{0};
     std::vector<AllPassFilter> filters_;
 };

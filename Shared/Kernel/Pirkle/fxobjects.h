@@ -3664,8 +3664,8 @@ public:
         //	   dry = 0.5, wet = 5.0
         // double output = 0.5*xn + 5.0*APF6;
         // double output = 0.25*xn + 2.5*APF6;
-        // double output = 0.125*xn + 1.25*APF6;
-        return APF6; // BRH - do mixing elsewheres
+        // !BRH! double output = 0.125*xn + 1.25*APF6;
+        return APF6; // !BRH! - do mixing else where
         // return output;
     }
 
