@@ -9,6 +9,8 @@ platforms. When configured, it will build an app for each platform and embed in 
 containing the AUv3 component. The apps are designed to load the component and use it to demonstrate how it
 works by playing a sample audio file and routing it through the effect.
 
+https://youtu.be/vH6bEQEkcdo
+
 Additional features and info:
 
 * uses an Objective-C++ kernel for audio sample manipulation in the render thread
