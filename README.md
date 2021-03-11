@@ -10,13 +10,9 @@ containing the AUv3 component. The apps are designed to load the component and u
 works by playing a sample audio file and routing it through the effect.
 
 <div align="center">
-      <a href="https://www.youtube.com/watch?v=vH6bEQEkcdo">
-     <img 
-      src="https://img.youtube.com/vi/vH6bEQEkcdo/0.jpg" 
-      alt="Everything Is AWESOME" 
-      style="width:100%;">
-      </a>
-    </div>
+  <a href="https://www.youtube.com/watch?v=vH6bEQEkcdo"><img src="https://img.youtube.com/vi/vH6bEQEkcdo/0.jpg" 
+                                                             alt="SimplyPhaser in GarageBand" style="width:100%;"></a>
+</div>
 
 Additional features and info:
 
