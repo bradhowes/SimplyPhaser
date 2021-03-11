@@ -35,7 +35,7 @@ by [Will Pirkle](https://www.willpirkle.com). His design uses six all-pass filte
 In the book, he mentions that his design was "derived from the analog ciruit in the _National Semiconductor (NSC) Audio/Radio Handbook_, a 1970s source of old 
 App Notes from National Semiconductor... The NSC design used six 1st order all-pass stages that were modulated from a common LFO."
 
-You can find Pirkle's implementation in the [fxobjects.h](Shared/Kernel/Pirkle/fxobjects.h) file.
+You can find Pirkle's implementation in the [fxobjects.h](https://github.com/bradhowes/SimplyPhaser/blob/9f06b552f06b301a14b65400cbc8b57a319a271b/Shared/Kernel/Pirkle/fxobjects.h#L3537) file.
 
 ## Demo Targets
 
