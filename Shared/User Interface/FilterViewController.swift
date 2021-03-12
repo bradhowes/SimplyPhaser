@@ -86,33 +86,25 @@ import os
         #if os(iOS)
 
         editingBackground.layer.cornerRadius = 8.0
-
         editingView.isHidden = true
-        addTapGesture(rateTapEdit)
-        addTapGesture(depthTapEdit)
-        addTapGesture(intensityTapEdit)
-        addTapGesture(dryMixTapEdit)
-        addTapGesture(wetMixTapEdit)
+
+        for view in [rateTapEdit, depthTapEdit, intensityTapEdit, dryMixTapEdit, wetMixTapEdit] {
+            addTapGesture(view!)
+        }
 
         #endif
 
-        rateControl.trackLineWidth = 10;
-        depthControl.trackLineWidth = 10;
-        intensityControl.trackLineWidth = 10;
-        rateControl.progressLineWidth = 8;
-        depthControl.progressLineWidth = 8;
-        intensityControl.progressLineWidth = 8;
-        rateControl.indicatorLineWidth = 8;
-        depthControl.indicatorLineWidth = 8;
-        intensityControl.indicatorLineWidth = 8;
+        for knob in [rateControl, depthControl, intensityControl] {
+            knob!.trackLineWidth = 10
+            knob!.progressLineWidth = 8
+            knob!.indicatorLineWidth = 8
+        }
 
-        dryMixControl.trackLineWidth = 8;
-        dryMixControl.progressLineWidth = 6;
-        dryMixControl.indicatorLineWidth = 6;
-
-        wetMixControl.trackLineWidth = 8;
-        wetMixControl.progressLineWidth = 6;
-        wetMixControl.indicatorLineWidth = 6;
+        for knob in [dryMixControl, wetMixControl] {
+            knob!.trackLineWidth = 8;
+            knob!.progressLineWidth = 6;
+            knob!.indicatorLineWidth = 6;
+        }
     }
 
     #if os(iOS)
@@ -171,7 +163,6 @@ import os
         NSApp.keyWindow?.makeFirstResponder(nil)
     }
     #endif
-
 }
 
 extension FilterViewController: AUAudioUnitFactory {
@@ -186,10 +177,11 @@ extension FilterViewController: AUAudioUnitFactory {
         os_log(.info, log: log, "creating new audio unit")
         componentDescription.log(log, type: .debug)
         #if os(macOS)
-        return try FilterAudioUnit(componentDescription: componentDescription, options: [.loadInProcess])
+        audioUnit = try FilterAudioUnit(componentDescription: componentDescription, options: [.loadInProcess])
         #else
-        return try FilterAudioUnit(componentDescription: componentDescription, options: [])
+        audioUnit = try FilterAudioUnit(componentDescription: componentDescription, options: [])
         #endif
+        return audioUnit!
     }
 }
 
@@ -327,4 +319,3 @@ extension FilterViewController: UITextFieldDelegate {
 }
 
 #endif
-
