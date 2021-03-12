@@ -121,8 +121,6 @@
 		BDE2CDF624A3DF25004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
 		BDF158C325FABE8C008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
 		BDF158E025FAC9DC008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
-		BDF158EB25FAD8EA008E5965 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF158E825FAD8EA008E5965 /* AudioUnitFactory.swift */; };
-		BDF158EE25FAD8EA008E5965 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF158E825FAD8EA008E5965 /* AudioUnitFactory.swift */; };
 		C433F56122404C7C00F1B750 /* FilterViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433F56022404C7C00F1B750 /* FilterViewControllerExtension.swift */; };
 		C437FE59222367CD008D6C09 /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; };
 		C437FE5A222367CD008D6C09 /* SimplyPhaserFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -337,7 +335,6 @@
 		BDE2CE1824A3E8DB004AC8FA /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Staging.xcconfig; path = Configuration/Staging.xcconfig; sourceTree = "<group>"; };
 		BDE2CE1924A3EBD1004AC8FA /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Configuration/Common.xcconfig; sourceTree = "<group>"; };
 		BDEFCA2025F64B680095858D /* SimplyPhaserAU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplyPhaserAU.entitlements; sourceTree = "<group>"; };
-		BDF158E825FAD8EA008E5965 /* AudioUnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
 		C4201A2822403120006E4333 /* FilterViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerExtension.swift; sourceTree = "<group>"; };
 		C433F56022404C7C00F1B750 /* FilterViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerExtension.swift; sourceTree = "<group>"; };
 		C437FE3A222367A6008D6C09 /* SimplyPhaserHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyPhaserHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -693,7 +690,6 @@
 		C4BEE7E422236E99001E6B6D /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				BDF158E825FAD8EA008E5965 /* AudioUnitFactory.swift */,
 				BD578EEC25D278490040D83D /* AudioUnitManager.swift */,
 				BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */,
 				BDB7CE8F249D3C00009580D5 /* NonCopyable.hpp */,
@@ -1219,7 +1215,6 @@
 				BD06772C24CF9FA00039F161 /* Optional+Extensions.swift in Sources */,
 				BD71E31925E1AFB5005C5E1E /* FilterPreset.swift in Sources */,
 				C4BEE80422236F6F001E6B6D /* TypeAliases.swift in Sources */,
-				BDF158EB25FAD8EA008E5965 /* AudioUnitFactory.swift in Sources */,
 				BD66842E25F11F77009CF8ED /* KnobController.swift in Sources */,
 				BD18B39D24CB248200B7CB1E /* AudioComponentDescription+Extensions.swift in Sources */,
 				BDB11A5524A13C4B00DD8EF9 /* Comparble+Extensions.swift in Sources */,
@@ -1272,7 +1267,6 @@
 				BDB11A5D24A13F8800DD8EF9 /* Color+Extensions.swift in Sources */,
 				BD71E31125E1AFB4005C5E1E /* FilterPreset.swift in Sources */,
 				BD2FD3EE259B5104004A3196 /* AUParameterTree+Extensions.swift in Sources */,
-				BDF158EE25FAD8EA008E5965 /* AudioUnitFactory.swift in Sources */,
 				BD66842F25F11F77009CF8ED /* KnobController.swift in Sources */,
 				BD66843125F11F77009CF8ED /* Knob_macOS.swift in Sources */,
 				BDE2CDF624A3DF25004AC8FA /* Bundle+Extensions.swift in Sources */,
