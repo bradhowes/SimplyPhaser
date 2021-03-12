@@ -26,7 +26,7 @@ public:
 
      @param log the log identifier to use for our logging statements
      */
-    KernelEventProcessor(os_log_t log) : log_{log} {}
+    KernelEventProcessor(os_log_t log) : log_{log}, super_{*static_cast<T*>(this)} {}
 
     /**
      Set the bypass mode.
@@ -34,11 +34,6 @@ public:
      @param bypass if true disable filter processing and just copy samples from input to output
      */
     void setBypass(bool bypass) { bypassed_ = bypass; }
-
-    /**
-     Get current bypass mode
-     */
-    bool isBypassed() { return bypassed_; }
 
     /**
      Begin processing with the given format and channel count.
@@ -148,11 +143,11 @@ private:
             switch (event->head.eventType) {
                 case AURenderEventParameter:
                 case AURenderEventParameterRamp:
-                    injected()->doParameterEvent(event->parameter);
+                    super_.doParameterEvent(event->parameter);
                     break;
 
                 case AURenderEventMIDI:
-                    injected()->doMIDIEvent(event->MIDI);
+                    super_.doMIDIEvent(event->MIDI);
                     break;
 
                 default:
@@ -165,7 +160,7 @@ private:
 
     void renderFrames(AUAudioFrameCount frameCount, AUAudioFrameCount processedFrameCount)
     {
-        if (isBypassed()) {
+        if (bypassed_) {
             for (size_t channel = 0; channel < inputs_->mNumberBuffers; ++channel) {
                 if (inputs_->mBuffers[channel].mData == outputs_->mBuffers[channel].mData) {
                     continue;
@@ -184,11 +179,10 @@ private:
             outputs_->mBuffers[channel].mDataByteSize = sizeof(AUValue) * (processedFrameCount + frameCount);
         }
 
-        injected()->doRendering(ins_, outs_, frameCount);
+        super_.doRendering(ins_, outs_, frameCount);
     }
 
-    T* injected() { return static_cast<T*>(this); }
-
+    T& super_;
     InputBuffer inputBuffer_;
 
     AudioBufferList const* inputs_ = nullptr;
