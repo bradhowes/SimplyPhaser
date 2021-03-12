@@ -9,6 +9,7 @@ public typealias Slider = UISlider
 public typealias Storyboard = UIStoryboard
 public typealias Switch = UISwitch
 public typealias View = UIView
+public typealias ViewController = UIViewController
 
 #elseif os(macOS)
 
@@ -19,6 +20,7 @@ public typealias Slider = NSSlider
 public typealias Storyboard = NSStoryboard
 public typealias Switch = NSSwitch
 public typealias View = NSView
+public typealias ViewController = NSViewController
 
 public extension NSView {
     func setNeedsDisplay() { self.needsDisplay = true }
