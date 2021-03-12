@@ -168,7 +168,9 @@ import os
 extension FilterViewController: AUAudioUnitFactory {
 
     /**
-     Create a new FilterAudioUnit instance to run in an AVu3 container.
+     Create a new FilterAudioUnit instance to run in an AVu3 container. Although it is not clearly spelled out in any
+     document, AUAudioUnitFactory expects the class doing this implementation to be an AUViewController. Attempts to
+     make this otherwise failed.
 
      - parameter componentDescription: descriptions of the audio environment it will run in
      - returns: new FilterAudioUnit
@@ -221,7 +223,8 @@ extension FilterViewController {
         controls[.wetMix] = KnobController(parameterObserverToken: parameterObserverToken, parameter: params[.wetMix],
                                            formatter: params.valueFormatter(.wetMix), knob: wetMixControl,
                                            label:  wetMixValueLabel, logValues: false)
-        controls[.odd90] = SwitchController(parameterObserverToken: parameterObserverToken, parameter: params[.odd90], control: odd90Switch)
+        controls[.odd90] = SwitchController(parameterObserverToken: parameterObserverToken, parameter: params[.odd90],
+                                            control: odd90Switch)
     }
 
     private func updateDisplay() {
