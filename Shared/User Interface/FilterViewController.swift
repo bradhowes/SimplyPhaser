@@ -185,8 +185,11 @@ extension FilterViewController: AUAudioUnitFactory {
     public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
         os_log(.info, log: log, "creating new audio unit")
         componentDescription.log(log, type: .debug)
-        audioUnit = try FilterAudioUnit(componentDescription: componentDescription, options: [.loadOutOfProcess])
-        return audioUnit!
+        #if os(macOS)
+        return try FilterAudioUnit(componentDescription: componentDescription, options: [.loadInProcess])
+        #else
+        return try FilterAudioUnit(componentDescription: componentDescription, options: [])
+        #endif
     }
 }
 
