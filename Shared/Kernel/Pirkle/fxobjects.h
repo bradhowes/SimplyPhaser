@@ -1168,6 +1168,8 @@ inline bool resample(double* input, double* output, uint32_t inLength, uint32_t 
 class IAudioSignalProcessor
 {
 public:
+    virtual ~IAudioSignalProcessor() = default; // BRH -- added to silence warnings
+
     // --- pure virtual, derived classes must implement or will not compile
     //     also means this is a pure abstract base class and is incomplete,
     //     so it can only be used as a base class
@@ -1248,6 +1250,8 @@ struct SignalGenData
 class IAudioSignalGenerator
 {
 public:
+    virtual ~IAudioSignalGenerator() = default;  // BRH -- added to silence warnings
+
     // --- pure virtual, derived classes must implement or will not compile
     //     also means this is a pure abstract base class and is incomplete,
     //     so it can only be used as a base class
