@@ -49,4 +49,24 @@
     }
 }
 
+- (void)doPhaseShifting {
+    double sampleRate = 44100.0;
+    double lfoFrequency = 0.2;
+    LFO<double> lfo(sampleRate, lfoFrequency, LFOWaveform::triangle);
+    PhaseShifter<double> phaseShifter{PhaseShifter<double>::ideal, sampleRate, 1.0, 20};
+
+    for (int counter = 0; counter < 44100; ++counter) {
+        double input = std::sin(counter/100.0 * M_PI / 180.0 );
+        double modulator = lfo.valueAndIncrement();
+        phaseShifter.process(modulator, input);
+    }
+}
+
+- (void)testPerformanceExample {
+    [self measureBlock:^{
+        [self testPhaseShifters];
+    }];
+}
+
+
 @end

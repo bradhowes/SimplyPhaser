@@ -9,57 +9,42 @@
 namespace Biquad {
 
 /**
- Read-only filter coefficients.
+ Filter coefficients. The naming here follows that in "Designing Audio Effect Plugins in C++" by Will C. Pirkle (2019),
+ where 'a' coefficients refer to values in the numerator of the H(z) transform and 'b' coefficients are from the
+ denominator. Note that in Pirkle there are 'c0' and 'd0' values that the book uses for mixing wet (c0) and dry (d0)
+ values which are not found here.
  */
 template <typename T>
 struct Coefficients {
-    Coefficients()
-    : a0{0.0}, a1{0.0}, a2{0.0}, b1{0.0}, b2{0.0}, c0{1.0}, d0{0.0} {}
+    Coefficients() : a0{0.0}, a1{0.0}, a2{0.0}, b1{0.0}, b2{0.0} {}
 
-    Coefficients(double _a0, double _a1, double _a2, double _b1, double _b2)
-    : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2}, c0{1.0}, d0{0.0} {}
+    Coefficients(T _a0, T _a1, T _a2, T _b1, T _b2)
+    : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2} {}
 
-    Coefficients(double _a0, double _a1, double _a2, double _b1, double _b2, double _c0, double _d0)
-    : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2}, c0{_c0}, d0{_d0} {}
-
-    Coefficients A0(double VV) { return Coefficients(VV, a1, a2, b1, b2, c0, d0); }
-    Coefficients A1(double VV) { return Coefficients(a0, VV, a2, b1, b2, c0, d0); }
-    Coefficients A2(double VV) { return Coefficients(a0, a1, VV, b1, b2, c0, d0); }
-    Coefficients B1(double VV) { return Coefficients(a0, a1, a2, VV, b2, c0, d0); }
-    Coefficients B2(double VV) { return Coefficients(a0, a1, a2, b1, VV, c0, d0); }
-    Coefficients C0(double VV) { return Coefficients(a0, a1, a2, b1, b2, VV, d0); }
-    Coefficients D0(double VV) { return Coefficients(a0, a1, a2, b1, b2, c0, VV); }
+    Coefficients A0(T VV) { return Coefficients(VV, a1, a2, b1, b2); }
+    Coefficients A1(T VV) { return Coefficients(a0, VV, a2, b1, b2); }
+    Coefficients A2(T VV) { return Coefficients(a0, a1, VV, b1, b2); }
+    Coefficients B1(T VV) { return Coefficients(a0, a1, a2, VV, b2); }
+    Coefficients B2(T VV) { return Coefficients(a0, a1, a2, b1, VV); }
 
     T a0;
     T a1;
     T a2;
     T b1;
     T b2;
-    T c0;
-    T d0;
 
     // 1-pole low-pass coefficients generator
     static Coefficients<T> LPF1(T sampleRate, T frequency) {
         double theta = 2.0 * M_PI * frequency / sampleRate;
         double gamma = std::cos(theta) / (1.0 + std::sin(theta));
-        return Coefficients()
-        .A0((1.0 - gamma) / 2.0)
-        .A1((1.0 - gamma) / 2.0)
-        .A2(0.0)
-        .B1(-gamma)
-        .B2(0.0);
+        return Coefficients((1.0 - gamma) / 2.0, (1.0 - gamma) / 2.0, 0.0, -gamma, 0.0);
     }
 
     // 1-pole high-pass coefficients generator
     static Coefficients<T> HPF1(T sampleRate, T frequency) {
         double theta = 2.0 * M_PI * frequency / sampleRate;
         double gamma = std::cos(theta) / (1.0 + std::sin(theta));
-        return Coefficients()
-        .A0((1.0 + gamma) / 2.0)
-        .A1((1.0 + gamma) / -2.0)
-        .A2(0.0)
-        .B1(-gamma)
-        .B2(0.0);
+        return Coefficients((1.0 + gamma) / 2.0, (1.0 + gamma) / -2.0, 0.0, -gamma, 0.0);
     }
 
     // 2-pole low-pass coefficients generator
@@ -69,12 +54,7 @@ struct Coefficients {
         double beta = 0.5 * (1 - d / 2.0 * std::sin(theta)) / (1 + d / 2.0 * std::sin(theta));
         double gamma = (0.5 + beta) * std::cos(theta);
         double alpha = (0.5 + beta - gamma) / 2.0;
-        return Coefficients()
-        .A0(alpha)
-        .A1(2.0 * alpha)
-        .A2(alpha)
-        .B1(-2.0 * gamma)
-        .B2(2.0 * beta);
+        return Coefficients(alpha, 2.0 * alpha, alpha, -2.0 * gamma, 2.0 * beta);
     }
 
     // 2-pole high-pass coefficients generator
@@ -83,12 +63,8 @@ struct Coefficients {
         double d = 1.0 / resonance;
         double beta = 0.5 * (1 - d / 2.0 * std::sin(theta)) / (1 + d / 2.0 * std::sin(theta));
         double gamma = (0.5 + beta) * std::cos(theta);
-        return Coefficients()
-        .A0((0.5 + beta + gamma) / 2.0)
-        .A1(-1.0 * (0.5 + beta + gamma))
-        .A2((0.5 + beta + gamma) / 2.0)
-        .B1(-2.0 * gamma)
-        .B2(2.0 * beta);
+        return Coefficients((0.5 + beta + gamma) / 2.0, -1.0 * (0.5 + beta + gamma), (0.5 + beta + gamma) / 2.0,
+                            -2.0 * gamma, 2.0 * beta);
     }
 
     // 1-pole all-pass coefficients generator
@@ -106,12 +82,7 @@ struct Coefficients {
         double tangent = std::tan(argTan);
         double alpha = (tangent - 1.0) / (tangent + 1.0);
         double beta = -std::cos(2.0 * M_PI * frequency / sampleRate);
-        return Coefficients()
-        .A0(-alpha)
-        .A1(beta * (1.0 - alpha))
-        .A2(1.0)
-        .B1(beta * (1.0 - alpha))
-        .B2(-alpha);
+        return Coefficients(-alpha, beta * (1.0 - alpha), 1.0, beta * (1.0 - alpha), -alpha);
     }
 
     inline static os_log_t log_{os_log_create("DSP.Biquad", "Coefficients")};
@@ -206,7 +177,7 @@ struct CanonicalTranspose : Base<T> {
     static T storageComponent(const State<T>& state, const Coefficients<T>& coefficients) { return state.x_z1; }
 };
 
-} // namespace Op
+} // namespace Transform
 
 /**
  Generic biquad filter setup. Only knows how to reset its internal state and to transform (filter)
@@ -228,9 +199,12 @@ public:
     /**
      Use a new set of biquad coefficients.
      */
-    void setCoefficients(const Coefficients<T>& coefficients) {
-        coefficients_ = coefficients;
-    }
+    void setCoefficients(const Coefficients<T>& coefficients) { coefficients_ = coefficients; }
+
+    /**
+     Use a new set of biquad coefficients.
+     */
+    void setCoefficients(Coefficients<T>&& coefficients) { coefficients_ = coefficients; }
 
     /**
      Reset internal state.

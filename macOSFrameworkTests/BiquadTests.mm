@@ -24,8 +24,6 @@
     SamplesEqual(0.0, zeros.a2);
     SamplesEqual(0.0, zeros.b1);
     SamplesEqual(0.0, zeros.b2);
-    SamplesEqual(1.0, zeros.c0);
-    SamplesEqual(0.0, zeros.d0);
 }
 
 - (void)testCoefficients {
@@ -34,16 +32,12 @@
     .A1(2.0)
     .A2(3.0)
     .B1(4.0)
-    .B2(5.0)
-    .C0(6.0)
-    .D0(7.0);
+    .B2(5.0);
     SamplesEqual(1.0, coefficients.a0);
     SamplesEqual(2.0, coefficients.a1);
     SamplesEqual(3.0, coefficients.a2);
     SamplesEqual(4.0, coefficients.b1);
     SamplesEqual(5.0, coefficients.b2);
-    SamplesEqual(6.0, coefficients.c0);
-    SamplesEqual(7.0, coefficients.d0);
 }
 
 - (void)testNOP {

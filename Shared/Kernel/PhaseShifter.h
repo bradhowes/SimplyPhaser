@@ -23,8 +23,8 @@ public:
     using AllPassFilter = Biquad::CanonicalTranspose<T>;
 
     struct Band {
-        double frequencyMin;
-        double frequencyMax;
+        T frequencyMin;
+        T frequencyMax;
     };
 
     using FrequencyBands = std::vector<Band>;
@@ -54,9 +54,7 @@ public:
         updateCoefficients(0.0);
     }
 
-    void setIntensity(double intensity) {
-        intensity_ = intensity;
-    }
+    void setIntensity(double intensity) { intensity_ = intensity; }
 
     void reset() {
         sampleCounter_ = 0;
@@ -107,12 +105,12 @@ private:
     }
 
     const FrequencyBands& bands_;
-    double sampleRate_;
-    double intensity_;
+    T sampleRate_;
+    T intensity_;
     int samplesPerFilterUpdate_;
     int sampleCounter_{0};
     std::vector<AllPassFilter> filters_;
-    std::vector<double> gammas_;
+    std::vector<T> gammas_;
 
     os_log_t log_ = os_log_create("PhaseShifter", "SimplyPhaserKernel");
 };

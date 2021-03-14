@@ -84,11 +84,12 @@ public:
     }
 
 private:
+    using FloatKind = double;
 
     void initialize(int channelCount, double sampleRate) {
         phaseShifter_.clear();
         for (auto index = 0; index < channelCount; ++index) {
-            phaseShifter_.emplace_back(PhaseShifter<double>::ideal, sampleRate, intensity_, 20);
+            phaseShifter_.emplace_back(PhaseShifter<FloatKind>::ideal, sampleRate, intensity_, 20);
         }
     }
 
@@ -119,12 +120,12 @@ private:
 
     void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
 
-    double rate_;
-    double depth_;
-    double intensity_;
-    double dryMix_;
-    double wetMix_;
+    AUValue rate_;
+    AUValue depth_;
+    AUValue intensity_;
+    AUValue dryMix_;
+    AUValue wetMix_;
     bool odd90_;
-    LFO<double> lfo_;
-    std::vector<PhaseShifter<double>> phaseShifter_;
+    LFO<FloatKind> lfo_;
+    std::vector<PhaseShifter<FloatKind>> phaseShifter_;
 };
