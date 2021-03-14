@@ -28,15 +28,6 @@ public:
         initialize(format.channelCount, format.sampleRate);
     }
 
-    void initialize(int channelCount, double sampleRate) {
-        phaseShifter_.clear();
-        for (auto index = 0; index < channelCount; ++index) {
-            phaseShifter_.push_back(PhaseShifter<double>());
-            auto& filter = phaseShifter_.back();
-            filter.initialize(sampleRate, intensity_);
-        }
-    }
-
     void stopProcessing() { super::stopProcessing(); }
 
     void setParameterValue(AUParameterAddress address, AUValue value) {
@@ -94,6 +85,13 @@ public:
 
 private:
 
+    void initialize(int channelCount, double sampleRate) {
+        phaseShifter_.clear();
+        for (auto index = 0; index < channelCount; ++index) {
+            phaseShifter_.emplace_back(PhaseShifter<double>::ideal, sampleRate, intensity_);
+        }
+    }
+
     void doParameterEvent(const AUParameterEvent& event) { setParameterValue(event.parameterAddress, event.value); }
 
     void doRendering(std::vector<AUValue const*> ins, std::vector<AUValue*> outs, AUAudioFrameCount frameCount) {
@@ -102,12 +100,12 @@ private:
             auto& inputs = ins[channel];
             auto& outputs = outs[channel];
             if (channel > 0) lfo_.restoreState(lfoState);
-            auto& shifterNew{phaseShifter_[channel]};
+            auto& shifter{phaseShifter_[channel]};
             for (int frame = 0; frame < frameCount; ++frame) {
                 auto inputSample = inputs[frame];
                 auto modulation = odd90_ ? ((channel & 1) ? lfo_.quadPhaseValue() : lfo_.value()) : lfo_.value();
                 lfo_.increment();
-                auto outputSample = shifterNew.process(modulation * depth_, inputSample);
+                auto outputSample = shifter.process(modulation * depth_, inputSample);
                 outputs[frame] = dryMix_ * inputSample + wetMix_ * outputSample;
             }
         }
