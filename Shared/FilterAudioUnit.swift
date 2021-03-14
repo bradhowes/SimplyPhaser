@@ -37,8 +37,10 @@ public final class FilterAudioUnit: AUAudioUnit {
 
     /// Factory presets for the filter
     override public var factoryPresets: [AUAudioUnitPreset] { _factoryPresets }
+
     /// Announce support for user presets as well
     override public var supportsUserPresets: Bool { true }
+
     /// Preset get/set
     override public var currentPreset: AUAudioUnitPreset? {
         get {
@@ -89,7 +91,7 @@ public final class FilterAudioUnit: AUAudioUnit {
                let name = newValue[kAUPresetNameKey] as? String,
                let number = newValue[kAUPresetNumberKey] as? NSNumber {
                 os_log(.info, log: log, "name %{public}s number %d", name, number.intValue)
-                currentPreset = AUAudioUnitPreset(number: number.intValue, name: name)
+                _currentPreset = AUAudioUnitPreset(number: number.intValue, name: name)
             }
         }
     }
@@ -141,7 +143,7 @@ public final class FilterAudioUnit: AUAudioUnit {
     private lazy var _outputBusses: AUAudioUnitBusArray = { AUAudioUnitBusArray(audioUnit: self, busType: .output,
                                                                                 busses: [outputBus]) }()
     /**
-     Crete a new audio unit asynchronously.
+     Create a new audio unit asynchronously.
 
      - parameter componentDescription: the component to instantiate
      - parameter options: options for instantiation
