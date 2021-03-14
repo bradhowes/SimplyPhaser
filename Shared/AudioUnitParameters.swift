@@ -42,6 +42,14 @@ public final class AudioUnitParameters: NSObject {
         AUParameterTree.createParameter(withIdentifier: "odd90", name: "Odd 90", address: .odd90, min: 0, max: 1, unit: .boolean)
     ]
 
+    public let factoryPresetValues:[(name: String, preset: FilterPreset)] = [
+        ("Gently Sweeps", FilterPreset(rate: 0.04, depth: 50,intensity: 75, dryMix: 50, wetMix: 50, odd90: 0)),
+        ("Slo-Jo", FilterPreset(rate: 0.10, depth: 100,intensity: 90, dryMix: 50, wetMix: 50, odd90: 1)),
+        ("Psycho Phase", FilterPreset(rate: 1.0, depth: 40, intensity: 90, dryMix: 0, wetMix: 100, odd90: 1)),
+        ("Phaser Blast", FilterPreset(rate: 1.0, depth: 100, intensity: 90, dryMix: 0, wetMix: 100, odd90: 0)),
+        ("Noxious", FilterPreset(rate: 20.0, depth: 30, intensity: 75, dryMix: 0, wetMix: 100, odd90: 1))
+    ]
+
     /// AUParameterTree created with the parameter definitions for the audio unit
     public let parameterTree: AUParameterTree
 
