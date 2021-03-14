@@ -92,7 +92,6 @@ struct Coefficients {
     static Coefficients<T> APF1(T sampleRate, T frequency) {
         double tangent = std::tan(M_PI * frequency / sampleRate);
         double alpha = (tangent - 1.0) / (tangent + 1.0);
-//        os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "%f - A0: %f", frequency, alpha);
         return Coefficients()
         .A0(alpha)
         .A1(1.0)
@@ -243,11 +242,7 @@ public:
     /**
      Apply the filter to a given value.
      */
-    T transform(T input) {
-        T output = Transformer::transform(input, state_, coefficients_);
-        //os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "input: %f output: %f", input, output);
-        return output;
-    }
+    T transform(T input) { return Transformer::transform(input, state_, coefficients_); }
 
     /**
      Obtain the `gain` value from the coefficients.
