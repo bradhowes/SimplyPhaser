@@ -16,6 +16,9 @@ struct Coefficients {
     Coefficients()
     : a0{0.0}, a1{0.0}, a2{0.0}, b1{0.0}, b2{0.0}, c0{1.0}, d0{0.0} {}
 
+    Coefficients(double _a0, double _a1, double _a2, double _b1, double _b2)
+    : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2}, c0{1.0}, d0{0.0} {}
+
     Coefficients(double _a0, double _a1, double _a2, double _b1, double _b2, double _c0, double _d0)
     : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2}, c0{_c0}, d0{_d0} {}
 
@@ -92,12 +95,7 @@ struct Coefficients {
     static Coefficients<T> APF1(T sampleRate, T frequency) {
         double tangent = std::tan(M_PI * frequency / sampleRate);
         double alpha = (tangent - 1.0) / (tangent + 1.0);
-        return Coefficients()
-        .A0(alpha)
-        .A1(1.0)
-        .A2(0.0)
-        .B1(alpha)
-        .B2(0.0);
+        return Coefficients(alpha, 1.0, 0.0, alpha, 0.0);
     }
 
     // 2-pole all-pass coefficients generator
