@@ -35,38 +35,38 @@ public:
         switch (address) {
             case FilterParameterAddressRate:
                 if (value == rate_) return;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "rate - %f", value);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "rate - %f", value);
                 rate_ = value;
                 lfo_.setFrequency(rate_);
                 break;
             case FilterParameterAddressDepth:
                 tmp = value / 100.0;
                 if (tmp == depth_) return;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "depth - %f", tmp);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "depth - %f", tmp);
                 depth_ = tmp;
                 break;
             case FilterParameterAddressIntensity:
                 tmp = value / 100.0;
                 if (tmp == intensity_) return;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "intensity - %f", tmp);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "intensity - %f", tmp);
                 intensity_ = tmp;
                 intensityChanged();
                 break;
             case FilterParameterAddressDryMix:
                 tmp = value / 100.0;
                 if (tmp == dryMix_) return;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "dryMix - %f", tmp);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "dryMix - %f", tmp);
                 dryMix_ = tmp;
                 break;
             case FilterParameterAddressWetMix:
                 tmp = value / 100.0;
                 if (tmp == wetMix_) return;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "wetMix - %f", tmp);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "wetMix - %f", tmp);
                 wetMix_ = tmp;
                 break;
             case FilterParameterAddressOdd90:
                 odd90_ = value > 0 ? true : false;
-                os_log_with_type(log_, OS_LOG_TYPE_INFO, "odd90 - %d", odd90_);
+                // os_log_with_type(log_, OS_LOG_TYPE_INFO, "odd90 - %d", odd90_);
                 break;
         }
     }
@@ -88,7 +88,7 @@ private:
     void initialize(int channelCount, double sampleRate) {
         phaseShifter_.clear();
         for (auto index = 0; index < channelCount; ++index) {
-            phaseShifter_.emplace_back(PhaseShifter<double>::ideal, sampleRate, intensity_);
+            phaseShifter_.emplace_back(PhaseShifter<double>::ideal, sampleRate, intensity_, 20);
         }
     }
 

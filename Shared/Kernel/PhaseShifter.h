@@ -47,15 +47,10 @@ public:
         Band{636.0, 20480.0}
     };
 
-    PhaseShifter(const FrequencyBands& bands, int samplesPerFilterUpdate = 1)
-    : bands_(bands), samplesPerFilterUpdate_{samplesPerFilterUpdate}, filters_(bands_.size(), AllPassFilter())
-    {}
-
-    PhaseShifter() : PhaseShifter(ideal) {}
-
-    void initialize(double sampleRate, double intensity) {
-        sampleRate_ = sampleRate;
-        intensity_ = intensity;
+    PhaseShifter(const FrequencyBands& bands, T sampleRate, T intensity, int samplesPerFilterUpdate = 10)
+    : bands_(bands), sampleRate_{sampleRate}, intensity_{intensity}, samplesPerFilterUpdate_{samplesPerFilterUpdate},
+    filters_(bands_.size(), AllPassFilter())
+    {
         updateCoefficients(0.0);
     }
 
@@ -64,6 +59,7 @@ public:
     }
 
     void reset() {
+        sampleCounter_ = 0;
         for (auto& filter : filters_) {
             filter.reset();
         }
@@ -88,8 +84,9 @@ public:
         // Calculate weighted state sum to submit to filtering
         T alpha0 = 1.0 / (1.0 + intensity_ * gammas.back());
         gammas.pop_back();
+
         T weightedSum = 0.0;
-        std::for_each(filters_.begin(), filters_.end(), [&gammas, &weightedSum](auto& filter) {
+        std::for_each(filters_.begin(), filters_.end(), [&gammas, &weightedSum](auto const& filter) {
             auto gamma = gammas.back();
             gammas.pop_back();
             weightedSum += gamma * filter.storageComponent();
@@ -101,7 +98,7 @@ public:
             output = filter.transform(output);
         }
 
-        ++sampleCounter_;
+        sampleCounter_ += 1;
         return output;
     }
 
@@ -109,11 +106,12 @@ private:
 
     void updateCoefficients(T modulation) {
         assert(filters_.size() == bands_.size());
-        double sampleRate = sampleRate_;
-        zip([sampleRate, modulation](AllPassFilter& filter, const Band& band) {
+        for (auto index = 0; index < filters_.size(); ++index) {
+            auto& filter = filters_[index];
+            auto const& band = bands_[index];
             double frequency = DSP::bipolarModulation(modulation, band.frequencyMin, band.frequencyMax);
-            filter.setCoefficients(Biquad::Coefficients<T>::APF1(sampleRate, frequency));
-        }, filters_.begin(), filters_.end(), bands_.begin(), bands_.end());
+            filter.setCoefficients(Biquad::Coefficients<T>::APF1(sampleRate_, frequency));
+        }
     }
 
     const FrequencyBands& bands_;
@@ -122,4 +120,6 @@ private:
     int samplesPerFilterUpdate_;
     int sampleCounter_{0};
     std::vector<AllPassFilter> filters_;
+
+    os_log_t log_ = os_log_create("PhaseShifter", "SimplyPhaserKernel");
 };

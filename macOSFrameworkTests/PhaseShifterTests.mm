@@ -37,8 +37,7 @@
     phaseShifterOld.setParameters(params);
 
     LFO<double> lfo(sampleRate, lfoFrequency, LFOWaveform::triangle);
-    PhaseShifter<double> phaseShifterNew{PhaseShifter<double>::ideal};
-    phaseShifterNew.initialize(sampleRate, 1.0);
+    PhaseShifter<double> phaseShifterNew{PhaseShifter<double>::ideal, sampleRate, 1.0};
 
     for (int counter = 0; counter < 7200; ++counter) {
         double input = std::sin(counter/10.0 * M_PI / 180.0 );
