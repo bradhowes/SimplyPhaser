@@ -24,13 +24,13 @@
                 <outlet property="wetMixValueLabel" destination="Bgn-eW-ymD" id="Aob-o3-Px9"/>
             </connections>
         </customObject>
-        <customView wantsLayer="YES" id="Hz6-mo-xeY" userLabel="AUv3 FilterView">
+        <customView wantsLayer="YES" appearanceType="darkAqua" id="Hz6-mo-xeY" userLabel="AUv3 FilterView">
             <rect key="frame" x="0.0" y="0.0" width="587" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wUu-Yz-l9v" userLabel="v1.0.0">
-                    <rect key="frame" x="444" y="84" width="38" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="v1.0.1" id="p30-Bk-a8R" userLabel="APP_VERSION">
+                    <rect key="frame" x="445" y="84" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="v1.0.2" id="p30-Bk-a8R" userLabel="APP_VERSION">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="Title"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -227,10 +227,10 @@
     </objects>
     <resources>
         <namedColor name="Labels">
-            <color red="0.0" green="0.83901339769363403" blue="0.84536576271057129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.83899998664855957" blue="0.84500002861022949" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Title">
-            <color red="0.0" green="0.81252884864807129" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.81300002336502075" blue="1" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
