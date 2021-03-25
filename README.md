@@ -1,6 +1,6 @@
 ![CI](https://github.com/bradhowes/SimplyPhaser/workflows/CI/badge.svg?branch=main)
 
-![](macOS/App/Assets.xcassets/AppIcon.appiconset/256px.png)
+![](image.png)
 
 # About SimplyPhaser
 
@@ -10,7 +10,7 @@ containing the AUv3 component. The apps are designed to load the component and u
 works by playing a sample audio file and routing it through the effect.
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=vH6bEQEkcdo"><img src="https://img.youtube.com/vi/vH6bEQEkcdo/0.jpg" 
+  <a href="https://www.youtube.com/watch?v=vH6bEQEkcdo"><img src="https://img.youtube.com/vi/vH6bEQEkcdo/0.jpg"
                                                              alt="SimplyPhaser in GarageBand" style="width:100%;"></a>
 </div>
 
@@ -34,10 +34,10 @@ tests:
 
 ## Phaser Algorithm
 
-This effect is based on a design described in the excellent book 
+This effect is based on a design described in the excellent book
 ["Designing Audio Effects Plugins in C++"](https://www.amazon.com/Designing-Audio-Effect-Plugins-C-dp-1138591939/dp/1138591939/ref=dp_ob_title_bk)
 by [Will Pirkle](https://www.willpirkle.com). His design uses six all-pass filters to do the phase shifting in 6 overlapping bands ranging from 16Hz to 20kHz.
-In the book, he mentions that his design was "derived from the analog ciruit in the _National Semiconductor (NSC) Audio/Radio Handbook_, a 1970s source of old 
+In the book, he mentions that his design was "derived from the analog ciruit in the _National Semiconductor (NSC) Audio/Radio Handbook_, a 1970s source of old
 App Notes from National Semiconductor... The NSC design used six 1st order all-pass stages that were modulated from a common LFO."
 
 You can find Pirkle's implementation in the [fxobjects.h](https://github.com/bradhowes/SimplyPhaser/blob/9f06b552f06b301a14b65400cbc8b57a319a271b/Shared/Kernel/Pirkle/fxobjects.h#L3537) file.

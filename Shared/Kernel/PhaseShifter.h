@@ -8,15 +8,6 @@
 #import "Biquad.h"
 #import "DSP.h"
 
-template <typename F, typename IteratorA, typename IteratorB>
-void zip(F func, IteratorA aPos, IteratorA aEnd, IteratorB bPos, IteratorB bEnd) {
-    while (aPos != aEnd && bPos != bEnd) {
-        auto& a = *aPos++;
-        auto& b = *bPos++;
-        func(a, b);
-    }
-}
-
 template <typename T>
 class PhaseShifter {
 public:
@@ -78,7 +69,7 @@ public:
             gammas_[index] = filters_[filters_.size() - index].gainValue() * gammas_[index - 1];
         }
 
-        // Calculate weighted state sum to submit to filtering
+        // Calculate weighted state sum of past values to mix with input
         T weightedSum = 0.0;
         for (auto index = 0; index < filters_.size(); ++index) {
             weightedSum += gammas_[filters_.size() - index - 1] * filters_[index].storageComponent();

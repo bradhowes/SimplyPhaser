@@ -4,6 +4,7 @@
 
 #import <string>
 #import <AVFoundation/AVFoundation.h>
+#include <dispatch/dispatch.h>
 
 #import "DelayBuffer.h"
 #import "SimplyPhaserFramework/SimplyPhaserFramework-Swift.h"
@@ -18,7 +19,10 @@ public:
     friend super;
 
     SimplyPhaserKernel(const std::string& name)
-    : super(os_log_create(name.c_str(), "SimplyPhaserKernel")), lfo_() { lfo_.setWaveform(LFOWaveform::triangle); }
+    : super(os_log_create(name.c_str(), "SimplyPhaserKernel")), lfo_()
+    {
+        lfo_.setWaveform(LFOWaveform::triangle);
+    }
 
     /**
      Update kernel and buffers to support the given format and channel count
@@ -87,9 +91,9 @@ private:
     using FloatKind = double;
 
     void initialize(int channelCount, double sampleRate) {
-        phaseShifter_.clear();
+        phaseShifters_.clear();
         for (auto index = 0; index < channelCount; ++index) {
-            phaseShifter_.emplace_back(PhaseShifter<FloatKind>::ideal, sampleRate, intensity_, 20);
+            phaseShifters_.emplace_back(PhaseShifter<FloatKind>::ideal, sampleRate, intensity_, 20);
         }
     }
 
@@ -101,10 +105,10 @@ private:
             auto& inputs = ins[channel];
             auto& outputs = outs[channel];
             if (channel > 0) lfo_.restoreState(lfoState);
-            auto& shifter{phaseShifter_[channel]};
+            auto& shifter{phaseShifters_[channel]};
             for (int frame = 0; frame < frameCount; ++frame) {
                 auto inputSample = inputs[frame];
-                auto modulation = odd90_ ? ((channel & 1) ? lfo_.quadPhaseValue() : lfo_.value()) : lfo_.value();
+                auto modulation = odd90_ && (channel & 1) ? lfo_.quadPhaseValue() : lfo_.value();
                 lfo_.increment();
                 auto outputSample = shifter.process(modulation * depth_, inputSample);
                 outputs[frame] = dryMix_ * inputSample + wetMix_ * outputSample;
@@ -113,7 +117,7 @@ private:
     }
 
     void intensityChanged() {
-        for (auto& filter : phaseShifter_) {
+        for (auto& filter : phaseShifters_) {
             filter.setIntensity(intensity_);
         }
     }
@@ -127,5 +131,5 @@ private:
     AUValue wetMix_;
     bool odd90_;
     LFO<FloatKind> lfo_;
-    std::vector<PhaseShifter<FloatKind>> phaseShifter_;
+    std::vector<PhaseShifter<FloatKind>> phaseShifters_;
 };
