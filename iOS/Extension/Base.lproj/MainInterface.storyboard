@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-H3-AaS" userLabel="APP_VERSION">
-                                <rect key="frame" x="332" y="384.5" width="39.5" height="18"/>
+                                <rect key="frame" x="386" y="385.5" width="39.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" name="Title"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHASER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Nj-pL-t9n">
-                                <rect key="frame" x="4" y="264.5" width="367.5" height="138"/>
+                                <rect key="frame" x="-50.5" y="263.5" width="476" height="140"/>
                                 <fontDescription key="fontDescription" name="Desdemona" family="Desdemona" pointSize="120"/>
                                 <color key="textColor" name="Title"/>
                                 <nil key="highlightedColor"/>

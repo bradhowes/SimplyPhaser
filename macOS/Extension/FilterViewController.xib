@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wUu-Yz-l9v" userLabel="v1.0.0">
-                    <rect key="frame" x="445" y="84" width="37" height="16"/>
+                    <rect key="frame" x="443" y="84" width="39" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="v1.0.2" id="p30-Bk-a8R" userLabel="APP_VERSION">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="Title"/>
@@ -47,168 +47,252 @@
                 <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPI-wC-N8q">
                     <rect key="frame" x="86" y="34" width="416" height="232"/>
                     <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="vJE-Qk-G6z" userLabel="Rate" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
-                            <rect key="frame" x="20" y="112" width="120" height="120"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="120" id="QUK-PT-mqw"/>
-                                <constraint firstAttribute="height" constant="120" id="vAd-uR-9t8"/>
-                            </constraints>
-                            <connections>
-                                <action selector="rateChanged:" target="-2" id="s61-Ex-roh"/>
-                            </connections>
-                        </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Rate" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                            <rect key="frame" x="38" y="96" width="84" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="wMm-uE-pHU"/>
-                            </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="k91-bk-kf4">
-                                <font key="font" metaFont="system" size="20"/>
-                                <color key="textColor" name="Labels"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </textFieldCell>
-                        </textField>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="25e-Ls-Yhr" userLabel="Depth" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
-                            <rect key="frame" x="148" y="112" width="120" height="120"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="120" id="EDP-SX-7Vf"/>
-                                <constraint firstAttribute="height" constant="120" id="V2V-kw-xaN"/>
-                            </constraints>
-                            <connections>
-                                <action selector="depthChanged:" target="-2" id="SJS-tv-d4m"/>
-                            </connections>
-                        </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Depth" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                            <rect key="frame" x="166" y="96" width="84" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="A7M-iM-efX"/>
-                            </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="dUD-TV-FfK">
-                                <font key="font" metaFont="system" size="20"/>
-                                <color key="textColor" name="Labels"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </textFieldCell>
-                        </textField>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1VT-Na-dOb" userLabel="Intensity" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
-                            <rect key="frame" x="276" y="112" width="120" height="120"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="120" id="C1h-AW-fOA"/>
-                                <constraint firstAttribute="width" constant="120" id="nK3-Ah-NbH"/>
-                            </constraints>
-                            <connections>
-                                <action selector="intensityChanged:" target="-2" id="g77-dz-7Q1"/>
-                            </connections>
-                        </customView>
-                        <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Intensity" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                            <rect key="frame" x="294" y="96" width="84" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="eeP-Bv-mve"/>
-                            </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Delay" usesSingleLineMode="YES" id="lqk-lB-PF2">
-                                <font key="font" metaFont="system" size="20"/>
-                                <color key="textColor" name="Labels"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </textFieldCell>
-                        </textField>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="zql-up-Qa5" userLabel="Mix">
-                            <rect key="frame" x="86" y="0.0" width="244" height="88"/>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wsu-1R-wVt">
+                            <rect key="frame" x="20" y="0.0" width="376" height="232"/>
                             <subviews>
-                                <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
-                                    <rect key="frame" x="14" y="35" width="48" height="25"/>
-                                    <connections>
-                                        <action selector="odd90Toggled:" target="-2" id="ncZ-Rl-h16"/>
-                                    </connections>
-                                </switch>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-ZU-SPb" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                                    <rect key="frame" x="6" y="13" width="64" height="16"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="60" id="lHb-Bo-DgF"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Odd 90°" usesSingleLineMode="YES" id="oA4-IM-ibz">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="Labels"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </textFieldCell>
-                                </textField>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
-                                    <rect key="frame" x="76" y="8" width="80" height="80"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="Vze-vS-v09"/>
-                                        <constraint firstAttribute="width" constant="80" id="cgS-KS-MTB"/>
-                                    </constraints>
-                                    <connections>
-                                        <action selector="dryMixChanged:" target="-2" id="XLm-KQ-Hdd"/>
-                                    </connections>
-                                </customView>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                                    <rect key="frame" x="74" y="0.0" width="84" height="16"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="Ob0-G4-Fbi"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Dry" usesSingleLineMode="YES" id="HiA-bC-Obk">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="Labels"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </textFieldCell>
-                                </textField>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="KfU-K8-Mrs" userLabel="WetMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
-                                    <rect key="frame" x="164" y="8" width="80" height="80"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="6WU-mH-P2b"/>
-                                        <constraint firstAttribute="width" constant="80" id="czU-wj-DBM"/>
-                                    </constraints>
-                                    <connections>
-                                        <action selector="wetMixChanged:" target="-2" id="APJ-Pt-cH3"/>
-                                    </connections>
-                                </customView>
-                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
-                                    <rect key="frame" x="162" y="0.0" width="84" height="16"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="7Ss-uv-eri"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Wet" usesSingleLineMode="YES" id="sdg-kR-mgP">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="Labels"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </textFieldCell>
-                                </textField>
+                                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgD-g7-aDp" userLabel="Row 1">
+                                    <rect key="frame" x="0.0" y="96" width="376" height="136"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="88T-UB-iQs" userLabel="Rate">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="136"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="vJE-Qk-G6z" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="16" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="QUK-PT-mqw"/>
+                                                        <constraint firstAttribute="height" constant="120" id="vAd-uR-9t8"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="rateChanged:" target="-2" id="s61-Ex-roh"/>
+                                                    </connections>
+                                                </customView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-OF-PRt" userLabel="Label" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
+                                                    <rect key="frame" x="18" y="0.0" width="84" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="wMm-uE-pHU"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="k91-bk-kf4">
+                                                        <font key="font" metaFont="system" size="20"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vJE-Qk-G6z" firstAttribute="top" secondItem="88T-UB-iQs" secondAttribute="top" id="4AG-vn-qS2"/>
+                                                <constraint firstAttribute="trailing" secondItem="vJE-Qk-G6z" secondAttribute="trailing" id="DU7-Z6-5h5"/>
+                                                <constraint firstItem="FNZ-OF-PRt" firstAttribute="top" secondItem="vJE-Qk-G6z" secondAttribute="bottom" constant="-8" id="PlZ-Gc-cJi"/>
+                                                <constraint firstItem="vJE-Qk-G6z" firstAttribute="leading" secondItem="88T-UB-iQs" secondAttribute="leading" id="Y35-Y5-9eZ"/>
+                                                <constraint firstItem="FNZ-OF-PRt" firstAttribute="centerX" secondItem="vJE-Qk-G6z" secondAttribute="centerX" id="bQM-eD-Elk"/>
+                                                <constraint firstAttribute="bottom" secondItem="FNZ-OF-PRt" secondAttribute="bottom" id="rKX-sN-FW0"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QAs-Qt-YBM" userLabel="Depth">
+                                            <rect key="frame" x="128" y="0.0" width="120" height="136"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="25e-Ls-Yhr" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="16" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="EDP-SX-7Vf"/>
+                                                        <constraint firstAttribute="height" constant="120" id="V2V-kw-xaN"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="depthChanged:" target="-2" id="SJS-tv-d4m"/>
+                                                    </connections>
+                                                </customView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuF-pJ-Rk3" userLabel="Label" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
+                                                    <rect key="frame" x="18" y="0.0" width="84" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="A7M-iM-efX"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Rate" usesSingleLineMode="YES" id="dUD-TV-FfK">
+                                                        <font key="font" metaFont="system" size="20"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="25e-Ls-Yhr" firstAttribute="leading" secondItem="QAs-Qt-YBM" secondAttribute="leading" id="J6X-X1-AST"/>
+                                                <constraint firstItem="YuF-pJ-Rk3" firstAttribute="centerX" secondItem="25e-Ls-Yhr" secondAttribute="centerX" id="Joq-D6-PNV"/>
+                                                <constraint firstItem="YuF-pJ-Rk3" firstAttribute="top" secondItem="25e-Ls-Yhr" secondAttribute="bottom" constant="-8" id="Ndw-XC-J5z"/>
+                                                <constraint firstItem="25e-Ls-Yhr" firstAttribute="top" secondItem="QAs-Qt-YBM" secondAttribute="top" id="TCK-YV-CRY"/>
+                                                <constraint firstAttribute="bottom" secondItem="YuF-pJ-Rk3" secondAttribute="bottom" id="VU3-qw-sI1"/>
+                                                <constraint firstAttribute="trailing" secondItem="25e-Ls-Yhr" secondAttribute="trailing" id="Zdm-EY-04P"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Y6W-Es-XrG" userLabel="Intensity">
+                                            <rect key="frame" x="256" y="0.0" width="120" height="136"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="1VT-Na-dOb" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="16" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="C1h-AW-fOA"/>
+                                                        <constraint firstAttribute="width" constant="120" id="nK3-Ah-NbH"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="intensityChanged:" target="-2" id="g77-dz-7Q1"/>
+                                                    </connections>
+                                                </customView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-T3-0Np" userLabel="Label" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
+                                                    <rect key="frame" x="18" y="0.0" width="84" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="eeP-Bv-mve"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Delay" usesSingleLineMode="YES" id="lqk-lB-PF2">
+                                                        <font key="font" metaFont="system" size="20"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1VT-Na-dOb" firstAttribute="leading" secondItem="Y6W-Es-XrG" secondAttribute="leading" id="32l-Um-E2W"/>
+                                                <constraint firstItem="1VT-Na-dOb" firstAttribute="top" secondItem="Y6W-Es-XrG" secondAttribute="top" id="PKY-HU-lYt"/>
+                                                <constraint firstAttribute="bottom" secondItem="aOT-T3-0Np" secondAttribute="bottom" id="Pig-Ea-nmo"/>
+                                                <constraint firstAttribute="trailing" secondItem="1VT-Na-dOb" secondAttribute="trailing" id="cqs-WA-3if"/>
+                                                <constraint firstItem="aOT-T3-0Np" firstAttribute="top" secondItem="1VT-Na-dOb" secondAttribute="bottom" constant="-8" id="gCQ-s7-eLA"/>
+                                                <constraint firstItem="aOT-T3-0Np" firstAttribute="centerX" secondItem="1VT-Na-dOb" secondAttribute="centerX" id="mDK-Qq-Dyv"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWr-6S-74k" userLabel="Row 2">
+                                    <rect key="frame" x="74" y="0.0" width="228" height="88"/>
+                                    <subviews>
+                                        <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CNL-iH-G9D" userLabel="Odd 90">
+                                            <rect key="frame" x="0.0" y="21" width="52" height="46"/>
+                                            <subviews>
+                                                <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
+                                                    <rect key="frame" x="5" y="22" width="42" height="25"/>
+                                                    <connections>
+                                                        <action selector="odd90Toggled:" target="-2" id="ncZ-Rl-h16"/>
+                                                    </connections>
+                                                </switch>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tiC-B9-JFy" userLabel="Odd 90°">
+                                                    <rect key="frame" x="-2" y="0.0" width="56" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Odd 90°" id="W20-Ei-8gl">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ECf-fG-oON" userLabel="Dry Mix">
+                                            <rect key="frame" x="60" y="0.0" width="80" height="88"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTi-Ii-NHh" userLabel="DryMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="Vze-vS-v09"/>
+                                                        <constraint firstAttribute="width" constant="80" id="cgS-KS-MTB"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="dryMixChanged:" target="-2" id="XLm-KQ-Hdd"/>
+                                                    </connections>
+                                                </customView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-9K-MVH" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
+                                                    <rect key="frame" x="-2" y="0.0" width="84" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="Ob0-G4-Fbi"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Dry" usesSingleLineMode="YES" id="HiA-bC-Obk">
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="k3X-9K-MVH" firstAttribute="centerX" secondItem="oTi-Ii-NHh" secondAttribute="centerX" id="30t-2f-lsZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="k3X-9K-MVH" secondAttribute="bottom" id="axp-0J-DDO"/>
+                                                <constraint firstItem="k3X-9K-MVH" firstAttribute="top" secondItem="oTi-Ii-NHh" secondAttribute="bottom" constant="-8" id="dCp-e2-ryO"/>
+                                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="ECf-fG-oON" secondAttribute="leading" id="h1J-gb-neJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="oTi-Ii-NHh" secondAttribute="trailing" id="qc2-eI-jO7"/>
+                                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="top" secondItem="ECf-fG-oON" secondAttribute="top" id="sSI-ec-WFu"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="p5i-UI-YRY" userLabel="Wet Mix">
+                                            <rect key="frame" x="148" y="0.0" width="80" height="88"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="KfU-K8-Mrs" userLabel="WetMix" customClass="Knob" customModule="SimplyPhaserFramework" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="6WU-mH-P2b"/>
+                                                        <constraint firstAttribute="width" constant="80" id="czU-wj-DBM"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="wetMixChanged:" target="-2" id="APJ-Pt-cH3"/>
+                                                    </connections>
+                                                </customView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-eW-ymD" customClass="FocusAwareTextField" customModule="SimplyPhaserFramework">
+                                                    <rect key="frame" x="-2" y="0.0" width="84" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="7Ss-uv-eri"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" alignment="center" title="Wet" usesSingleLineMode="YES" id="sdg-kR-mgP">
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <color key="textColor" name="Labels"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KfU-K8-Mrs" firstAttribute="leading" secondItem="p5i-UI-YRY" secondAttribute="leading" id="2zW-g0-NxP"/>
+                                                <constraint firstItem="Bgn-eW-ymD" firstAttribute="centerX" secondItem="KfU-K8-Mrs" secondAttribute="centerX" id="Dsl-Di-zkd"/>
+                                                <constraint firstAttribute="trailing" secondItem="KfU-K8-Mrs" secondAttribute="trailing" id="Quf-rZ-w2S"/>
+                                                <constraint firstItem="Bgn-eW-ymD" firstAttribute="top" secondItem="KfU-K8-Mrs" secondAttribute="bottom" constant="-8" id="oAI-MJ-3BC"/>
+                                                <constraint firstAttribute="bottom" secondItem="Bgn-eW-ymD" secondAttribute="bottom" id="sJu-jK-Sw9"/>
+                                                <constraint firstItem="KfU-K8-Mrs" firstAttribute="top" secondItem="p5i-UI-YRY" secondAttribute="top" id="snj-mX-nb8"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="jyv-e6-r9o" firstAttribute="leading" secondItem="zql-up-Qa5" secondAttribute="leading" constant="16" id="2kL-8H-TwM"/>
-                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="lJd-ZU-SPb" secondAttribute="trailing" constant="8" symbolic="YES" id="56n-qF-j5k"/>
-                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="top" secondItem="zql-up-Qa5" secondAttribute="top" id="7Gr-af-KAv"/>
-                                <constraint firstItem="k3X-9K-MVH" firstAttribute="centerX" secondItem="oTi-Ii-NHh" secondAttribute="centerX" id="BQQ-MT-t0D"/>
-                                <constraint firstItem="KfU-K8-Mrs" firstAttribute="top" secondItem="zql-up-Qa5" secondAttribute="top" id="Hlc-JU-guo"/>
-                                <constraint firstAttribute="trailing" secondItem="KfU-K8-Mrs" secondAttribute="trailing" id="Law-GS-MHj"/>
-                                <constraint firstItem="k3X-9K-MVH" firstAttribute="top" secondItem="oTi-Ii-NHh" secondAttribute="bottom" constant="-8" id="Xnf-l5-RJI"/>
-                                <constraint firstAttribute="bottom" secondItem="k3X-9K-MVH" secondAttribute="bottom" id="dLI-dO-T5N"/>
-                                <constraint firstItem="oTi-Ii-NHh" firstAttribute="leading" secondItem="jyv-e6-r9o" secondAttribute="trailing" constant="16" id="hn5-4C-GFU"/>
-                                <constraint firstItem="lJd-ZU-SPb" firstAttribute="centerX" secondItem="jyv-e6-r9o" secondAttribute="centerX" id="htf-Jg-GAQ"/>
-                                <constraint firstItem="lJd-ZU-SPb" firstAttribute="top" secondItem="jyv-e6-r9o" secondAttribute="bottom" constant="8" id="iFo-Mz-j91"/>
-                                <constraint firstItem="Bgn-eW-ymD" firstAttribute="top" secondItem="KfU-K8-Mrs" secondAttribute="bottom" constant="-8" id="kb8-hv-gEv"/>
-                                <constraint firstItem="Bgn-eW-ymD" firstAttribute="centerX" secondItem="KfU-K8-Mrs" secondAttribute="centerX" id="lEk-ll-Lrd"/>
-                                <constraint firstItem="jyv-e6-r9o" firstAttribute="centerY" secondItem="oTi-Ii-NHh" secondAttribute="centerY" id="u7b-pX-snv"/>
-                                <constraint firstItem="KfU-K8-Mrs" firstAttribute="leading" secondItem="oTi-Ii-NHh" secondAttribute="trailing" constant="8" symbolic="YES" id="yvw-rB-zR7"/>
-                            </constraints>
-                        </customView>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="zql-up-Qa5" firstAttribute="centerX" secondItem="oPI-wC-N8q" secondAttribute="centerX" id="3SH-rz-IeR"/>
-                        <constraint firstItem="aOT-T3-0Np" firstAttribute="top" secondItem="1VT-Na-dOb" secondAttribute="bottom" constant="-8" id="59l-Cb-A6e"/>
-                        <constraint firstItem="FNZ-OF-PRt" firstAttribute="top" secondItem="vJE-Qk-G6z" secondAttribute="bottom" constant="-8" id="63A-sK-qAg"/>
-                        <constraint firstItem="1VT-Na-dOb" firstAttribute="leading" secondItem="25e-Ls-Yhr" secondAttribute="trailing" constant="8" symbolic="YES" id="Bwe-fG-m4H"/>
-                        <constraint firstAttribute="bottom" secondItem="zql-up-Qa5" secondAttribute="bottom" id="DkB-Jp-1me"/>
-                        <constraint firstItem="YuF-pJ-Rk3" firstAttribute="centerX" secondItem="25e-Ls-Yhr" secondAttribute="centerX" id="Kid-jH-ary"/>
-                        <constraint firstItem="zql-up-Qa5" firstAttribute="top" secondItem="YuF-pJ-Rk3" secondAttribute="bottom" constant="8" symbolic="YES" id="LCV-xB-tAl"/>
-                        <constraint firstItem="1VT-Na-dOb" firstAttribute="top" secondItem="25e-Ls-Yhr" secondAttribute="top" id="RpA-ae-yrc"/>
-                        <constraint firstItem="25e-Ls-Yhr" firstAttribute="leading" secondItem="vJE-Qk-G6z" secondAttribute="trailing" constant="8" symbolic="YES" id="TmV-fk-YEI"/>
-                        <constraint firstAttribute="trailing" secondItem="1VT-Na-dOb" secondAttribute="trailing" constant="20" symbolic="YES" id="VVm-h8-Scw"/>
-                        <constraint firstItem="aOT-T3-0Np" firstAttribute="centerX" secondItem="1VT-Na-dOb" secondAttribute="centerX" id="XsO-Ro-BEF"/>
-                        <constraint firstItem="vJE-Qk-G6z" firstAttribute="leading" secondItem="oPI-wC-N8q" secondAttribute="leading" constant="20" symbolic="YES" id="aYw-pO-b5Y"/>
-                        <constraint firstItem="YuF-pJ-Rk3" firstAttribute="top" secondItem="25e-Ls-Yhr" secondAttribute="bottom" constant="-8" id="h7e-AV-jk4"/>
-                        <constraint firstItem="FNZ-OF-PRt" firstAttribute="centerX" secondItem="vJE-Qk-G6z" secondAttribute="centerX" id="mfn-yq-dHm"/>
-                        <constraint firstItem="vJE-Qk-G6z" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" id="r9n-sB-ZU2"/>
-                        <constraint firstItem="25e-Ls-Yhr" firstAttribute="top" secondItem="vJE-Qk-G6z" secondAttribute="top" id="sbf-Uu-gg8"/>
+                        <constraint firstItem="wsu-1R-wVt" firstAttribute="leading" secondItem="oPI-wC-N8q" secondAttribute="leading" constant="20" symbolic="YES" id="2hx-RV-zza"/>
+                        <constraint firstItem="wsu-1R-wVt" firstAttribute="top" secondItem="oPI-wC-N8q" secondAttribute="top" id="G0u-le-Atd"/>
+                        <constraint firstAttribute="bottom" secondItem="wsu-1R-wVt" secondAttribute="bottom" id="PaP-n4-YzM"/>
+                        <constraint firstAttribute="trailing" secondItem="wsu-1R-wVt" secondAttribute="trailing" constant="20" symbolic="YES" id="XAz-ui-mIp"/>
                     </constraints>
                 </customView>
             </subviews>
