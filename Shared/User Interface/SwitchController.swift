@@ -24,7 +24,7 @@ final class SwitchController: AUParameterControl {
 extension SwitchController {
 
     func controlChanged() {
-        os_log(.info, log: log, "controlChanged - %f", control.isOn)
+        os_log(.info, log: log, "controlChanged - %d", control.isOn)
         parameter.setValue(control.isOn ? 1.0 : 0.0, originator: parameterObserverToken)
     }
 
