@@ -59,11 +59,11 @@ template <typename T> auto bipolarModulation(T modulator, T minValue, T maxValue
  @returns approximate sin value
  */
 template <typename T> auto parabolicSine(T angle) {
-    const T B = 4.0 / M_PI;
-    const T C = -4.0 / (M_PI * M_PI);
-    const T P = 0.225;
-    T y = B * angle + C * angle * std::abs(angle);
-    return P * (y * std::abs(y) - y) + y;
+    constexpr T B = 4.0 / M_PI;
+    constexpr T C = -4.0 / (M_PI * M_PI);
+    constexpr T P = 0.225;
+    const T y = B * angle + C * angle * std::abs(angle);
+    return P * y * (std::abs(y) - 1.0) + y;
 }
 
 } // DSP namespace
