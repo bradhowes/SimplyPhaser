@@ -18,15 +18,12 @@
 		BD1D24C625D48B8500523748 /* ValueChangeDetectorTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */; };
 		BD1D24CD25D48B8E00523748 /* RampingValueChangeDetectorTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD95148424A092E800D8024C /* RampingValueChangeDetectorTests.mm */; };
 		BD1D24D425D48B9600523748 /* LogScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB11A6224A1530D00DD8EF9 /* LogScaling.swift */; };
-		BD1D24DB25D48B9C00523748 /* DelayBufferTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD938B4F24A6BC1F00892358 /* DelayBufferTests.mm */; };
 		BD1D24E225D48BA200523748 /* BundlePropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D249425D4831B00523748 /* BundlePropertiesTests.swift */; };
 		BD1D24E925D48BA800523748 /* NewSwiftTestTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */; };
 		BD1D24F625D48D8100523748 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE92249EC556009580D5 /* Accelerate.framework */; };
 		BD1D24FE25D48DB700523748 /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; };
 		BD1D257925D5AAB000523748 /* Snapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D257825D5AAB000523748 /* Snapshots.swift */; };
 		BD1D258825D5AAE300523748 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D258725D5AAE300523748 /* SnapshotHelper.swift */; };
-		BD1F7BAE249FF7EF00960DA3 /* DelayBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = BD1F7BAB249FF7EF00960DA3 /* DelayBuffer.h */; };
-		BD1F7BAF249FF7EF00960DA3 /* DelayBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = BD1F7BAB249FF7EF00960DA3 /* DelayBuffer.h */; };
 		BD24B3FC25F1133500338362 /* Biquad.h in Headers */ = {isa = PBXBuildFile; fileRef = BD24B3FB25F1133500338362 /* Biquad.h */; };
 		BD24B3FD25F1133500338362 /* Biquad.h in Headers */ = {isa = PBXBuildFile; fileRef = BD24B3FB25F1133500338362 /* Biquad.h */; };
 		BD24B40625F113AD00338362 /* BiquadTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD24B40525F113AD00338362 /* BiquadTests.mm */; };
@@ -66,7 +63,6 @@
 		BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */; };
 		BD77DEFD25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */; };
 		BD78FDC224C2F6530091A854 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78FDC124C2F6530091A854 /* MainWindowController.swift */; };
-		BD938B5024A6BC1F00892358 /* DelayBufferTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD938B4F24A6BC1F00892358 /* DelayBufferTests.mm */; };
 		BD938B5724A781C200892358 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE92249EC556009580D5 /* Accelerate.framework */; };
 		BD95147824A08BB600D8024C /* NewSwiftTestTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */; };
 		BD95148324A090E400D8024C /* ValueChangeDetectorTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */; };
@@ -279,7 +275,6 @@
 		BD1D257825D5AAB000523748 /* Snapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshots.swift; sourceTree = "<group>"; };
 		BD1D257A25D5AAB000523748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD1D258725D5AAE300523748 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		BD1F7BAB249FF7EF00960DA3 /* DelayBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayBuffer.h; sourceTree = "<group>"; };
 		BD24B3FB25F1133500338362 /* Biquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Biquad.h; sourceTree = "<group>"; };
 		BD24B40525F113AD00338362 /* BiquadTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BiquadTests.mm; sourceTree = "<group>"; };
 		BD2FD3EC259B5104004A3196 /* AUParameterTree+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AUParameterTree+Extensions.swift"; sourceTree = "<group>"; };
@@ -304,7 +299,6 @@
 		BD75B6B925DAA6680071F55E /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "074_acoustic-guitar-strummy2.wav"; sourceTree = "<group>"; };
 		BD78FDC124C2F6530091A854 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		BD938B4F24A6BC1F00892358 /* DelayBufferTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DelayBufferTests.mm; sourceTree = "<group>"; };
 		BD95147524A08BB600D8024C /* macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSwiftTestTemplate.swift; sourceTree = "<group>"; };
 		BD95147924A08BB600D8024C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -507,7 +501,6 @@
 				BD5FDFD425FE80910073E47A /* NewObjCTestTemplate.mm */,
 				BD24B40525F113AD00338362 /* BiquadTests.mm */,
 				BD1D249425D4831B00523748 /* BundlePropertiesTests.swift */,
-				BD938B4F24A6BC1F00892358 /* DelayBufferTests.mm */,
 				BD446BBF25E2B9CD009B7347 /* LFOTests.mm */,
 				BD446BE725E2C654009B7347 /* DSPTests.mm */,
 				BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */,
@@ -522,18 +515,17 @@
 		BDB11A5124A114D700DD8EF9 /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
-				BDC3C92D25F6522F004EC1AC /* Pirkle */,
 				BD578F0D25D2C4720040D83D /* README.md */,
 				BD24B3FB25F1133500338362 /* Biquad.h */,
-				BD1F7BAB249FF7EF00960DA3 /* DelayBuffer.h */,
 				BD446BB525E2B741009B7347 /* DSP.h */,
+				BD72F2E425D1D4CE0031E422 /* InputBuffer.h */,
+				C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */,
 				BD446BAB25E2B4C5009B7347 /* LFO.h */,
+				BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */,
 				C4BEE7E322236E99001E6B6D /* SimplyPhaserKernel.h */,
 				BD50D29225D6D76E00375455 /* SimplyPhaserKernelAdapter.h */,
 				C4F004A02239B1E10014E248 /* SimplyPhaserKernelAdapter.mm */,
-				BD72F2E425D1D4CE0031E422 /* InputBuffer.h */,
-				C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */,
-				BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */,
+				BDC3C92D25F6522F004EC1AC /* Pirkle */,
 			);
 			path = Kernel;
 			sourceTree = "<group>";
@@ -541,8 +533,8 @@
 		BDC3C92D25F6522F004EC1AC /* Pirkle */ = {
 			isa = PBXGroup;
 			children = (
-				BDC3C92E25F6522F004EC1AC /* fxobjects.h */,
 				BDC3C92F25F6522F004EC1AC /* readme.txt */,
+				BDC3C92E25F6522F004EC1AC /* fxobjects.h */,
 				BDC3C93025F6522F004EC1AC /* fxobjects.cpp */,
 				BDC3C93125F6522F004EC1AC /* filters.h */,
 			);
@@ -761,7 +753,6 @@
 			files = (
 				C4BEE8172223736F001E6B6D /* SimplyPhaserFramework.h in Headers */,
 				BD50D29A25D6D76E00375455 /* SimplyPhaserKernelAdapter.h in Headers */,
-				BD1F7BAE249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
 				BD446BB625E2B741009B7347 /* DSP.h in Headers */,
 				BD446BAC25E2B4C5009B7347 /* LFO.h in Headers */,
 				BDC3C94225F65FDF004EC1AC /* PhaseShifter.h in Headers */,
@@ -780,7 +771,6 @@
 			files = (
 				C496341422238CFA001D1F5B /* SimplyPhaserFramework.h in Headers */,
 				BD50D29B25D6D76E00375455 /* SimplyPhaserKernelAdapter.h in Headers */,
-				BD1F7BAF249FF7EF00960DA3 /* DelayBuffer.h in Headers */,
 				BD446BB725E2B741009B7347 /* DSP.h in Headers */,
 				BD446BAD25E2B4C5009B7347 /* LFO.h in Headers */,
 				BDC3C94325F65FDF004EC1AC /* PhaseShifter.h in Headers */,
@@ -1158,7 +1148,6 @@
 				BD446C0725E2C6A0009B7347 /* DSPTests.mm in Sources */,
 				BD1D24E225D48BA200523748 /* BundlePropertiesTests.swift in Sources */,
 				BDF158E025FAC9DC008E5965 /* fxobjects.cpp in Sources */,
-				BD1D24DB25D48B9C00523748 /* DelayBufferTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,7 +1168,6 @@
 				BD446BD825E2BA4E009B7347 /* LFOTests.mm in Sources */,
 				BD95147824A08BB600D8024C /* NewSwiftTestTemplate.swift in Sources */,
 				BDC3C96325F6C05A004EC1AC /* PhaseShifterTests.mm in Sources */,
-				BD938B5024A6BC1F00892358 /* DelayBufferTests.mm in Sources */,
 				BD95148524A092E800D8024C /* RampingValueChangeDetectorTests.mm in Sources */,
 				BD5FDFD525FE80910073E47A /* NewObjCTestTemplate.mm in Sources */,
 				BDB11A6324A1530D00DD8EF9 /* LogScaling.swift in Sources */,

@@ -27,11 +27,16 @@
  */
 @interface SimplyPhaserKernelAdapter : NSObject <AUParameterHandler>
 
-- (nonnull id)init:(nonnull NSString*)appExtensionName maxDelayMilliseconds:(float)maxDelay;
+/**
+ Initialize a new instance
+ 
+ @param appExtensionName the name of the app extension
+ */
+- (nonnull id)init:(nonnull NSString*)appExtensionName;
 
 /**
  Configure the kernel for new format and max frame in preparation to begin rendering
-
+ 
  @param inputFormat the current format of the input bus
  @param maxFramesToRender the max frames to expect in a render request
  */
@@ -44,7 +49,7 @@
 
 /**
  Process upstream input
-
+ 
  @param timestamp the timestamp for the rendering
  @param frameCount the number of frames to render
  @param output the buffer to hold the rendered samples
@@ -59,7 +64,7 @@
 
 /**
  Set the bypass state.
-
+ 
  @param state new bypass value
  */
 - (void)setBypass:(BOOL)state;

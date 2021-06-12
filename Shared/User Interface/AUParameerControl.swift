@@ -4,11 +4,8 @@ import CoreAudioKit
 import os
 
 protocol AUParameterControl {
-    var parameter: AUParameter { get }
-
-    func controlChanged()
-
-    func parameterChanged()
-
-    func setEditedValue(_ value: AUValue)
+  var parameter: AUParameter { get }
+  func controlChanged()
+  func parameterChanged()
+  func setEditedValue(_ value: AUValue)
 }

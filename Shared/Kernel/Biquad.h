@@ -16,38 +16,93 @@ namespace Biquad {
  */
 template <typename T>
 struct Coefficients {
+  
+  /**
+   Default constructor.
+   */
   Coefficients() : a0{0.0}, a1{0.0}, a2{0.0}, b1{0.0}, b2{0.0} {}
-
-  Coefficients(T _a0, T _a1, T _a2, T _b1, T _b2)
-  : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2} {}
-
+  
+  /**
+   Constructor to set all coefficients at once
+   
+   @param _a0 A0 coefficient
+   @param _a1 A1 coefficient
+   @param _a2 A2 coefficient
+   @param _b1 B1 coefficient
+   @param _b2 B2 coefficient
+   */
+  Coefficients(T _a0, T _a1, T _a2, T _b1, T _b2) : a0{_a0}, a1{_a1}, a2{_a2}, b1{_b1}, b2{_b2} {}
+  
+  /**
+   Set the A0 coefficient
+   
+   @param VV the value to use
+   @returns updated Coefficients collection
+   */
   Coefficients A0(T VV) { return Coefficients(VV, a1, a2, b1, b2); }
+  /**
+   Set the A1 coefficient
+   
+   @param VV the value to use
+   @returns updated Coefficients collection
+   */
   Coefficients A1(T VV) { return Coefficients(a0, VV, a2, b1, b2); }
+  /**
+   Set the A2 coefficient
+   
+   @param VV the value to use
+   @returns updated Coefficients collection
+   */
   Coefficients A2(T VV) { return Coefficients(a0, a1, VV, b1, b2); }
+  /**
+   Set the B1 coefficient
+   
+   @param VV the value to use
+   @returns updated Coefficients collection
+   */
   Coefficients B1(T VV) { return Coefficients(a0, a1, a2, VV, b2); }
+  /**
+   Set the B2 coefficient
+   
+   @param VV the value to use
+   @returns updated Coefficients collection
+   */
   Coefficients B2(T VV) { return Coefficients(a0, a1, a2, b1, VV); }
-
-  T a0;
-  T a1;
-  T a2;
-  T b1;
-  T b2;
-
-  // 1-pole low-pass coefficients generator
+  
+  /**
+   A 1-pole low-pass filter coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @returns Coefficients collection
+   */
   static Coefficients<T> LPF1(T sampleRate, T frequency) {
     double theta = 2.0 * M_PI * frequency / sampleRate;
     double gamma = std::cos(theta) / (1.0 + std::sin(theta));
     return Coefficients((1.0 - gamma) / 2.0, (1.0 - gamma) / 2.0, 0.0, -gamma, 0.0);
   }
-
-  // 1-pole high-pass coefficients generator
+  
+  /**
+   A 1-pole high-pass filter coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @returns Coefficients collection
+   */
   static Coefficients<T> HPF1(T sampleRate, T frequency) {
     double theta = 2.0 * M_PI * frequency / sampleRate;
     double gamma = std::cos(theta) / (1.0 + std::sin(theta));
     return Coefficients((1.0 + gamma) / 2.0, (1.0 + gamma) / -2.0, 0.0, -gamma, 0.0);
   }
-
-  // 2-pole low-pass coefficients generator
+  
+  /**
+   A 2-pole low-pass coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @param resonance the filter resonance parameter (Q)
+   @returns Coefficients collection
+   */
   static Coefficients<T> LPF2(T sampleRate, T frequency, T resonance) {
     double theta = 2.0 * M_PI * frequency / sampleRate;
     double d = 1.0 / resonance;
@@ -56,8 +111,15 @@ struct Coefficients {
     double alpha = (0.5 + beta - gamma) / 2.0;
     return Coefficients(alpha, 2.0 * alpha, alpha, -2.0 * gamma, 2.0 * beta);
   }
-
-  // 2-pole high-pass coefficients generator
+  
+  /**
+   A 2-pole high-pass filter coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @param resonance the filter resonance parameter (Q)
+   @returns Coefficients collection
+   */
   static Coefficients<T> HPF2(T sampleRate, T frequency, T resonance) {
     double theta = 2.0 * M_PI * frequency / sampleRate;
     double d = 1.0 / resonance;
@@ -66,15 +128,28 @@ struct Coefficients {
     return Coefficients((0.5 + beta + gamma) / 2.0, -1.0 * (0.5 + beta + gamma), (0.5 + beta + gamma) / 2.0,
                         -2.0 * gamma, 2.0 * beta);
   }
-
-  // 1-pole all-pass coefficients generator
+  
+  /**
+   A 1-pole all-pass filter coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @returns Coefficients collection
+   */
   static Coefficients<T> APF1(T sampleRate, T frequency) {
     double tangent = std::tan(M_PI * frequency / sampleRate);
     double alpha = (tangent - 1.0) / (tangent + 1.0);
     return Coefficients(alpha, 1.0, 0.0, alpha, 0.0);
   }
-
-  // 2-pole all-pass coefficients generator
+  
+  /**
+   A 2-pole all-pass filter coefficients generator.
+   
+   @param sampleRate the sample rate being used
+   @param frequency the cutoff frequency of the filter
+   @param resonance the filter resonance parameter (Q)
+   @returns Coefficients collection
+   */
   static Coefficients<T> APF2(T sampleRate, T frequency, T resonance) {
     double bandwidth = frequency / resonance;
     double argTan = M_PI * bandwidth / sampleRate;
@@ -84,7 +159,13 @@ struct Coefficients {
     double beta = -std::cos(2.0 * M_PI * frequency / sampleRate);
     return Coefficients(-alpha, beta * (1.0 - alpha), 1.0, beta * (1.0 - alpha), -alpha);
   }
-
+  
+  T a0; /// A0 coefficient
+  T a1; /// A1 coefficient
+  T a2; /// A2 coefficient
+  T b1; /// B1 coefficient
+  T b2; /// B2 coefficient
+  
   inline static os_log_t log_{os_log_create("DSP.Biquad", "Coefficients")};
 };
 
@@ -106,20 +187,38 @@ struct State {
 /// versions. The `Canonical` version here is the direct form #2.
 namespace Transform {
 
+/**
+ Base class for all Transform classes.
+ */
 template <typename T>
 struct Base {
-
-  /// If value is too small to be represented in a `float`, force it to be zero.
-  ///
+  
+  /**
+   If value is too small to be represented in a `float`, force it to be zero.
+   
+   @param value the value to inspect
+   @returns value or 0.0
+   */
   static T forceMinToZero(T value) {
     return ((value > 0.0 && value < std::numeric_limits<float>::min()) ||
             (value < 0.0 && value > -std::numeric_limits<float>::min())) ? 0.0 : value;
   }
 };
 
-/// Transform for the 'direct' biquad structure
+/**
+ Transform for the 'direct' biquad structure.
+ */
 template <typename T>
 struct Direct : Base<T> {
+  
+  /**
+   Transform a value
+   
+   @param input the input value to transform
+   @param state the filter state work with
+   @param coefficients the filter coefficients to use
+   @returns transformed value
+   */
   static T transform(T input, State<T>& state, const Coefficients<T>& coefficients) {
     T output = coefficients.a0 * input + coefficients.a1 * state.x_z1 + coefficients.a2 * state.x_z2 -
     coefficients.b1 * state.y_z1 - coefficients.b2 * state.y_z2;
@@ -130,7 +229,12 @@ struct Direct : Base<T> {
     state.y_z1 = output;
     return output;
   }
-
+  
+  /**
+   Obtain a numeric representation of the internal storage state
+   
+   @returns state convolved with coefficients
+   */
   static T storageComponent(const State<T>& state, const Coefficients<T>& coefficients) {
     return coefficients.a1 * state.x_z1 + coefficients.a2 * state.x_z2 - coefficients.b1 * state.y_z1 -
     coefficients.b2 * state.y_z2;
@@ -140,6 +244,15 @@ struct Direct : Base<T> {
 /// Transform for the 'canonical' biquad structure (min state)
 template <typename T>
 struct Canonical : Base<T> {
+  
+  /**
+   Transform a value
+   
+   @param input the input value to transform
+   @param state the filter state work with
+   @param coefficients the filter coefficients to use
+   @returns transformed value
+   */
   static T transform(T input, State<T>& state, const Coefficients<T>& coefficients) {
     T theta = input - coefficients.b1 * state.x_z1 - coefficients.b2 * state.x_z2;
     T output = coefficients.a0 * theta + coefficients.a1 * state.x_z1 + coefficients.a2 * state.x_z2;
@@ -148,13 +261,27 @@ struct Canonical : Base<T> {
     state.x_z1 = theta;
     return output;
   }
-
+  
+  /**
+   Obtain a numeric representation of the internal storage state
+   
+   @returns always 0.0
+   */
   static T storageComponent(const State<T>& state, const Coefficients<T>& coefficients) { return 0.0; }
 };
 
 /// Transform for the transposed 'direct' biquad structure
 template <typename T>
 struct DirectTranspose : Base<T> {
+  
+  /**
+   Transform a value
+   
+   @param input the input value to transform
+   @param state the filter state work with
+   @param coefficients the filter coefficients to use
+   @returns transformed value
+   */
   static T transform(T input, State<T>& state, const Coefficients<T>& coefficients) {
     T theta = input + state.y_z1;
     T output = coefficients.a0 * theta + state.x_z1;
@@ -165,20 +292,39 @@ struct DirectTranspose : Base<T> {
     state.x_z2 = coefficients.a2 * theta;
     return output;
   }
-
+  
+  /**
+   Obtain a numeric representation of the internal storage state
+   
+   @returns always 0.0
+   */
   static T storageComponent(const State<T>& state, const Coefficients<T>& coefficients) { return 0.0; }
 };
 
 /// Transform for the transposed 'canonical' biquad structure (min state)
 template <typename T>
 struct CanonicalTranspose : Base<T> {
+  
+  /**
+   Transform a value
+   
+   @param input the input value to transform
+   @param state the filter state work with
+   @param coefficients the filter coefficients to use
+   @returns transformed value
+   */
   static T transform(T input, State<T>& state, const Coefficients<T>& coefficients) {
     T output = Base<T>::forceMinToZero(coefficients.a0 * input + state.x_z1);
     state.x_z1 = coefficients.a1 * input - coefficients.b1 * output + state.x_z2;
     state.x_z2 = coefficients.a2 * input - coefficients.b2 * output;
     return output;
   }
-
+  
+  /**
+   Obtain a numeric representation of the internal storage state
+   
+   @returns the Z1 state value
+   */
   static T storageComponent(const State<T>& state, const Coefficients<T>& coefficients) { return state.x_z1; }
 };
 
@@ -193,44 +339,44 @@ class Filter {
 public:
   using CoefficientsType = Coefficients<T>;
   using StateType = State<T>;
-
+  
   /**
    Create a new filter using the given biquad coefficients.
    */
   explicit Filter(const CoefficientsType& coefficients) : coefficients_{coefficients}, state_{} {}
-
+  
   Filter() : Filter(Coefficients<T>()) {}
-
+  
   /**
    Use a new set of biquad coefficients.
    */
   void setCoefficients(const Coefficients<T>& coefficients) { coefficients_ = coefficients; }
-
+  
   /**
    Use a new set of biquad coefficients.
    */
   void setCoefficients(Coefficients<T>&& coefficients) { coefficients_ = coefficients; }
-
+  
   /**
    Reset internal state.
    */
   void reset() { state_ = State<T>(); }
-
+  
   /**
    Apply the filter to a given value.
    */
   T transform(T input) { return Transformer::transform(input, state_, coefficients_); }
-
+  
   /**
    Obtain the `gain` value from the coefficients.
    */
   T gainValue() const { return coefficients_.a0; }
-
+  
   /**
    Obtain a calculated state value. This used in some of Pirkle's signal processing algorithms.
    */
   T storageComponent() const { return Transformer::storageComponent(state_, coefficients_); }
-
+  
 private:
   Coefficients<T> coefficients_;
   State<T> state_;

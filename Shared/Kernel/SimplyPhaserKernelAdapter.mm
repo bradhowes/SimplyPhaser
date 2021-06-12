@@ -6,22 +6,22 @@
 #import "SimplyPhaserKernelAdapter.h"
 
 @implementation SimplyPhaserKernelAdapter {
-    SimplyPhaserKernel* kernel_;
+  SimplyPhaserKernel* kernel_;
 }
 
-- (instancetype)init:(NSString*)appExtensionName maxDelayMilliseconds:(float)maxDelay {
-    if (self = [super init]) {
-        self->kernel_ = new SimplyPhaserKernel(std::string(appExtensionName.UTF8String));
-    }
-    return self;
+- (instancetype)init:(NSString*)appExtensionName {
+  if (self = [super init]) {
+    self->kernel_ = new SimplyPhaserKernel(std::string(appExtensionName.UTF8String));
+  }
+  return self;
 }
 
 - (void)startProcessing:(AVAudioFormat*)inputFormat maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
-    kernel_->startProcessing(inputFormat, maxFramesToRender);
+  kernel_->startProcessing(inputFormat, maxFramesToRender);
 }
 
 - (void)stopProcessing {
-    kernel_->stopProcessing();
+  kernel_->stopProcessing();
 }
 
 - (void)set:(AUParameter *)parameter value:(AUValue)value { kernel_->setParameterValue(parameter.address, value); }
@@ -34,12 +34,12 @@
                        events:(AURenderEvent*)realtimeEventListHead
                pullInputBlock:(AURenderPullInputBlock)pullInputBlock
 {
-    auto inputBus = 0;
-    return kernel_->processAndRender(timestamp, frameCount, inputBus, output, realtimeEventListHead, pullInputBlock);
+  auto inputBus = 0;
+  return kernel_->processAndRender(timestamp, frameCount, inputBus, output, realtimeEventListHead, pullInputBlock);
 }
 
 - (void)setBypass:(BOOL)state {
-    kernel_->setBypass(state);
+  kernel_->setBypass(state);
 }
 
 @end
