@@ -124,18 +124,17 @@ private:
   void doParameterEvent(const AUParameterEvent& event) { setParameterValue(event.parameterAddress, event.value); }
   
   void doRendering(std::vector<AUValue const*> ins, std::vector<AUValue*> outs, AUAudioFrameCount frameCount) {
-    auto lfoState = lfo_.saveState();
-    for (int channel = 0; channel < ins.size(); ++channel) {
-      auto& inputs = ins[channel];
-      auto& outputs = outs[channel];
-      if (channel > 0) lfo_.restoreState(lfoState);
-      auto& shifter{phaseShifters_[channel]};
-      for (int frame = 0; frame < frameCount; ++frame) {
-        auto inputSample = inputs[frame];
-        auto modulation = odd90_ && (channel & 1) ? lfo_.quadPhaseValue() : lfo_.value();
-        lfo_.increment();
-        auto outputSample = shifter.process(modulation * depth_, inputSample);
-        outputs[frame] = dryMix_ * inputSample + wetMix_ * outputSample;
+    for (int frame = 0; frame < frameCount; ++frame) {
+
+      auto evenMod = lfo_.value();
+      auto oddMod = odd90_ ? lfo_.quadPhaseValue() : evenMod;
+      lfo_.increment();
+
+      for (int channel = 0; channel < ins.size(); ++channel) {
+        auto inputSample = *ins[channel]++;
+        auto& shifter = phaseShifters_[channel];
+        auto filteredSample = shifter.process(((channel & 1) ? oddMod : evenMod) * depth_, inputSample);
+        *outs[channel]++ = dryMix_ * inputSample + wetMix_ * filteredSample;
       }
     }
   }
