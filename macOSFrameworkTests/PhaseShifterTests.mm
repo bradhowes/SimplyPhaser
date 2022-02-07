@@ -62,11 +62,10 @@
   }
 }
 
-- (void)testPerformanceExample {
-  [self measureBlock:^{
-    [self testPhaseShifters];
-  }];
-}
-
+//- (void)testPerformanceExample {
+//  [self measureBlock:^{
+//    [self testPhaseShifters];
+//  }];
+//}
 
 @end

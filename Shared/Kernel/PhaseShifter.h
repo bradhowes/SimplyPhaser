@@ -138,5 +138,5 @@ private:
   std::vector<AllPassFilter> filters_;
   std::vector<T> gammas_;
   
-  os_log_t log_ = os_log_create("PhaseShifter", "SimplyPhaserKernel");
+  os_log_t log_ = os_log_create("AUv3Support", "PhaseShifter");
 };
