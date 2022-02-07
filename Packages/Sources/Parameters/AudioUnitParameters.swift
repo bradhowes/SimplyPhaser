@@ -22,18 +22,11 @@ public final class AudioUnitParameters: NSObject, ParameterSource {
 
   /// Array of 2-tuple values that pair a factory preset name and its definition
   public let factoryPresetValues: [(name: String, preset: FilterPreset)] = [
-    ("Flangie",
-     .init(depth: 7, rate: 0.07, delay: 0.0, feedback: 50, dry: 50, wet: 50, negativeFeedback: 0, odd90: 0)),
-    ("Sweeper",
-     .init(depth: 15, rate: 0.6, delay: 0.14, feedback: 50, dry: 50, wet: 50, negativeFeedback: 0, odd90: 0)),
-    ("Chorious",
-     .init(depth: 20, rate: 0.3, delay: 0.15, feedback: 50, dry: 50, wet: 50, negativeFeedback: 0, odd90:1)),
-    ("Lord Tremolo",
-     .init(depth: 5, rate: 8.0, delay: 0.0, feedback: 85, dry: 0, wet: 100, negativeFeedback: 0, odd90:0)),
-    ("Wide Flangie",
-     .init(depth: 100, rate: 0.14, delay: 0.72, feedback: 50, dry: 50, wet: 50, negativeFeedback: 0, odd90: 1)),
-    ("Wide Sweeper",
-     .init(depth: 100, rate: 0.14, delay: 1.51, feedback: 80, dry: 50, wet: 50, negativeFeedback: 0, odd90: 1)),
+    ("Gently Sweeps", .init(rate: 0.04, depth: 50,intensity: 75, dry: 50, wet: 50, odd90: 0)),
+    ("Slo-Jo", .init(rate: 0.10, depth: 100,intensity: 90, dry: 50, wet: 50, odd90: 1)),
+    ("Psycho Phase", .init(rate: 1.0, depth: 40, intensity: 90, dry: 0, wet: 100, odd90: 1)),
+    ("Phaser Blast", .init(rate: 1.0, depth: 100, intensity: 90, dry: 0, wet: 100, odd90: 0)),
+    ("Noxious", .init(rate: 20.0, depth: 30, intensity: 75, dry: 0, wet: 100, odd90: 1))
   ]
 
   /// Array of `AUAudioUnitPreset` for the factory presets.
@@ -52,23 +45,11 @@ public final class AudioUnitParameters: NSObject, ParameterSource {
   /// AUParameterTree created with the parameter definitions for the audio unit
   public let parameterTree: AUParameterTree
 
-  /// Obtain the parameter setting that determines how much variation in time there is when reading values from
-  /// the delay buffer.
-  public var depth: AUParameter { parameters[.depth] }
-  /// Obtain the parameter setting that determines how fast the LFO operates
   public var rate: AUParameter { parameters[.rate] }
-  /// Obtain the parameter setting that determines the minimum delay applied incoming samples. The actual delay value is
-  /// this value plus the `depth` times the current LFO value.
-  public var delay: AUParameter { parameters[.delay] }
-  /// Obtain the parameter setting that determines how much of the processed signal is added to the 
-  public var feedback: AUParameter { parameters[.feedback] }
-  /// Obtain the `depth` parameter setting
-  public var dryMix: AUParameter { parameters[.dry] }
-  /// Obtain the `depth` parameter setting
-  public var wetMix: AUParameter { parameters[.wet] }
-  /// Obtain the `depth` parameter setting
-  public var negativeFeedback: AUParameter { parameters[.negativeFeedback] }
-  /// Obtain the `depth` parameter setting
+  public var depth: AUParameter { parameters[.depth] }
+  public var intensity: AUParameter { parameters[.intensity] }
+  public var dry: AUParameter { parameters[.dry] }
+  public var wet: AUParameter { parameters[.wet] }
   public var odd90: AUParameter { parameters[.odd90] }
 
   /**
@@ -112,7 +93,7 @@ extension AudioUnitParameters {
 
     let separator: String = {
       switch address {
-      case .depth, .rate, .delay: return " "
+      case .rate: return " "
       default: return ""
       }
     }()
@@ -133,13 +114,11 @@ extension AudioUnitParameters {
    AudioUnit.
    */
   public func setValues(_ preset: FilterPreset) {
-    self.depth.value = preset.depth
     self.rate.value = preset.rate
-    self.delay.value = preset.delay
-    self.feedback.value = preset.feedback
-    self.dryMix.value = preset.dry
-    self.wetMix.value = preset.wet
-    self.negativeFeedback.value = preset.negativeFeedback
+    self.depth.value = preset.depth
+    self.intensity.value = preset.intensity
+    self.dry.value = preset.dry
+    self.wet.value = preset.wet
     self.odd90.value = preset.odd90
   }
 }
@@ -147,10 +126,9 @@ extension AudioUnitParameters {
 extension AudioUnitParameters {
   private func formatting(_ address: ParameterAddress) -> String {
     switch address {
-    case .depth, .feedback: return "%.2f"
     case .rate: return "%.2f"
-    case .delay: return "%.2f"
-    case .dry, .wet, .negativeFeedback, .odd90: return "%.0f"
+    case .depth, .intensity: return "%.2f"
+    case .dry, .wet, .odd90: return "%.0f"
     default: return "?"
     }
   }

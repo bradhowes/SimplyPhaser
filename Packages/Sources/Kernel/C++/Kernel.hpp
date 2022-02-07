@@ -12,11 +12,10 @@
 #import "MillisecondsParameter.hpp"
 #import "LFO.hpp"
 #import "PercentageParameter.hpp"
+#import "PhaseShifter.hpp"
 
 /**
- The audio processing kernel that generates a "flange" effect by combining an audio signal with a slightly delayed copy
- of itself. The delay value oscillates at a defined frequency which causes the delayed audio to vary in pitch due to it
- being sped up or slowed down.
+ The audio processing kernel that transforms audio samples into those with a phased effect.
  */
 class Kernel : public EventProcessor<Kernel> {
 public:
@@ -28,8 +27,7 @@ public:
 
    @param name the name to use for logging purposes.
    */
-  Kernel(const std::string& name)
-  : super(os_log_create(name.c_str(), "Kernel"))
+  Kernel(const std::string& name) : super(os_log_create(name.c_str(), "Kernel"))
   {
     lfo_.setWaveform(LFOWaveform::triangle);
   }
@@ -39,11 +37,10 @@ public:
 
    @param format the audio format to render
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
-   @param maxDelayMilliseconds the max number of milliseconds of audio samples to keep in delay buffer
    */
-  void startProcessing(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender, double maxDelayMilliseconds) {
+  void startProcessing(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
     super::startProcessing(format, maxFramesToRender);
-    initialize(format.channelCount, format.sampleRate, maxDelayMilliseconds);
+    initialize(format.channelCount, format.sampleRate);
   }
 
   /**
@@ -64,17 +61,11 @@ public:
 
 private:
 
-  void initialize(int channelCount, double sampleRate, double maxDelayMilliseconds) {
-    samplesPerMillisecond_ = sampleRate / 1000.0;
-    maxDelayMilliseconds_ = maxDelayMilliseconds;
-
+  void initialize(int channelCount, double sampleRate) {
     lfo_.initialize(sampleRate, 0.0);
-
-    auto size = maxDelayMilliseconds * samplesPerMillisecond_ + 1;
-    os_log_with_type(log_, OS_LOG_TYPE_INFO, "delayLine size: %f", size);
-    delayLines_.clear();
+    phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      delayLines_.emplace_back(size);
+      phaseShifters_.emplace_back(PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
     }
   }
 
@@ -94,48 +85,34 @@ private:
     for (int frame = 0; frame < frameCount; ++frame) {
 
       auto depth = depth_.frameValue();
-      auto delay = delay_.frameValue();
-      auto feedback = (negativeFeedback_ ? -1.0 : 1.0) * feedback_.frameValue();
-      auto wetMix = wetMix_.frameValue();
-      auto dryMix = dryMix_.frameValue();
+      auto intensity = intensity_.frameValue();
 
-      // This is the amount of delay that the LFO can oscillate over. A value of -1 in the LFO will result in 0.0 and a
-      // value of +1 from the LFO will give `delaySpan`.
-      auto delaySpan = depth - delay;
+      auto evenMod = lfo_.value();
+      auto oddMod = odd90_ ? lfo_.quadPhaseValue() : evenMod;
 
-      // Calculate the delay signal for even channels (L)
-      auto evenDelay = DSP::bipolarToUnipolar(lfo_.value()) * delaySpan + delay;
-
-      // Optionally, odd channels (R) can be 90° out of phase with the even channels.
-      auto oddDelay = odd90_ ? DSP::bipolarToUnipolar(lfo_.quadPhaseValue()) * delaySpan + delay : evenDelay;
-
-      // Safe now to increment the LFO for the next frame.
       lfo_.increment();
 
-      // Process the same frame in all of the channels
+      auto dry = dry_.frameValue();
+      auto wet = wet_.frameValue();
+
       for (int channel = 0; channel < ins.size(); ++channel) {
         auto inputSample = *ins[channel]++;
-        auto delayedSample = delayLines_[channel].read((channel & 1) ? oddDelay : evenDelay);
-        delayLines_[channel].write(inputSample + feedback * delayedSample);
-        *outs[channel]++ = wetMix * delayedSample + dryMix * inputSample;
+        auto& shifter = phaseShifters_[channel];
+        shifter.setIntensity(intensity);
+        auto filteredSample = shifter.process(((channel & 1) ? oddMod : evenMod) * depth, inputSample);
+        *outs[channel]++ = dry * inputSample + wet * filteredSample;
       }
     }
   }
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
 
-  MillisecondsParameter<AUValue> depth_;
-  MillisecondsParameter<AUValue> delay_;
-  PercentageParameter<AUValue> feedback_;
-  PercentageParameter<AUValue> dryMix_;
-  PercentageParameter<AUValue> wetMix_;
-  BoolParameter negativeFeedback_;
+  PercentageParameter<AUValue> depth_;
+  PercentageParameter<AUValue> intensity_;
+  PercentageParameter<AUValue> dry_;
+  PercentageParameter<AUValue> wet_;
   BoolParameter odd90_;
 
-  double samplesPerMillisecond_;
-  double maxDelayMilliseconds_;
-
-  std::vector<DelayBuffer<AUValue>> delayLines_;
+  std::vector<PhaseShifter<AUValue>> phaseShifters_;
   LFO<AUValue> lfo_;
-  InputBuffer delayPos_;
 };

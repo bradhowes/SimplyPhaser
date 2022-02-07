@@ -8,20 +8,18 @@
 @implementation KernelBridge {
   Kernel* kernel_;
   AUAudioFrameCount maxFramesToRender_;
-  AUValue maxDelayMilliseconds_;
 }
 
-- (instancetype)init:(NSString*)appExtensionName maxDelayMilliseconds:(AUValue)maxDelayMilliseconds {
+- (instancetype)init:(NSString*)appExtensionName {
   if (self = [super init]) {
     self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String));
     self->maxFramesToRender_ = 0;
-    self->maxDelayMilliseconds_ = maxDelayMilliseconds;
   }
   return self;
 }
 
 - (void)startProcessing:(AVAudioFormat*)inputFormat maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
-  kernel_->startProcessing(inputFormat, maxFramesToRender, maxDelayMilliseconds_);
+  kernel_->startProcessing(inputFormat, maxFramesToRender);
   maxFramesToRender_ = maxFramesToRender;
 }
 

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface KernelBridge : NSObject
 
-- (nonnull id)init:(NSString*)appExtensionName maxDelayMilliseconds:(AUValue)maxDelayMilliseconds;
+- (nonnull id)init:(NSString*)appExtensionName;
 
 @end
 
@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param inputFormat the current format of the input bus
  @param maxFramesToRender the max frames to expect in a render request
- @param maxDelayMilliseconds the max delay time in milliseconds
  */
 - (void)startProcessing:(AVAudioFormat*)inputFormat maxFramesToRender:(AUAudioFrameCount)maxFramesToRender;
 
