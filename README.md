@@ -1,6 +1,6 @@
 ![CI](https://github.com/bradhowes/SimplyPhaser/workflows/CI/badge.svg?branch=main)
 
-![](image.png)
+![](Media/image.png)
 
 # About SimplyPhaser
 
