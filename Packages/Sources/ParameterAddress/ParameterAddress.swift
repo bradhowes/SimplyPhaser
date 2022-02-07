@@ -21,7 +21,7 @@ extension ParameterAddress {
     case .rate: return .defFloat("rate", localized: "Rate", address: ParameterAddress.rate,
                                  range: 0.01...20, unit: .hertz, logScale: true)
     case .depth: return .defPercent("depth", localized: "Depth", address: ParameterAddress.depth)
-    case .intensity: return .defFloat("intensity", localized: "Intensity", address: ParameterAddress.intensity)
+    case .intensity: return .defPercent("intensity", localized: "Intensity", address: ParameterAddress.intensity)
     case .dry: return .defPercent("dry", localized: "Dry", address: ParameterAddress.dry)
     case .wet: return .defPercent("wet", localized: "Wet", address: ParameterAddress.wet)
     case .odd90: return .defBool("odd90", localized: "Odd 90°", address: ParameterAddress.odd90)
