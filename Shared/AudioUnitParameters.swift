@@ -4,26 +4,6 @@ import Foundation
 import os
 
 /**
- Address definitions for AUParameter settings.
- */
-@objc public enum FilterParameterAddress: UInt64, CaseIterable {
-  
-  /// The frequency in Herz of the LFO that modulates the frequencies of the all-pass filters
-  case rate = 0
-  /// How much of the all-pass filter frequency band the LFO will cover, expressed as a percentage (0-100%)
-  case depth
-  /// A gain applied to the all-pass filter weighted outputs when their sum is combined with the original sample. Also
-  /// expressed as a percentage (0-100%)
-  case intensity
-  /// Amount of the original signal that is emitted by the filter (0-100%)
-  case dryMix
-  /// Amount of the filtered signal that is emitted by the filter (0-100%)
-  case wetMix
-  /// When true, the "odd" channels (R) have a LFO that is 90° advanced over the "even" channels (L).
-  case odd90
-}
-
-/**
  Definitions for the runtime parameters of the filter.
  */
 public final class AudioUnitParameters: NSObject {
