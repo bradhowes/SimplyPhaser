@@ -9,7 +9,7 @@ let package = Package(
     .library(name: "KernelBridge", targets: ["KernelBridge"]),
     .library(name: "Kernel", targets: ["Kernel"]),
     .library(name: "Parameters", targets: ["Parameters"]),
-    .library(name: "ParameterAddress", targets: ["ParameterAddress"]),
+    .library(name: "ParameterAddress", targets: ["ParameterAddress"])
   ],
   dependencies: [
     .package(name: "AUv3SupportPackage", url: "https://github.com/bradhowes/AUv3Support", branch: "main"),

@@ -57,12 +57,19 @@
 		BD71E31925E1AFB5005C5E1E /* FilterPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD71E30125E1AF2A005C5E1E /* FilterPreset.swift */; };
 		BD72F2E525D1D4CE0031E422 /* InputBuffer.h in Sources */ = {isa = PBXBuildFile; fileRef = BD72F2E425D1D4CE0031E422 /* InputBuffer.h */; };
 		BD72F2E625D1D4CE0031E422 /* InputBuffer.h in Sources */ = {isa = PBXBuildFile; fileRef = BD72F2E425D1D4CE0031E422 /* InputBuffer.h */; };
-		BD75B67A25DA9C400071F55E /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD75B67025DA9B7A0071F55E /* AppStore.swift */; };
 		BD75B68325DA9E420071F55E /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD75B68225DA9E420071F55E /* AppStore.swift */; };
 		BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BD75B6B925DAA6680071F55E /* Credits.rtf */; };
 		BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */; };
 		BD77DEFD25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */; };
 		BD78FDC224C2F6530091A854 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78FDC124C2F6530091A854 /* MainWindowController.swift */; };
+		BD8D4DDB27B2BB87007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
+		BD8D4DDC27B2BB87007011A5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD827B2BB0F007011A5 /* Media.xcassets */; };
+		BD8D4DDD27B2BB8A007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
+		BD8D4DDE27B2BB8A007011A5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD827B2BB0F007011A5 /* Media.xcassets */; };
+		BD8D4DDF27B2BB8B007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
+		BD8D4DE027B2BB8B007011A5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD827B2BB0F007011A5 /* Media.xcassets */; };
+		BD8D4DE127B2BB8C007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
+		BD8D4DE227B2BB8C007011A5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD827B2BB0F007011A5 /* Media.xcassets */; };
 		BD938B5724A781C200892358 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE92249EC556009580D5 /* Accelerate.framework */; };
 		BD95147824A08BB600D8024C /* NewSwiftTestTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */; };
 		BD95148324A090E400D8024C /* ValueChangeDetectorTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */; };
@@ -96,31 +103,27 @@
 		BDC3C94325F65FDF004EC1AC /* PhaseShifter.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */; };
 		BDC3C96325F6C05A004EC1AC /* PhaseShifterTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */; };
 		BDC3C96B25F6C05B004EC1AC /* PhaseShifterTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */; };
-		BDC3C97F25F75AB3004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
-		BDC3C98725F75AB5004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
-		BDC3C98F25F75AB7004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
-		BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
-		BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
-		BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */; };
 		BDC3C9B025F7A1BE004EC1AC /* SwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */; };
 		BDC3C9B125F7A1BE004EC1AC /* SwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */; };
 		BDC3C9BA25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
 		BDC3C9BB25F7A2FB004EC1AC /* AUParameerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */; };
-		BDDCA5C125F8D459009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
-		BDDCA5C225F8D459009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
-		BDDCA5CA25F8DB53009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
-		BDDCA5D225F8DB55009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
-		BDDCA5D325F8DB56009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
-		BDDCA5DB25F8DB57009C1AA7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDCA5C025F8D459009C1AA7 /* Media.xcassets */; };
 		BDE2CDF124A3DEE4004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF224A3DEE5004AC8FA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */; };
 		BDE2CDF524A3DF24004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
 		BDE2CDF624A3DF25004AC8FA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */; };
+		BDE537EA27B2501B008ACA93 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537E927B2501B008ACA93 /* AUv3-DSP-Headers */; };
+		BDE537EC27B2501B008ACA93 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537EB27B2501B008ACA93 /* AUv3-Support */; };
+		BDE537EE27B2501B008ACA93 /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537ED27B2501B008ACA93 /* AUv3-Support-iOS */; };
+		BDE537F127B25036008ACA93 /* Knob-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F027B25036008ACA93 /* Knob-iOS */; };
+		BDE537F327B25036008ACA93 /* Knob-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F227B25036008ACA93 /* Knob-macOS */; };
+		BDE537F527B25060008ACA93 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F427B25060008ACA93 /* Kernel */; };
+		BDE537F727B25060008ACA93 /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F627B25060008ACA93 /* KernelBridge */; };
+		BDE537F927B25060008ACA93 /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F827B25060008ACA93 /* ParameterAddress */; };
+		BDE537FB27B25060008ACA93 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537FA27B25060008ACA93 /* Parameters */; };
+		BDE537FD27B2507C008ACA93 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537FC27B2507C008ACA93 /* AUv3-Support */; };
+		BDE537FE27B250EA008ACA93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5910DA27B193A700246864 /* ViewController.swift */; };
 		BDF158C325FABE8C008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
 		BDF158E025FAC9DC008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
-		C433F56122404C7C00F1B750 /* FilterViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433F56022404C7C00F1B750 /* FilterViewControllerExtension.swift */; };
-		C437FE59222367CD008D6C09 /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; };
-		C437FE5A222367CD008D6C09 /* SimplyPhaserFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C437FE712223686D008D6C09 /* SimplyPhaserAU.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C437FE632223686D008D6C09 /* SimplyPhaserAU.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C4660A5C2225F9A0007BE3B1 /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE8F222368A1008D6C09 /* SimplyPhaserFramework.framework */; };
 		C4660A5D2225F9A0007BE3B1 /* SimplyPhaserFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE8F222368A1008D6C09 /* SimplyPhaserFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -150,7 +153,6 @@
 		C4BEE81022237302001E6B6D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BEE80F22237302001E6B6D /* MainViewController.swift */; };
 		C4BEE8132223734E001E6B6D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BEE8112223734E001E6B6D /* MainInterface.storyboard */; };
 		C4BEE8172223736F001E6B6D /* SimplyPhaserFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = C4BEE8162223736F001E6B6D /* SimplyPhaserFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C4BEE81922237394001E6B6D /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */; };
 		C4BEE81A222373A6001E6B6D /* SimplyPhaserFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C437FE8F222368A1008D6C09 /* SimplyPhaserFramework.framework */; };
 		C4F004A32239B1E10014E248 /* SimplyPhaserKernelAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4F004A02239B1E10014E248 /* SimplyPhaserKernelAdapter.mm */; };
 		C4F004A42239B1E10014E248 /* SimplyPhaserKernelAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4F004A02239B1E10014E248 /* SimplyPhaserKernelAdapter.mm */; };
@@ -182,13 +184,6 @@
 			remoteGlobalIDString = C437FE8E222368A1008D6C09;
 			remoteInfo = "AUv3SimplyPhaserFramework macOS";
 		};
-		C437FE57222367CD008D6C09 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C437FE302223672C008D6C09 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C437FE51222367CD008D6C09;
-			remoteInfo = "AUv3SimplyPhaserFramework iOS";
-		};
 		C437FE6F2223686D008D6C09 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C437FE302223672C008D6C09 /* Project object */;
@@ -213,17 +208,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C437FE5E222367CD008D6C09 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C437FE5A222367CD008D6C09 /* SimplyPhaserFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C437FE752223686D008D6C09 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,17 +273,20 @@
 		BD578EEC25D278490040D83D /* AudioUnitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitManager.swift; sourceTree = "<group>"; };
 		BD578F0D25D2C4720040D83D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD5910D927B1831B00246864 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
+		BD5910DA27B193A700246864 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BD5FDFD425FE80910073E47A /* NewObjCTestTemplate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NewObjCTestTemplate.mm; sourceTree = "<group>"; };
 		BD66842B25F11F77009CF8ED /* KnobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobController.swift; sourceTree = "<group>"; };
 		BD66842C25F11F77009CF8ED /* Knob_macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob_macOS.swift; sourceTree = "<group>"; };
 		BD66842D25F11F77009CF8ED /* Knob_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob_iOS.swift; sourceTree = "<group>"; };
 		BD71E30125E1AF2A005C5E1E /* FilterPreset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPreset.swift; sourceTree = "<group>"; };
 		BD72F2E425D1D4CE0031E422 /* InputBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBuffer.h; sourceTree = "<group>"; };
-		BD75B67025DA9B7A0071F55E /* AppStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		BD75B68225DA9E420071F55E /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		BD75B6B925DAA6680071F55E /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "074_acoustic-guitar-strummy2.wav"; sourceTree = "<group>"; };
 		BD78FDC124C2F6530091A854 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		BD8D4DD827B2BB0F007011A5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
+		BD8D4DDA27B2BB20007011A5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD95147524A08BB600D8024C /* macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSwiftTestTemplate.swift; sourceTree = "<group>"; };
 		BD95147924A08BB600D8024C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -322,10 +309,8 @@
 		BDC3C93125F6522F004EC1AC /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
 		BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhaseShifter.h; sourceTree = "<group>"; };
 		BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhaseShifterTests.mm; sourceTree = "<group>"; };
-		BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
 		BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchController.swift; sourceTree = "<group>"; };
 		BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUParameerControl.swift; sourceTree = "<group>"; };
-		BDDCA5C025F8D459009C1AA7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
@@ -333,7 +318,6 @@
 		BDE2CE1924A3EBD1004AC8FA /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Configuration/Common.xcconfig; sourceTree = "<group>"; };
 		BDEFCA2025F64B680095858D /* SimplyPhaserAU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplyPhaserAU.entitlements; sourceTree = "<group>"; };
 		C4201A2822403120006E4333 /* FilterViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerExtension.swift; sourceTree = "<group>"; };
-		C433F56022404C7C00F1B750 /* FilterViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerExtension.swift; sourceTree = "<group>"; };
 		C437FE3A222367A6008D6C09 /* SimplyPhaserHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyPhaserHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C437FE52222367CD008D6C09 /* SimplyPhaserFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SimplyPhaserFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C437FE632223686D008D6C09 /* SimplyPhaserAU.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SimplyPhaserAU.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -407,7 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */,
-				C437FE59222367CD008D6C09 /* SimplyPhaserFramework.framework in Frameworks */,
+				BDE537FD27B2507C008ACA93 /* AUv3-Support in Frameworks */,
+				BDE537EE27B2501B008ACA93 /* AUv3-Support-iOS in Frameworks */,
 				C4737B0B2231D930002CAD0B /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +409,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4BEE81922237394001E6B6D /* SimplyPhaserFramework.framework in Frameworks */,
+				BDE537F927B25060008ACA93 /* ParameterAddress in Frameworks */,
+				BDE537F527B25060008ACA93 /* Kernel in Frameworks */,
+				BDE537EA27B2501B008ACA93 /* AUv3-DSP-Headers in Frameworks */,
+				BDE537EC27B2501B008ACA93 /* AUv3-Support in Frameworks */,
+				BDE537F127B25036008ACA93 /* Knob-iOS in Frameworks */,
+				BDE537F727B25060008ACA93 /* KernelBridge in Frameworks */,
+				BDE537FB27B25060008ACA93 /* Parameters in Frameworks */,
 				BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +441,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDE537F327B25036008ACA93 /* Knob-macOS in Frameworks */,
 				C4BEE81A222373A6001E6B6D /* SimplyPhaserFramework.framework in Frameworks */,
 				BDB7CE94249EC565009580D5 /* Accelerate.framework in Frameworks */,
 			);
@@ -493,6 +485,16 @@
 				C4BEE7D722236E99001E6B6D /* View+Extensions.swift */,
 			);
 			path = "Class Extensions";
+			sourceTree = "<group>";
+		};
+		BD8D4DD727B2BB0F007011A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BD8D4DDA27B2BB20007011A5 /* README.md */,
+				BD8D4DD827B2BB0F007011A5 /* Media.xcassets */,
+				BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		BD95147624A08BB600D8024C /* macOSFrameworkTests */ = {
@@ -548,6 +550,7 @@
 				7E56CF207E56CEE000000001 /* README.md */,
 				BD49661924A3605800A81F0B /* LICENSE.md */,
 				BD5910D927B1831B00246864 /* Packages */,
+				BD8D4DD727B2BB0F007011A5 /* Resources */,
 				F1464A50F1463F7000000001 /* Configuration */,
 				C4BEE79622236A29001E6B6D /* iOS */,
 				C4BEE7B622236A58001E6B6D /* macOS */,
@@ -590,7 +593,7 @@
 		C4BEE79722236A29001E6B6D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C433F56022404C7C00F1B750 /* FilterViewControllerExtension.swift */,
+				BD5910DA27B193A700246864 /* ViewController.swift */,
 				C4BEE8112223734E001E6B6D /* MainInterface.storyboard */,
 				C4BEE79C22236A29001E6B6D /* Info.plist */,
 			);
@@ -610,7 +613,6 @@
 			isa = PBXGroup;
 			children = (
 				C4BEE7A922236A29001E6B6D /* AppDelegate.swift */,
-				BD75B67025DA9B7A0071F55E /* AppStore.swift */,
 				C4BEE80F22237302001E6B6D /* MainViewController.swift */,
 				C4BEE7A722236A29001E6B6D /* Main.storyboard */,
 				C4BEE7A422236A29001E6B6D /* Assets.xcassets */,
@@ -678,8 +680,6 @@
 				BDB11A5124A114D700DD8EF9 /* Kernel */,
 				C4DCBAD6223ADE85000D9CB3 /* User Interface */,
 				C4BEE7E422236E99001E6B6D /* Support */,
-				BDC3C97E25F75AAF004EC1AC /* Desdemona.ttf */,
-				BDDCA5C025F8D459009C1AA7 /* Media.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -849,16 +849,18 @@
 				C437FE36222367A6008D6C09 /* Sources */,
 				C437FE37222367A6008D6C09 /* Frameworks */,
 				C437FE38222367A6008D6C09 /* Resources */,
-				C437FE5E222367CD008D6C09 /* Embed Frameworks */,
 				C437FE752223686D008D6C09 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C437FE58222367CD008D6C09 /* PBXTargetDependency */,
 				C437FE702223686D008D6C09 /* PBXTargetDependency */,
 			);
 			name = "iOS App";
+			packageProductDependencies = (
+				BDE537ED27B2501B008ACA93 /* AUv3-Support-iOS */,
+				BDE537FC27B2507C008ACA93 /* AUv3-Support */,
+			);
 			productName = "AUv3Filter iOS";
 			productReference = C437FE3A222367A6008D6C09 /* SimplyPhaserHost.app */;
 			productType = "com.apple.product-type.application";
@@ -894,6 +896,15 @@
 			dependencies = (
 			);
 			name = "iOS Extension";
+			packageProductDependencies = (
+				BDE537E927B2501B008ACA93 /* AUv3-DSP-Headers */,
+				BDE537EB27B2501B008ACA93 /* AUv3-Support */,
+				BDE537F027B25036008ACA93 /* Knob-iOS */,
+				BDE537F427B25060008ACA93 /* Kernel */,
+				BDE537F627B25060008ACA93 /* KernelBridge */,
+				BDE537F827B25060008ACA93 /* ParameterAddress */,
+				BDE537FA27B25060008ACA93 /* Parameters */,
+			);
 			productName = "AUv3FilterExtension iOS";
 			productReference = C437FE632223686D008D6C09 /* SimplyPhaserAU.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -950,6 +961,9 @@
 			dependencies = (
 			);
 			name = "macOS Extension";
+			packageProductDependencies = (
+				BDE537F227B25036008ACA93 /* Knob-macOS */,
+			);
 			productName = "AUv3FilterExtension macOS";
 			productReference = C437FEA0222368B7008D6C09 /* SimplyPhaserAU.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1026,6 +1040,10 @@
 				Base,
 			);
 			mainGroup = C437FE2F2223672C008D6C09;
+			packageReferences = (
+				BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */,
+				BDE537EF27B25036008ACA93 /* XCRemoteSwiftPackageReference "knob" */,
+			);
 			productRefGroup = C437FE3B222367A6008D6C09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1072,8 +1090,8 @@
 				BD63B15624AE26020015236D /* LICENSE.md in Resources */,
 				C4BEE7B122236A29001E6B6D /* Assets.xcassets in Resources */,
 				C4BEE7B322236A29001E6B6D /* Main.storyboard in Resources */,
-				BDC3C98F25F75AB7004EC1AC /* Desdemona.ttf in Resources */,
-				BDDCA5D325F8DB56009C1AA7 /* Media.xcassets in Resources */,
+				BD8D4DE127B2BB8C007011A5 /* Desdemona.ttf in Resources */,
+				BD8D4DE227B2BB8C007011A5 /* Media.xcassets in Resources */,
 				BD9FA81B24A9505300FA9940 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1082,9 +1100,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDC3C97F25F75AB3004EC1AC /* Desdemona.ttf in Resources */,
 				BDC3C93425F6522F004EC1AC /* readme.txt in Resources */,
-				BDDCA5C125F8D459009C1AA7 /* Media.xcassets in Resources */,
 				BD77DEFC25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1094,8 +1110,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BEE8132223734E001E6B6D /* MainInterface.storyboard in Resources */,
-				BDDCA5CA25F8DB53009C1AA7 /* Media.xcassets in Resources */,
-				BDC3C99725F75AB8004EC1AC /* Desdemona.ttf in Resources */,
+				BD8D4DDC27B2BB87007011A5 /* Media.xcassets in Resources */,
+				BD8D4DDB27B2BB87007011A5 /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,8 +1122,8 @@
 				BD63B15424AE25F80015236D /* LICENSE.md in Resources */,
 				C4BEE7D222236A58001E6B6D /* Main.storyboard in Resources */,
 				C4BEE7D122236A58001E6B6D /* Assets.xcassets in Resources */,
-				BDC3C99F25F75ABA004EC1AC /* Desdemona.ttf in Resources */,
-				BDDCA5DB25F8DB57009C1AA7 /* Media.xcassets in Resources */,
+				BD8D4DDF27B2BB8B007011A5 /* Desdemona.ttf in Resources */,
+				BD8D4DE027B2BB8B007011A5 /* Media.xcassets in Resources */,
 				BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1116,9 +1132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDDCA5C225F8D459009C1AA7 /* Media.xcassets in Resources */,
 				BDC3C93525F6522F004EC1AC /* readme.txt in Resources */,
-				BDC3C98725F75AB5004EC1AC /* Desdemona.ttf in Resources */,
 				C46B8B8122418B6000E00B1E /* FilterViewController.xib in Resources */,
 				BD77DEFD25E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav in Resources */,
 			);
@@ -1128,8 +1142,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDDCA5D225F8DB55009C1AA7 /* Media.xcassets in Resources */,
-				BDC3C9A725F75ABB004EC1AC /* Desdemona.ttf in Resources */,
+				BD8D4DDE27B2BB8A007011A5 /* Media.xcassets in Resources */,
+				BD8D4DDD27B2BB8A007011A5 /* Desdemona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,7 +1198,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD75B67A25DA9C400071F55E /* AppStore.swift in Sources */,
 				C4BEE7B422236A29001E6B6D /* AppDelegate.swift in Sources */,
 				C4BEE81022237302001E6B6D /* MainViewController.swift in Sources */,
 			);
@@ -1227,7 +1240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C433F56122404C7C00F1B750 /* FilterViewControllerExtension.swift in Sources */,
+				BDE537FE27B250EA008ACA93 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,11 +1314,6 @@
 			isa = PBXTargetDependency;
 			target = C437FE8E222368A1008D6C09 /* macOS Framework */;
 			targetProxy = BD95147B24A08BB600D8024C /* PBXContainerItemProxy */;
-		};
-		C437FE58222367CD008D6C09 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C437FE51222367CD008D6C09 /* iOS Framework */;
-			targetProxy = C437FE57222367CD008D6C09 /* PBXContainerItemProxy */;
 		};
 		C437FE702223686D008D6C09 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2748,6 +2756,74 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bradhowes/AUv3Support";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BDE537EF27B25036008ACA93 /* XCRemoteSwiftPackageReference "knob" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bradhowes/knob";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BDE537E927B2501B008ACA93 /* AUv3-DSP-Headers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
+			productName = "AUv3-DSP-Headers";
+		};
+		BDE537EB27B2501B008ACA93 /* AUv3-Support */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
+			productName = "AUv3-Support";
+		};
+		BDE537ED27B2501B008ACA93 /* AUv3-Support-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
+			productName = "AUv3-Support-iOS";
+		};
+		BDE537F027B25036008ACA93 /* Knob-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537EF27B25036008ACA93 /* XCRemoteSwiftPackageReference "knob" */;
+			productName = "Knob-iOS";
+		};
+		BDE537F227B25036008ACA93 /* Knob-macOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537EF27B25036008ACA93 /* XCRemoteSwiftPackageReference "knob" */;
+			productName = "Knob-macOS";
+		};
+		BDE537F427B25060008ACA93 /* Kernel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Kernel;
+		};
+		BDE537F627B25060008ACA93 /* KernelBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KernelBridge;
+		};
+		BDE537F827B25060008ACA93 /* ParameterAddress */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParameterAddress;
+		};
+		BDE537FA27B25060008ACA93 /* Parameters */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Parameters;
+		};
+		BDE537FC27B2507C008ACA93 /* AUv3-Support */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
+			productName = "AUv3-Support";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C437FE302223672C008D6C09 /* Project object */;
 }
