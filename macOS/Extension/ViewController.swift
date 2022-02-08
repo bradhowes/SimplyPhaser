@@ -25,7 +25,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   private let parameters = AudioUnitParameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
-  private var parameterObserverToken: AUParameterObserverToken?
+  // private var parameterObserverToken: AUParameterObserverToken?
   private var keyValueObserverToken: NSKeyValueObservation?
   private var hasActiveLabel = false
 
@@ -48,7 +48,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   @IBOutlet private weak var odd90Control: NSSwitch!
 
-  var controls = [ParameterAddress : [AUParameterEditor]]()
+  var controls = [ParameterAddress : AUParameterEditor]()
 
   public var audioUnit: FilterAudioUnit? {
     didSet {
@@ -113,20 +113,20 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   }
 
   private func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
-    os_log(.debug, log: log, "controlChanged BEGIN - %d %f", address.rawValue, control.value)
+    os_log(.info, log: log, "controlChanged BEGIN - %d %f", address.rawValue, control.value)
 
     guard let audioUnit = audioUnit else {
-      os_log(.debug, log: log, "controlChanged END - nil audioUnit")
+      os_log(.info, log: log, "controlChanged END - nil audioUnit")
       return
     }
 
     // When user changes something and a factory preset was active, clear it.
     if let preset = audioUnit.currentPreset, preset.number >= 0 {
-      os_log(.debug, log: log, "controlChanged - clearing currentPreset")
+      os_log(.info, log: log, "controlChanged - clearing currentPreset")
       audioUnit.currentPreset = nil
     }
 
-    (controls[address] ?? []).forEach { $0.controlChanged(source: control) }
+    controls[address]?.controlChanged(source: control)
   }
 
   override public func mouseDown(with event: NSEvent) {
@@ -169,44 +169,26 @@ extension ViewController {
   private func connectViewToAU() {
     os_log(.info, log: log, "connectViewToAU")
 
-    guard parameterObserverToken == nil else { return }
     guard let audioUnit = audioUnit else { fatalError("logic error -- nil audioUnit value") }
-    guard let paramTree = audioUnit.parameterTree else { fatalError("logic error -- nil parameterTree") }
 
     keyValueObserverToken = audioUnit.observe(\.allParameterValues) { _, _ in
-      self.performOnMain { self.updateDisplay() }
+      if audioUnit.currentPreset != nil {
+        self.performOnMain { self.updateDisplay() }
+      }
     }
 
-    let parameterObserverToken = paramTree.token(byAddingParameterObserver: { [weak self] _, _ in
-      guard let self = self else { return }
-      self.performOnMain { self.updateDisplay() }
-    })
-
-    self.parameterObserverToken = parameterObserverToken
-
-    controls[.rate] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.rate],
-      formatter: parameters.valueFormatter(.rate), rangedControl: rateControl, label: rateValueLabel
-    )]
-    controls[.depth] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.depth],
-      formatter: parameters.valueFormatter(.depth), rangedControl: depthControl, label: depthValueLabel
-    )]
-    controls[.intensity] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.intensity],
-      formatter: parameters.valueFormatter(.intensity), rangedControl: intensityControl, label: intensityValueLabel
-    )]
-    controls[.dry] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.dry],
-      formatter: parameters.valueFormatter(.dry), rangedControl: dryMixControl, label: dryMixValueLabel
-    )]
-    controls[.wet] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.wet],
-      formatter: parameters.valueFormatter(.wet), rangedControl: wetMixControl, label:  wetMixValueLabel
-    )]
-    controls[.odd90] = [BooleanParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.odd90], booleanControl: odd90Control
-    )]
+    controls[.rate] = FloatParameterEditor(parameter: parameters[.rate], formatter: parameters.valueFormatter(.rate),
+                                           rangedControl: rateControl, label: rateValueLabel)
+    controls[.depth] = FloatParameterEditor(parameter: parameters[.depth], formatter: parameters.valueFormatter(.depth),
+                                            rangedControl: depthControl, label: depthValueLabel)
+    controls[.intensity] = FloatParameterEditor(parameter: parameters[.intensity],
+                                                formatter: parameters.valueFormatter(.intensity),
+                                                rangedControl: intensityControl, label: intensityValueLabel)
+    controls[.dry] = FloatParameterEditor(parameter: parameters[.dry], formatter: parameters.valueFormatter(.dry),
+                                          rangedControl: dryMixControl, label: dryMixValueLabel)
+    controls[.wet] = FloatParameterEditor(parameter: parameters[.wet], formatter: parameters.valueFormatter(.wet),
+                                          rangedControl: wetMixControl, label:  wetMixValueLabel)
+    controls[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
 
     // Let us manage view configuration changes
     audioUnit.viewConfigurationManager = self
@@ -215,7 +197,7 @@ extension ViewController {
   private func updateDisplay() {
     os_log(.info, log: log, "updateDisplay")
     for address in ParameterAddress.allCases {
-      (controls[address] ?? []).forEach { $0.parameterChanged() }
+      controls[address]?.parameterChanged()
     }
   }
 

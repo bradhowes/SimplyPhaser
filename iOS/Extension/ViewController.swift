@@ -7,7 +7,6 @@ import Kernel
 import Knob_iOS
 import ParameterAddress
 import Parameters
-import UI
 import os.log
 
 extension UIView: TagHolder {}
@@ -69,7 +68,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   // The bottom constraint of the editingBackground that controls the vertical position of the editor
   @IBOutlet private weak var editingBackgroundBottomConstraint: NSLayoutConstraint!
 
-  private var controls = [ParameterAddress : [AUParameterEditor]]()
+  private var controls = [ParameterAddress : AUParameterEditor]()
   private var audioUnit: FilterAudioUnit? {
     didSet {
       performOnMain {
@@ -195,7 +194,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
       audioUnit.currentPreset = nil
     }
 
-    (controls[address] ?? []).forEach { $0.controlChanged(source: control) }
+    controls[address]?.controlChanged(source: control)
 
     os_log(.debug, log: log, "controlChanged END")
   }
@@ -231,44 +230,26 @@ extension ViewController {
   private func connectViewToAU() {
     os_log(.info, log: log, "connectViewToAU")
 
-    guard parameterObserverToken == nil else { return }
     guard let audioUnit = audioUnit else { fatalError("logic error -- nil audioUnit value") }
-    guard let paramTree = audioUnit.parameterTree else { fatalError("logic error -- nil parameterTree") }
 
     keyValueObserverToken = audioUnit.observe(\.allParameterValues) { _, _ in
-      self.performOnMain { self.updateDisplay() }
+      if audioUnit.currentPreset != nil {
+        self.performOnMain { self.updateDisplay() }
+      }
     }
 
-    let parameterObserverToken = paramTree.token(byAddingParameterObserver: { [weak self] _, _ in
-      guard let self = self else { return }
-      self.performOnMain { self.updateDisplay() }
-    })
-
-    self.parameterObserverToken = parameterObserverToken
-
-    controls[.rate] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.rate],
-      formatter: parameters.valueFormatter(.rate), rangedControl: rateControl, label: rateValueLabel
-    )]
-    controls[.depth] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.depth],
-      formatter: parameters.valueFormatter(.depth), rangedControl: depthControl, label: depthValueLabel
-    )]
-    controls[.intensity] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.intensity],
-      formatter: parameters.valueFormatter(.intensity), rangedControl: intensityControl, label: intensityValueLabel
-    )]
-    controls[.dry] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.dry],
-      formatter: parameters.valueFormatter(.dry), rangedControl: dryControl, label: dryValueLabel
-    )]
-    controls[.wet] = [FloatParameterEditor(
-      parameterObserverToken: parameterObserverToken, parameter: parameters[.wet],
-      formatter: parameters.valueFormatter(.wet), rangedControl: wetControl, label:  wetValueLabel
-    )]
-    controls[.odd90] = [BooleanParameterEditor(
-      parameterObserverToken: parameterObserverToken,parameter: parameters[.odd90], booleanControl: odd90Control
-    )]
+    controls[.rate] = FloatParameterEditor(parameter: parameters[.rate], formatter: parameters.valueFormatter(.rate),
+                                           rangedControl: rateControl, label: rateValueLabel)
+    controls[.depth] = FloatParameterEditor(parameter: parameters[.depth], formatter: parameters.valueFormatter(.depth),
+                                            rangedControl: depthControl, label: depthValueLabel)
+    controls[.intensity] = FloatParameterEditor(parameter: parameters[.intensity],
+                                                formatter: parameters.valueFormatter(.intensity),
+                                                rangedControl: intensityControl, label: intensityValueLabel)
+    controls[.dry] = FloatParameterEditor(parameter: parameters[.dry], formatter: parameters.valueFormatter(.dry),
+                                          rangedControl: dryControl, label: dryValueLabel)
+    controls[.wet] = FloatParameterEditor(parameter: parameters[.wet], formatter: parameters.valueFormatter(.wet),
+                                          rangedControl: wetControl, label:  wetValueLabel)
+    controls[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
 
     // Let us manage view configuration changes
     audioUnit.viewConfigurationManager = self
@@ -277,7 +258,7 @@ extension ViewController {
   private func updateDisplay() {
     os_log(.info, log: log, "updateDisplay")
     for address in ParameterAddress.allCases {
-      (controls[address] ?? []).forEach { $0.parameterChanged() }
+      controls[address]?.parameterChanged()
     }
   }
 
@@ -310,7 +291,7 @@ extension ViewController: UITextFieldDelegate {
 
     guard let view = sender.view,
           let address = view.parameterAddress,
-          let param = controls[address]?.first?.parameter
+          let param = controls[address]?.parameter
     else {
       fatalError("misconfigured UI element")
     }
@@ -354,7 +335,7 @@ extension ViewController: UITextFieldDelegate {
       self.editingContainerView.isHidden = true
       if let stringValue = self.editingValue.text,
          let value = Float(stringValue) {
-        (self.controls[address] ?? []).forEach { $0.setEditedValue(value) }
+        self.controls[address]?.setEditedValue(value)
       }
       os_log(.info, log: self.log, "done animation")
     }

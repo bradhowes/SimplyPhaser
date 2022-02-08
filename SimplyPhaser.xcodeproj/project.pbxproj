@@ -38,7 +38,6 @@
 		BD8D4DE427B2CC5B007011A5 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DE327B2CC5B007011A5 /* AUv3-Support */; };
 		BD8D4DE627B2CC5B007011A5 /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DE527B2CC5B007011A5 /* AUv3-Support-macOS */; };
 		BD8D4DE827B2CC74007011A5 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DE727B2CC74007011A5 /* AUv3-DSP-Headers */; };
-		BD8D4DEA27B2CC74007011A5 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DE927B2CC74007011A5 /* AUv3-Support */; };
 		BD8D4DEC27B2CC74007011A5 /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DEB27B2CC74007011A5 /* AUv3-Support-macOS */; };
 		BD8D4DEE27B2CD9F007011A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D4DED27B2CD7E007011A5 /* ViewController.swift */; };
 		BD8D4DF227B2CDD9007011A5 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DF127B2CDD9007011A5 /* Kernel */; };
@@ -46,6 +45,7 @@
 		BD8D4DF627B2CDD9007011A5 /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DF527B2CDD9007011A5 /* ParameterAddress */; };
 		BD8D4DF827B2CDD9007011A5 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4DF727B2CDD9007011A5 /* Parameters */; };
 		BD8D4DFB27B2D70A007011A5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C9EAAB2227D79D003FEE1C /* ViewController.xib */; };
+		BD8D4E0727B30C88007011A5 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4E0627B30C88007011A5 /* AUv3-Support */; };
 		BD938B5724A781C200892358 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE92249EC556009580D5 /* Accelerate.framework */; };
 		BD95147824A08BB600D8024C /* NewSwiftTestTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */; };
 		BD95148324A090E400D8024C /* ValueChangeDetectorTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */; };
@@ -157,6 +157,7 @@
 		BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
 		BD8D4DDA27B2BB20007011A5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD8D4DED27B2CD7E007011A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BD8D4DFD27B2FD49007011A5 /* AUv3Support */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AUv3Support; path = ../AUv3Support; sourceTree = "<group>"; };
 		BD95147524A08BB600D8024C /* macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD95147724A08BB600D8024C /* NewSwiftTestTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSwiftTestTemplate.swift; sourceTree = "<group>"; };
 		BD95147924A08BB600D8024C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -263,10 +264,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD8D4DEC27B2CC74007011A5 /* AUv3-Support-macOS in Frameworks */,
+				BD8D4E0727B30C88007011A5 /* AUv3-Support in Frameworks */,
 				BD8D4DF227B2CDD9007011A5 /* Kernel in Frameworks */,
 				BD8D4DF827B2CDD9007011A5 /* Parameters in Frameworks */,
 				BDE537F327B25036008ACA93 /* Knob-macOS in Frameworks */,
-				BD8D4DEA27B2CC74007011A5 /* AUv3-Support in Frameworks */,
 				BDB7CE94249EC565009580D5 /* Accelerate.framework in Frameworks */,
 				BD8D4DF427B2CDD9007011A5 /* KernelBridge in Frameworks */,
 				BD8D4DE827B2CC74007011A5 /* AUv3-DSP-Headers in Frameworks */,
@@ -305,6 +306,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		BD8D4DFC27B2FD49007011A5 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BD8D4DFD27B2FD49007011A5 /* AUv3Support */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		BD95147624A08BB600D8024C /* macOSFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +335,7 @@
 		C437FE2F2223672C008D6C09 = {
 			isa = PBXGroup;
 			children = (
+				BD8D4DFC27B2FD49007011A5 /* Packages */,
 				7E56CF207E56CEE000000001 /* README.md */,
 				BD49661924A3605800A81F0B /* LICENSE.md */,
 				BD5910D927B1831B00246864 /* Packages */,
@@ -402,9 +412,9 @@
 		C4BEE7B722236A58001E6B6D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BDEFCA2025F64B680095858D /* SimplyPhaserAU.entitlements */,
-				C4C9EAAB2227D79D003FEE1C /* ViewController.xib */,
 				BD8D4DED27B2CD7E007011A5 /* ViewController.swift */,
+				C4C9EAAB2227D79D003FEE1C /* ViewController.xib */,
+				BDEFCA2025F64B680095858D /* SimplyPhaserAU.entitlements */,
 				C4BEE7BE22236A58001E6B6D /* Info.plist */,
 			);
 			path = Extension;
@@ -593,12 +603,12 @@
 			packageProductDependencies = (
 				BDE537F227B25036008ACA93 /* Knob-macOS */,
 				BD8D4DE727B2CC74007011A5 /* AUv3-DSP-Headers */,
-				BD8D4DE927B2CC74007011A5 /* AUv3-Support */,
 				BD8D4DEB27B2CC74007011A5 /* AUv3-Support-macOS */,
 				BD8D4DF127B2CDD9007011A5 /* Kernel */,
 				BD8D4DF327B2CDD9007011A5 /* KernelBridge */,
 				BD8D4DF527B2CDD9007011A5 /* ParameterAddress */,
 				BD8D4DF727B2CDD9007011A5 /* Parameters */,
+				BD8D4E0627B30C88007011A5 /* AUv3-Support */,
 			);
 			productName = "AUv3FilterExtension macOS";
 			productReference = C437FEA0222368B7008D6C09 /* SimplyPhaserAU.appex */;
@@ -1958,11 +1968,6 @@
 			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
 			productName = "AUv3-DSP-Headers";
 		};
-		BD8D4DE927B2CC74007011A5 /* AUv3-Support */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-Support";
-		};
 		BD8D4DEB27B2CC74007011A5 /* AUv3-Support-macOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BDE537E827B2501B008ACA93 /* XCRemoteSwiftPackageReference "AUv3Support" */;
@@ -1983,6 +1988,10 @@
 		BD8D4DF727B2CDD9007011A5 /* Parameters */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Parameters;
+		};
+		BD8D4E0627B30C88007011A5 /* AUv3-Support */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "AUv3-Support";
 		};
 		BDE537E927B2501B008ACA93 /* AUv3-DSP-Headers */ = {
 			isa = XCSwiftPackageProductDependency;

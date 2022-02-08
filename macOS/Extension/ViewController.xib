@@ -166,6 +166,9 @@
                                             <subviews>
                                                 <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
                                                     <rect key="frame" x="5" y="22" width="42" height="25"/>
+                                                    <connections>
+                                                        <action selector="handleOdd90Changed:" target="-2" id="6Ld-jg-cOa"/>
+                                                    </connections>
                                                 </switch>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tiC-B9-JFy" userLabel="Odd 90°">
                                                     <rect key="frame" x="-2" y="0.0" width="56" height="16"/>
