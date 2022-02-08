@@ -69,8 +69,6 @@
 		BDE537FB27B25060008ACA93 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537FA27B25060008ACA93 /* Parameters */; };
 		BDE537FD27B2507C008ACA93 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537FC27B2507C008ACA93 /* AUv3-Support */; };
 		BDE537FE27B250EA008ACA93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5910DA27B193A700246864 /* ViewController.swift */; };
-		BDF158C325FABE8C008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
-		BDF158E025FAC9DC008E5965 /* fxobjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC3C93025F6522F004EC1AC /* fxobjects.cpp */; };
 		C437FE712223686D008D6C09 /* SimplyPhaserAU.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C437FE632223686D008D6C09 /* SimplyPhaserAU.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C4660A602225F9A0007BE3B1 /* SimplyPhaserAU.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C437FEA0222368B7008D6C09 /* SimplyPhaserAU.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C4737B0B2231D930002CAD0B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4737B0A2231D930002CAD0B /* AudioToolbox.framework */; };
@@ -136,43 +134,24 @@
 
 /* Begin PBXFileReference section */
 		7E56CF207E56CEE000000001 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; wrapsLines = 1; };
-		BD06772B24CF9FA00039F161 /* Optional+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
-		BD18B39A24CB247400B7CB1E /* AudioComponentDescription+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioComponentDescription+Extensions.swift"; sourceTree = "<group>"; };
-		BD18B39E24CB31B200B7CB1E /* AudioUnitParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitParameters.swift; sourceTree = "<group>"; };
 		BD1D249425D4831B00523748 /* BundlePropertiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundlePropertiesTests.swift; sourceTree = "<group>"; };
 		BD1D24A925D486A700523748 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1D24AD25D486A800523748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD1D250525D515B100523748 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Configuration/README.md; sourceTree = "<group>"; };
 		BD1D250625D5178900523748 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD1D250E25D517D000523748 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		BD1D252E25D51AD600523748 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD1D257625D5AAB000523748 /* Snapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snapshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1D257825D5AAB000523748 /* Snapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshots.swift; sourceTree = "<group>"; };
 		BD1D257A25D5AAB000523748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD1D258725D5AAE300523748 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		BD24B3FB25F1133500338362 /* Biquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Biquad.h; sourceTree = "<group>"; };
 		BD24B40525F113AD00338362 /* BiquadTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BiquadTests.mm; sourceTree = "<group>"; };
-		BD2FD3EC259B5104004A3196 /* AUParameterTree+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AUParameterTree+Extensions.swift"; sourceTree = "<group>"; };
-		BD2FD3F4259B512F004A3196 /* AUParameterAddress+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AUParameterAddress+Extensions.swift"; sourceTree = "<group>"; };
-		BD446BAB25E2B4C5009B7347 /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
-		BD446BB525E2B741009B7347 /* DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSP.h; sourceTree = "<group>"; };
 		BD446BBF25E2B9CD009B7347 /* LFOTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LFOTests.mm; sourceTree = "<group>"; };
 		BD446BE725E2C654009B7347 /* DSPTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DSPTests.mm; sourceTree = "<group>"; };
-		BD49661424A35D1E00A81F0B /* FourCharCode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+Extensions.swift"; sourceTree = "<group>"; };
 		BD49661924A3605800A81F0B /* LICENSE.md */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = LICENSE.md; sourceTree = "<group>"; };
-		BD50D29225D6D76E00375455 /* SimplyPhaserKernelAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplyPhaserKernelAdapter.h; sourceTree = "<group>"; };
-		BD578EEC25D278490040D83D /* AudioUnitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitManager.swift; sourceTree = "<group>"; };
-		BD578F0D25D2C4720040D83D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD5910D927B1831B00246864 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		BD5910DA27B193A700246864 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BD5FDFD425FE80910073E47A /* NewObjCTestTemplate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NewObjCTestTemplate.mm; sourceTree = "<group>"; };
-		BD66842B25F11F77009CF8ED /* KnobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobController.swift; sourceTree = "<group>"; };
-		BD66842C25F11F77009CF8ED /* Knob_macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob_macOS.swift; sourceTree = "<group>"; };
-		BD66842D25F11F77009CF8ED /* Knob_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob_iOS.swift; sourceTree = "<group>"; };
-		BD71E30125E1AF2A005C5E1E /* FilterPreset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPreset.swift; sourceTree = "<group>"; };
-		BD72F2E425D1D4CE0031E422 /* InputBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBuffer.h; sourceTree = "<group>"; };
 		BD75B6B925DAA6680071F55E /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "074_acoustic-guitar-strummy2.wav"; sourceTree = "<group>"; };
 		BD78FDC124C2F6530091A854 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		BD8D4DD827B2BB0F007011A5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Desdemona.ttf; sourceTree = "<group>"; };
@@ -184,26 +163,10 @@
 		BD95148224A090E400D8024C /* ValueChangeDetectorTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ValueChangeDetectorTests.mm; sourceTree = "<group>"; };
 		BD95148424A092E800D8024C /* RampingValueChangeDetectorTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampingValueChangeDetectorTests.mm; sourceTree = "<group>"; };
 		BD9FA81A24A9505300FA9940 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		BDB11A5224A13BFA00DD8EF9 /* Comparble+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparble+Extensions.swift"; sourceTree = "<group>"; };
-		BDB11A5624A13C8900DD8EF9 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
-		BDB11A5A24A13F2A00DD8EF9 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		BDB11A5E24A13FAA00DD8EF9 /* CATransaction+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransaction+Extensions.swift"; sourceTree = "<group>"; };
 		BDB11A6224A1530D00DD8EF9 /* LogScaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogScaling.swift; sourceTree = "<group>"; };
-		BDB7CE8F249D3C00009580D5 /* NonCopyable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NonCopyable.hpp; sourceTree = "<group>"; };
 		BDB7CE92249EC556009580D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		BDB7CE96249F7209009580D5 /* ValueChangeDetector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ValueChangeDetector.hpp; sourceTree = "<group>"; };
-		BDB7CE99249FC026009580D5 /* AUAudioUnitPreset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AUAudioUnitPreset+Extensions.swift"; sourceTree = "<group>"; };
 		BDB7CE9D249FC152009580D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.5.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		BDC3C92E25F6522F004EC1AC /* fxobjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fxobjects.h; sourceTree = "<group>"; };
-		BDC3C92F25F6522F004EC1AC /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
-		BDC3C93025F6522F004EC1AC /* fxobjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fxobjects.cpp; sourceTree = "<group>"; };
-		BDC3C93125F6522F004EC1AC /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
-		BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhaseShifter.h; sourceTree = "<group>"; };
 		BDC3C94B25F6C033004EC1AC /* PhaseShifterTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhaseShifterTests.mm; sourceTree = "<group>"; };
-		BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchController.swift; sourceTree = "<group>"; };
-		BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUParameerControl.swift; sourceTree = "<group>"; };
-		BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
-		BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Dev.xcconfig; path = Configuration/Dev.xcconfig; sourceTree = "<group>"; };
 		BDE2CE1824A3E8DB004AC8FA /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Staging.xcconfig; path = Configuration/Staging.xcconfig; sourceTree = "<group>"; };
 		BDE2CE1924A3EBD1004AC8FA /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Configuration/Common.xcconfig; sourceTree = "<group>"; };
@@ -216,7 +179,6 @@
 		C44F544622260E2C00484B67 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		C4737B092231D918002CAD0B /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		C4737B0A2231D930002CAD0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		C4A3D65A223FF12A002784D4 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
 		C4BEE79C22236A29001E6B6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4BEE7A422236A29001E6B6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4BEE7A822236A29001E6B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -227,11 +189,6 @@
 		C4BEE7C822236A58001E6B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4BEE7C922236A58001E6B6D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BEE7CA22236A58001E6B6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4BEE7D722236E99001E6B6D /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
-		C4BEE7DB22236E99001E6B6D /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
-		C4BEE7E322236E99001E6B6D /* SimplyPhaserKernel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplyPhaserKernel.h; sourceTree = "<group>"; };
-		C4BEE7E522236E99001E6B6D /* RampingValueChangeDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RampingValueChangeDetector.hpp; sourceTree = "<group>"; };
-		C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KernelEventProcessor.h; sourceTree = "<group>"; };
 		C4BEE80822237078001E6B6D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C4BEE80A222370B2001E6B6D /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		C4BEE80F22237302001E6B6D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -239,9 +196,6 @@
 		C4BEE81B22237772001E6B6D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		C4C9EAAB2227D79D003FEE1C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		C4CE62D8222601070055FE6B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		C4F004A02239B1E10014E248 /* SimplyPhaserKernelAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimplyPhaserKernelAdapter.mm; sourceTree = "<group>"; };
-		C4F004A52239B2070014E248 /* FilterAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAudioUnit.swift; sourceTree = "<group>"; };
-		C4F07730223AC4F5008FFF06 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,25 +295,6 @@
 			path = Snapshots;
 			sourceTree = "<group>";
 		};
-		BD49661824A35F3900A81F0B /* Class Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				BDB7CE99249FC026009580D5 /* AUAudioUnitPreset+Extensions.swift */,
-				BD2FD3F4259B512F004A3196 /* AUParameterAddress+Extensions.swift */,
-				BD2FD3EC259B5104004A3196 /* AUParameterTree+Extensions.swift */,
-				BD18B39A24CB247400B7CB1E /* AudioComponentDescription+Extensions.swift */,
-				BDE2CDF324A3DF13004AC8FA /* Bundle+Extensions.swift */,
-				BDB11A5624A13C8900DD8EF9 /* CALayer+Extensions.swift */,
-				BDB11A5E24A13FAA00DD8EF9 /* CATransaction+Extensions.swift */,
-				BDB11A5A24A13F2A00DD8EF9 /* Color+Extensions.swift */,
-				BDB11A5224A13BFA00DD8EF9 /* Comparble+Extensions.swift */,
-				BD49661424A35D1E00A81F0B /* FourCharCode+Extensions.swift */,
-				BD06772B24CF9FA00039F161 /* Optional+Extensions.swift */,
-				C4BEE7D722236E99001E6B6D /* View+Extensions.swift */,
-			);
-			path = "Class Extensions";
-			sourceTree = "<group>";
-		};
 		BD8D4DD727B2BB0F007011A5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,35 +323,6 @@
 			path = macOSFrameworkTests;
 			sourceTree = "<group>";
 		};
-		BDB11A5124A114D700DD8EF9 /* Kernel */ = {
-			isa = PBXGroup;
-			children = (
-				BD578F0D25D2C4720040D83D /* README.md */,
-				BD24B3FB25F1133500338362 /* Biquad.h */,
-				BD446BB525E2B741009B7347 /* DSP.h */,
-				BD72F2E425D1D4CE0031E422 /* InputBuffer.h */,
-				C4BEE7E622236E99001E6B6D /* KernelEventProcessor.h */,
-				BD446BAB25E2B4C5009B7347 /* LFO.h */,
-				BDC3C94125F65FDF004EC1AC /* PhaseShifter.h */,
-				C4BEE7E322236E99001E6B6D /* SimplyPhaserKernel.h */,
-				BD50D29225D6D76E00375455 /* SimplyPhaserKernelAdapter.h */,
-				C4F004A02239B1E10014E248 /* SimplyPhaserKernelAdapter.mm */,
-				BDC3C92D25F6522F004EC1AC /* Pirkle */,
-			);
-			path = Kernel;
-			sourceTree = "<group>";
-		};
-		BDC3C92D25F6522F004EC1AC /* Pirkle */ = {
-			isa = PBXGroup;
-			children = (
-				BDC3C92F25F6522F004EC1AC /* readme.txt */,
-				BDC3C92E25F6522F004EC1AC /* fxobjects.h */,
-				BDC3C93025F6522F004EC1AC /* fxobjects.cpp */,
-				BDC3C93125F6522F004EC1AC /* filters.h */,
-			);
-			path = Pirkle;
-			sourceTree = "<group>";
-		};
 		C437FE2F2223672C008D6C09 = {
 			isa = PBXGroup;
 			children = (
@@ -427,7 +333,6 @@
 				F1464A50F1463F7000000001 /* Configuration */,
 				C4BEE79622236A29001E6B6D /* iOS */,
 				C4BEE7B622236A58001E6B6D /* macOS */,
-				C4BEE7D522236E99001E6B6D /* Shared */,
 				BD95147624A08BB600D8024C /* macOSFrameworkTests */,
 				BD1D24AA25D486A800523748 /* iOSFrameworkTests */,
 				BD1D257725D5AAB000523748 /* Snapshots */,
@@ -520,34 +425,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		C4BEE7D522236E99001E6B6D /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				BD1D252E25D51AD600523748 /* README.md */,
-				BD18B39E24CB31B200B7CB1E /* AudioUnitParameters.swift */,
-				C4F004A52239B2070014E248 /* FilterAudioUnit.swift */,
-				BD71E30125E1AF2A005C5E1E /* FilterPreset.swift */,
-				BDB11A5124A114D700DD8EF9 /* Kernel */,
-				C4DCBAD6223ADE85000D9CB3 /* User Interface */,
-				C4BEE7E422236E99001E6B6D /* Support */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		C4BEE7E422236E99001E6B6D /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				BD578EEC25D278490040D83D /* AudioUnitManager.swift */,
-				BDE2CDEF24A3DE9F004AC8FA /* Logging.swift */,
-				BDB7CE8F249D3C00009580D5 /* NonCopyable.hpp */,
-				C4BEE7E522236E99001E6B6D /* RampingValueChangeDetector.hpp */,
-				BDB7CE96249F7209009580D5 /* ValueChangeDetector.hpp */,
-				BD49661824A35F3900A81F0B /* Class Extensions */,
-				C4DCBAD5223ADE79000D9CB3 /* Audio */,
-			);
-			path = Support;
-			sourceTree = "<group>";
-		};
 		C4BEE81822237394001E6B6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,29 +437,6 @@
 				C4BEE81B22237772001E6B6D /* MobileCoreServices.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C4DCBAD5223ADE79000D9CB3 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				BD77DEF925E4714C00CE6A72 /* 074_acoustic-guitar-strummy2.wav */,
-				C4A3D65A223FF12A002784D4 /* SimplePlayEngine.swift */,
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		C4DCBAD6223ADE85000D9CB3 /* User Interface */ = {
-			isa = PBXGroup;
-			children = (
-				C4F07730223AC4F5008FFF06 /* FilterViewController.swift */,
-				BD66842D25F11F77009CF8ED /* Knob_iOS.swift */,
-				BD66842C25F11F77009CF8ED /* Knob_macOS.swift */,
-				BD66842B25F11F77009CF8ED /* KnobController.swift */,
-				BDC3C9AF25F7A1BE004EC1AC /* SwitchController.swift */,
-				BDC3C9B925F7A2FB004EC1AC /* AUParameerControl.swift */,
-				C4BEE7DB22236E99001E6B6D /* TypeAliases.swift */,
-			);
-			path = "User Interface";
 			sourceTree = "<group>";
 		};
 		F1464A50F1463F7000000001 /* Configuration */ = {
@@ -917,7 +771,6 @@
 				BD1D24C625D48B8500523748 /* ValueChangeDetectorTests.mm in Sources */,
 				BD446C0725E2C6A0009B7347 /* DSPTests.mm in Sources */,
 				BD1D24E225D48BA200523748 /* BundlePropertiesTests.swift in Sources */,
-				BDF158E025FAC9DC008E5965 /* fxobjects.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,7 +796,6 @@
 				BDB11A6324A1530D00DD8EF9 /* LogScaling.swift in Sources */,
 				BD446BF125E2C69C009B7347 /* DSPTests.mm in Sources */,
 				BD1D249525D4831B00523748 /* BundlePropertiesTests.swift in Sources */,
-				BDF158C325FABE8C008E5965 /* fxobjects.cpp in Sources */,
 				BD95148324A090E400D8024C /* ValueChangeDetectorTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
