@@ -154,9 +154,19 @@ extension ViewController: AUAudioUnitFactory {
 
     audioUnit.setParameters(parameters)
     audioUnit.setKernel(kernel)
+    audioUnit.currentPresetMonitor = self
 
     os_log(.info, log: log, "createAudioUnit END")
     return audioUnit
+  }
+}
+
+extension ViewController: CurrentPresetMonitor {
+
+  public func currentPresetChanged(_ value: AUAudioUnitPreset?) {
+    if value == nil {
+      DispatchQueue.main.async { self.updateDisplay() }
+    }
   }
 }
 
@@ -170,12 +180,6 @@ extension ViewController {
     os_log(.info, log: log, "connectViewToAU")
 
     guard let audioUnit = audioUnit else { fatalError("logic error -- nil audioUnit value") }
-
-    keyValueObserverToken = audioUnit.observe(\.allParameterValues) { _, _ in
-      if audioUnit.currentPreset != nil {
-        self.performOnMain { self.updateDisplay() }
-      }
-    }
 
     controls[.rate] = FloatParameterEditor(parameter: parameters[.rate], formatter: parameters.valueFormatter(.rate),
                                            rangedControl: rateControl, label: rateValueLabel)
