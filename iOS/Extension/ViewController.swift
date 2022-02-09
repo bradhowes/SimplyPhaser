@@ -106,15 +106,12 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     for (parameterAddress, (knob, label, tapEdit)) in controls {
       knob.progressColor = knobColor
       knob.indicatorColor = knobColor
-      if parameterAddress == .dry || parameterAddress == .wet {
-        knob.trackLineWidth = 8
-        knob.progressLineWidth = 6
-        knob.indicatorLineWidth = 6
-      } else {
-        knob.trackLineWidth = 10
-        knob.progressLineWidth = 8
-        knob.indicatorLineWidth = 8
-      }
+
+      let trackWidth: CGFloat = parameterAddress == .dry || parameterAddress == .wet ? 8 : 10
+      let progressWidth = trackWidth - 2.0
+      knob.trackLineWidth = trackWidth
+      knob.progressLineWidth = progressWidth
+      knob.indicatorLineWidth = progressWidth
 
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
                                         formatter: parameters.valueFormatter(parameterAddress),

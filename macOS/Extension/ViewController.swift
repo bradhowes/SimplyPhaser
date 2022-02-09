@@ -78,6 +78,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   private func createEditors() {
     let knobColor = NSColor(named: "knob")!
+    odd90Control.setTint(knobColor)
 
     for (parameterAddress, (knob, label)) in controls {
       knob.progressColor = knobColor
@@ -86,15 +87,11 @@ extension Knob: AUParameterValueProvider, RangedControl {}
       knob.target = self
       knob.action = #selector(handleKnobValueChanged(_:))
 
-      if parameterAddress == .dry || parameterAddress == .wet {
-        knob.trackLineWidth = 8
-        knob.progressLineWidth = 6
-        knob.indicatorLineWidth = 6
-      } else {
-        knob.trackLineWidth = 10
-        knob.progressLineWidth = 8
-        knob.indicatorLineWidth = 8
-      }
+      let trackWidth: CGFloat = parameterAddress == .dry || parameterAddress == .wet ? 8 : 10
+      let progressWidth = trackWidth - 2.0
+      knob.trackLineWidth = trackWidth
+      knob.progressLineWidth = progressWidth
+      knob.indicatorLineWidth = progressWidth
 
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
                                         formatter: parameters.valueFormatter(parameterAddress),
@@ -103,11 +100,6 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     }
 
     editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
-
-    odd90Control.wantsLayer = true
-    odd90Control.layer?.backgroundColor = knobColor.cgColor
-    odd90Control.layer?.masksToBounds = true
-    odd90Control.layer?.cornerRadius = 10
   }
 
   @IBAction private func handleKnobValueChanged(_ control: Knob) {
