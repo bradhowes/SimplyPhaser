@@ -62,8 +62,11 @@ extension Knob: AUParameterValueProvider, RangedControl {}
       }
     }
   }
+}
 
-  public override func viewDidLoad() {
+public extension ViewController {
+
+  override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .black
 
@@ -72,7 +75,32 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     }
   }
 
-  private func createEditors() {
+  override func mouseDown(with event: NSEvent) {
+    // Allow for clicks on the common NSView to end editing of values
+    NSApp.keyWindow?.makeFirstResponder(nil)
+
+    os_log(.debug, log: log, "controlChanged END")
+  }
+}
+
+extension ViewController: AudioUnitViewConfigurationManager {}
+
+extension ViewController: AUAudioUnitFactory {
+  @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
+    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
+                                                      parameters: parameters,
+                                                      kernel: KernelBridge(Bundle.main.auBaseName),
+                                                      viewConfigurationManager: self)
+    self.audioUnit = audioUnit
+    return audioUnit
+  }
+}
+
+// MARK: - Private
+
+private extension ViewController {
+
+  func createEditors() {
     let knobColor = NSColor(named: "knob")!
     odd90Control.setTint(knobColor)
 
@@ -98,16 +126,16 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
   }
 
-  @IBAction private func handleKnobValueChange(_ control: Knob) {
+  @IBAction func handleKnobValueChange(_ control: Knob) {
     guard let address = control.parameterAddress else { fatalError() }
     controlChanged(control, address: address)
   }
 
-  @IBAction private func handleOdd90Change(_ control: NSSwitch) {
+  @IBAction func handleOdd90Change(_ control: NSSwitch) {
     controlChanged(control, address: .odd90)
   }
 
-  internal func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
+  func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
     os_log(.info, log: log, "controlChanged BEGIN - %d %f", address.rawValue, control.value)
 
     guard let audioUnit = audioUnit else {
@@ -119,25 +147,5 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     audioUnit.clearCurrentPresetIfFactoryPreset()
 
     editors[address]?.controlChanged(source: control)
-  }
-
-  override public func mouseDown(with event: NSEvent) {
-    // Allow for clicks on the common NSView to end editing of values
-    NSApp.keyWindow?.makeFirstResponder(nil)
-
-    os_log(.debug, log: log, "controlChanged END")
-  }
-}
-
-extension ViewController: AudioUnitViewConfigurationManager {}
-
-extension ViewController: AUAudioUnitFactory {
-  @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
-                                                      parameters: parameters,
-                                                      kernel: KernelBridge(Bundle.main.auBaseName),
-                                                      viewConfigurationManager: self)
-    self.audioUnit = audioUnit
-    return audioUnit
   }
 }
