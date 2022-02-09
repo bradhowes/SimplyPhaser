@@ -83,7 +83,11 @@ public extension ViewController {
   }
 }
 
+// MARK: - AudioUnitViewConfigurationManager
+
 extension ViewController: AudioUnitViewConfigurationManager {}
+
+// MARK: - AUAudioUnitFactory
 
 extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
