@@ -186,12 +186,4 @@ extension ViewController {
       editors[address]?.parameterChanged()
     }
   }
-
-//  override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    if !editingContainerView.isHidden {
-//      endEditing()
-//    }
-//    super.touchesBegan(touches, with: event)
-//  }
-
 }

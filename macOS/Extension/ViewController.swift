@@ -48,13 +48,20 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   @IBOutlet private weak var odd90Control: NSSwitch!
 
-  var controls = [ParameterAddress : AUParameterEditor]()
+  private lazy var controls: [ParameterAddress: (Knob, Label)] = [
+    .rate: (rateControl, rateValueLabel),
+    .depth: (depthControl, depthValueLabel),
+    .intensity: (intensityControl, intensityValueLabel),
+    .dry: (dryMixControl, dryMixValueLabel),
+    .wet: (wetMixControl, wetMixValueLabel)
+  ]
 
+  var editors = [ParameterAddress : AUParameterEditor]()
   public var audioUnit: FilterAudioUnit? {
     didSet {
-      performOnMain {
+      DispatchQueue.main.async {
         if self.isViewLoaded {
-          self.connectViewToAU()
+          self.createEditors()
         }
       }
     }
@@ -63,44 +70,44 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .black
-    if audioUnit != nil {
-      connectViewToAU()
-    }
 
+    if audioUnit != nil {
+      createEditors()
+    }
+  }
+
+  private func createEditors() {
     let knobColor = NSColor(named: "knob")!
 
-    for control in [rateControl, depthControl, intensityControl] {
-      if let control = control {
-        control.progressColor = knobColor
-        control.indicatorColor = knobColor
-        control.trackLineWidth = 10
-        control.progressLineWidth = 8
-        control.indicatorLineWidth = 8
-        control.target = self
-        control.action = #selector(handleKnobValueChanged(_:))
+    for (parameterAddress, (knob, label)) in controls {
+      knob.progressColor = knobColor
+      knob.indicatorColor = knobColor
+
+      knob.target = self
+      knob.action = #selector(handleKnobValueChanged(_:))
+
+      if parameterAddress == .dry || parameterAddress == .wet {
+        knob.trackLineWidth = 8
+        knob.progressLineWidth = 6
+        knob.indicatorLineWidth = 6
+      } else {
+        knob.trackLineWidth = 10
+        knob.progressLineWidth = 8
+        knob.indicatorLineWidth = 8
       }
+
+      let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
+                                        formatter: parameters.valueFormatter(parameterAddress),
+                                        rangedControl: knob, label: label)
+      editors[parameterAddress] = editor
     }
 
-    for control in [dryMixControl, wetMixControl] {
-      if let control = control {
-        control.progressColor = knobColor
-        control.indicatorColor = knobColor
-        control.trackLineWidth = 8
-        control.progressLineWidth = 6
-        control.indicatorLineWidth = 6
-        control.target = self
-        control.action = #selector(handleKnobValueChanged(_:))
-      }
-    }
+    editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
 
-    for control in [odd90Control] {
-      if let control = control {
-        control.wantsLayer = true
-        control.layer?.backgroundColor = knobColor.cgColor
-        control.layer?.masksToBounds = true
-        control.layer?.cornerRadius = 10
-      }
-    }
+    odd90Control.wantsLayer = true
+    odd90Control.layer?.backgroundColor = knobColor.cgColor
+    odd90Control.layer?.masksToBounds = true
+    odd90Control.layer?.cornerRadius = 10
   }
 
   @IBAction private func handleKnobValueChanged(_ control: Knob) {
@@ -126,7 +133,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
       audioUnit.currentPreset = nil
     }
 
-    controls[address]?.controlChanged(source: control)
+    editors[address]?.controlChanged(source: control)
   }
 
   override public func mouseDown(with event: NSEvent) {
@@ -135,31 +142,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   }
 }
 
-extension ViewController: AUAudioUnitFactory {
-
-  /**
-   Create a new FilterAudioUnit instance to run in an AVu3 container.
-
-   - parameter componentDescription: descriptions of the audio environment it will run in
-   - returns: new FilterAudioUnit
-   */
-  public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    os_log(.info, log: log, "createAudioUnit BEGIN - %{public}s", componentDescription.description)
-
-    let kernel = KernelBridge(Bundle.main.auBaseName)
-    parameters.setParameterHandler(kernel)
-
-    let audioUnit = try FilterAudioUnit(componentDescription: componentDescription, options: [.loadOutOfProcess])
-    self.audioUnit = audioUnit
-
-    audioUnit.setParameters(parameters)
-    audioUnit.setKernel(kernel)
-    audioUnit.currentPresetMonitor = self
-
-    os_log(.info, log: log, "createAudioUnit END")
-    return audioUnit
-  }
-}
+extension ViewController: AudioUnitViewConfigurationManager {}
 
 extension ViewController: CurrentPresetMonitor {
 
@@ -170,59 +153,25 @@ extension ViewController: CurrentPresetMonitor {
   }
 }
 
+extension ViewController: AUAudioUnitFactory {
+  @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
+    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
+                                                      parameters: parameters,
+                                                      kernel: KernelBridge(Bundle.main.auBaseName),
+                                                      currentPresetMonitor: self,
+                                                      viewConfigurationManager: self)
+    self.audioUnit = audioUnit
+    return audioUnit
+  }
+}
+
+
 extension ViewController {
-
-  override public func viewWillTransition(to newSize: NSSize) {
-    os_log(.debug, log: log, "viewWillTransition: %f x %f", newSize.width, newSize.height)
-  }
-
-  private func connectViewToAU() {
-    os_log(.info, log: log, "connectViewToAU")
-
-    guard let audioUnit = audioUnit else { fatalError("logic error -- nil audioUnit value") }
-
-    controls[.rate] = FloatParameterEditor(parameter: parameters[.rate], formatter: parameters.valueFormatter(.rate),
-                                           rangedControl: rateControl, label: rateValueLabel)
-    controls[.depth] = FloatParameterEditor(parameter: parameters[.depth], formatter: parameters.valueFormatter(.depth),
-                                            rangedControl: depthControl, label: depthValueLabel)
-    controls[.intensity] = FloatParameterEditor(parameter: parameters[.intensity],
-                                                formatter: parameters.valueFormatter(.intensity),
-                                                rangedControl: intensityControl, label: intensityValueLabel)
-    controls[.dry] = FloatParameterEditor(parameter: parameters[.dry], formatter: parameters.valueFormatter(.dry),
-                                          rangedControl: dryMixControl, label: dryMixValueLabel)
-    controls[.wet] = FloatParameterEditor(parameter: parameters[.wet], formatter: parameters.valueFormatter(.wet),
-                                          rangedControl: wetMixControl, label:  wetMixValueLabel)
-    controls[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
-
-    // Let us manage view configuration changes
-    audioUnit.viewConfigurationManager = self
-  }
 
   private func updateDisplay() {
     os_log(.info, log: log, "updateDisplay")
     for address in ParameterAddress.allCases {
-      controls[address]?.parameterChanged()
+      editors[address]?.parameterChanged()
     }
-  }
-
-  private func performOnMain(_ operation: @escaping () -> Void) {
-    (Thread.isMainThread ? operation : { DispatchQueue.main.async { operation() } })()
-  }
-}
-
-extension ViewController: AudioUnitViewConfigurationManager {
-
-  public func supportedViewConfigurations(_ available: [AUAudioUnitViewConfiguration]) -> IndexSet {
-    var indexSet = IndexSet()
-    for (index, viewConfiguration) in available.enumerated() {
-      if viewConfiguration.width > 0 && viewConfiguration.height > 0 {
-        indexSet.insert(index)
-      }
-    }
-    return indexSet
-  }
-
-  public func selectViewConfiguration(_ viewConfiguration: AUAudioUnitViewConfiguration) {
-
   }
 }
