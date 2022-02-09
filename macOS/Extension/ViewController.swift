@@ -9,10 +9,6 @@ import ParameterAddress
 import Parameters
 import os.log
 
-extension NSSwitch: AUParameterValueProvider, BooleanControl, TagHolder {
-  public var value: AUValue { isOn ? 1.0 : 0.0 }
-}
-
 extension Knob: AUParameterValueProvider, RangedControl {}
 
 /**
@@ -85,7 +81,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
       knob.indicatorColor = knobColor
 
       knob.target = self
-      knob.action = #selector(handleKnobValueChanged(_:))
+      knob.action = #selector(handleKnobValueChange(_:))
 
       let trackWidth: CGFloat = parameterAddress == .dry || parameterAddress == .wet ? 8 : 10
       let progressWidth = trackWidth - 2.0
@@ -102,16 +98,16 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
   }
 
-  @IBAction private func handleKnobValueChanged(_ control: Knob) {
+  @IBAction private func handleKnobValueChange(_ control: Knob) {
     guard let address = control.parameterAddress else { fatalError() }
     controlChanged(control, address: address)
   }
 
-  @IBAction private func handleOdd90Changed(_ control: NSSwitch) {
+  @IBAction private func handleOdd90Change(_ control: NSSwitch) {
     controlChanged(control, address: .odd90)
   }
 
-  private func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
+  internal func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
     os_log(.info, log: log, "controlChanged BEGIN - %d %f", address.rawValue, control.value)
 
     guard let audioUnit = audioUnit else {
@@ -120,10 +116,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     }
 
     // When user changes something and a factory preset was active, clear it.
-    if let preset = audioUnit.currentPreset, preset.number >= 0 {
-      os_log(.info, log: log, "controlChanged - clearing currentPreset")
-      audioUnit.currentPreset = nil
-    }
+    audioUnit.clearCurrentPresetIfFactoryPreset()
 
     editors[address]?.controlChanged(source: control)
   }
@@ -131,39 +124,20 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   override public func mouseDown(with event: NSEvent) {
     // Allow for clicks on the common NSView to end editing of values
     NSApp.keyWindow?.makeFirstResponder(nil)
+
+    os_log(.debug, log: log, "controlChanged END")
   }
 }
 
 extension ViewController: AudioUnitViewConfigurationManager {}
-
-extension ViewController: CurrentPresetMonitor {
-
-  public func currentPresetChanged(_ value: AUAudioUnitPreset?) {
-    if value == nil {
-      DispatchQueue.main.async { self.updateDisplay() }
-    }
-  }
-}
 
 extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
                                                       parameters: parameters,
                                                       kernel: KernelBridge(Bundle.main.auBaseName),
-                                                      currentPresetMonitor: self,
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
     return audioUnit
-  }
-}
-
-
-extension ViewController {
-
-  private func updateDisplay() {
-    os_log(.info, log: log, "updateDisplay")
-    for address in ParameterAddress.allCases {
-      editors[address]?.parameterChanged()
-    }
   }
 }

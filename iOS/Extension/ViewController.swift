@@ -9,12 +9,6 @@ import ParameterAddress
 import Parameters
 import os.log
 
-extension UIView: TagHolder {}
-
-extension UISwitch: AUParameterValueProvider, BooleanControl {
-  public var value: AUValue { isOn ? 1.0 : 0.0 }
-}
-
 extension Knob: AUParameterValueProvider, RangedControl {}
 
 /**
@@ -141,10 +135,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     }
 
     // When user changes something and a factory preset was active, clear it.
-    if let preset = audioUnit.currentPreset, preset.number >= 0 {
-      os_log(.debug, log: log, "controlChanged - clearing currentPreset")
-      audioUnit.currentPreset = nil
-    }
+    audioUnit.clearCurrentPresetIfFactoryPreset()
 
     editors[address]?.controlChanged(source: control)
 
@@ -154,33 +145,13 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
 extension ViewController: AudioUnitViewConfigurationManager {}
 
-extension ViewController: CurrentPresetMonitor {
-
-  public func currentPresetChanged(_ value: AUAudioUnitPreset?) {
-    if value == nil {
-      DispatchQueue.main.async { self.updateDisplay() }
-    }
-  }
-}
-
 extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
                                                       parameters: parameters,
                                                       kernel: KernelBridge(Bundle.main.auBaseName),
-                                                      currentPresetMonitor: self,
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
     return audioUnit
-  }
-}
-
-extension ViewController {
-
-  private func updateDisplay() {
-    os_log(.info, log: log, "updateDisplay")
-    for address in ParameterAddress.allCases {
-      editors[address]?.parameterChanged()
-    }
   }
 }
