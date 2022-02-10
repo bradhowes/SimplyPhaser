@@ -62,7 +62,7 @@ public:
 private:
 
   void initialize(int channelCount, double sampleRate) {
-    lfo_.initialize(sampleRate, 0.0);
+    lfo_.setSampleRate(sampleRate);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
       phaseShifters_.emplace_back(PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
