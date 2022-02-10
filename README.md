@@ -1,4 +1,7 @@
 ![CI](https://github.com/bradhowes/SimplyPhaser/workflows/CI/badge.svg?branch=main)
+[![Swift 5.5](https://img.shields.io/badge/Swift-5.5-orange.svg?style=flat)](https://swift.org)
+[![AUv3](https://img.shields.io/badge/AU-v3-green.svg)](https://github.com/bradhowes/SoundFonts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-A31F34.svg)](https://opensource.org/licenses/MIT)
 
 ![](Media/image.png)
 
