@@ -33,13 +33,13 @@ public:
   }
 
   /**
-   Update kernel and buffers to support the given format and channel count
+   Update kernel and buffers to support the given format.
 
    @param format the audio format to render
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    */
-  void startProcessing(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
-    super::startProcessing(format, maxFramesToRender);
+  void setRenderingFormat(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
+    super::setRenderingFormat(format, maxFramesToRender);
     initialize(format.channelCount, format.sampleRate);
   }
 

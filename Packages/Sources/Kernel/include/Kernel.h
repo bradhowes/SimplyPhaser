@@ -26,12 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param inputFormat the current format of the input bus
  @param maxFramesToRender the max frames to expect in a render request
  */
-- (void)startProcessing:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender;
+- (void)setRenderingFormat:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender;
 
 /**
- Stop processing, releasing any resources used to support rendering.
+ Rendering has stopped. Release any resources used to support it.
  */
-- (void)stopProcessing;
+- (void)renderingStopped;
 
 /**
  Obtain a block to use for rendering with the kernel.

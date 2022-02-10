@@ -24,12 +24,12 @@
   return self;
 }
 
-- (void)startProcessing:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
-  kernel_->startProcessing(format, maxFramesToRender);
+- (void)setRenderingFormat:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
+  kernel_->setRenderingFormat(format, maxFramesToRender);
   maxFramesToRender_ = maxFramesToRender;
 }
 
-- (void)stopProcessing { kernel_->stopProcessing(); }
+- (void)renderingStopped { kernel_->renderingStopped(); }
 
 - (AUInternalRenderBlock)internalRenderBlock {
   auto& kernel = *kernel_;
