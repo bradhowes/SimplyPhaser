@@ -107,12 +107,11 @@ private:
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
 
+  LFO<AUValue> lfo_;
   PercentageParameter<AUValue> depth_;
   PercentageParameter<AUValue> intensity_;
   PercentageParameter<AUValue> dry_;
   PercentageParameter<AUValue> wet_;
   BoolParameter odd90_;
-
   std::vector<PhaseShifter<AUValue>> phaseShifters_;
-  LFO<AUValue> lfo_;
 };
