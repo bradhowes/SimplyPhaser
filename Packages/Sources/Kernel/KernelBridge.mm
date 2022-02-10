@@ -10,13 +10,11 @@
 
 @implementation KernelBridge {
   Kernel* kernel_;
-  AUAudioFrameCount maxFramesToRender_;
 }
 
 - (instancetype)init:(NSString*)appExtensionName {
   if (self = [super init]) {
     self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String));
-    self->maxFramesToRender_ = 0;
   }
 
   return self;
@@ -24,21 +22,17 @@
 
 - (void)setRenderingFormat:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
   kernel_->setRenderingFormat(format, maxFramesToRender);
-  maxFramesToRender_ = maxFramesToRender;
 }
 
 - (void)renderingStopped { kernel_->renderingStopped(); }
 
 - (AUInternalRenderBlock)internalRenderBlock {
   auto& kernel = *kernel_;
-  auto maxFramesToRender = maxFramesToRender_;
   NSInteger bus = 0;
 
   return ^AUAudioUnitStatus(AudioUnitRenderActionFlags* flags, const AudioTimeStamp* timestamp,
                             AUAudioFrameCount frameCount, NSInteger, AudioBufferList* output,
                             const AURenderEvent* realtimeEventListHead, AURenderPullInputBlock pullInputBlock) {
-    if (frameCount > maxFramesToRender) return kAudioUnitErr_TooManyFramesToProcess;
-    if (pullInputBlock == nullptr) return kAudioUnitErr_NoConnection;
     return kernel.processAndRender(timestamp, frameCount, bus, output, realtimeEventListHead, pullInputBlock);
   };
 }
