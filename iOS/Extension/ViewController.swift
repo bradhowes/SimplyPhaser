@@ -20,6 +20,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   public let log = Shared.logger(Bundle.main.auBaseName + "AU", "ViewController")
 
   private let parameters = AudioUnitParameters()
+
   private var viewConfig: AUAudioUnitViewConfiguration!
 
   @IBOutlet private weak var controlsView: View!
@@ -100,11 +101,13 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
+    os_log(.info, log: log, "createAudioUnit BEGIN")
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
                                                       parameters: parameters,
                                                       kernel: KernelBridge(Bundle.main.auBaseName),
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
+    os_log(.info, log: log, "createAudioUnit END")
     return audioUnit
   }
 }

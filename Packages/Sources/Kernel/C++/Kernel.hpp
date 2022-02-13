@@ -29,6 +29,7 @@ public:
    */
   Kernel(const std::string& name) : super(os_log_create(name.c_str(), "Kernel"))
   {
+    os_log_info(log_, "Kernel BEGIN");
     lfo_.setWaveform(LFOWaveform::triangle);
   }
 
@@ -39,8 +40,10 @@ public:
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    */
   void setRenderingFormat(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
+    os_log_info(log_, "setRenderingFormat BEGIN");
     super::setRenderingFormat(format, maxFramesToRender);
     initialize(format.channelCount, format.sampleRate);
+    os_log_info(log_, "setRenderingFormat END");
   }
 
   /**
@@ -62,11 +65,13 @@ public:
 private:
 
   void initialize(int channelCount, double sampleRate) {
+    os_log_info(log_, "initialize BEGIN - %d %f", channelCount, sampleRate);
     lfo_.setSampleRate(sampleRate);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
       phaseShifters_.emplace_back(PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
     }
+    os_log_info(log_, "initialize END");
   }
 
   void setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration);
@@ -80,6 +85,7 @@ private:
   }
 
   void doRendering(std::vector<AUValue*>& ins, std::vector<AUValue*>& outs, AUAudioFrameCount frameCount) {
+    os_log_info(log_, "doRendering BEGIN %ld %ld %d", ins.size(), outs.size(), frameCount);
 
     // Advance by frames in outer loop so we can ramp values when they change without having to save/restore state.
     for (int frame = 0; frame < frameCount; ++frame) {
