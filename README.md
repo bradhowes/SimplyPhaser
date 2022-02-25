@@ -46,6 +46,14 @@ App Notes from National Semiconductor... The NSC design used six 1st order all-p
 You can find Pirkle's implementation in the [fxobjects.h](https://github.com/bradhowes/SimplyPhaser/blob/9f06b552f06b301a14b65400cbc8b57a319a271b/Shared/Kernel/Pirkle/fxobjects.h#L3537) file. Note that the effect 
 uses my own C++ implementation that I think is a bit more straightforward. There are unit tests that compare the two for implementation correctness.
 
+Note that most of the the C++ code that does the filtering is found in the 
+[AUv3Support Swift package](https://github.com/bradhowes/AUv3Support)
+that this project depends on. The 
+[PhaseShifter.hpp](https://github.com/bradhowes/AUv3Support/blob/main/Sources/DSPHeaders/include/PhaseShifter.hpp) class contains the pipeline that does the
+filtering on the samples. It relies on a collection of 6
+[biquad filters](https://github.com/bradhowes/AUv3Support/blob/main/Sources/DSPHeaders/include/Biquad.hpp)
+configured in all-pass mode.
+
 ## Demo Targets
 
 The macOS and iOS apps are simple hosts that demonstrate the functionality of the AUv3 component. In the AUv3
