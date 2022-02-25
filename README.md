@@ -69,22 +69,13 @@ MIDI controller might do.
 
 ## Code Layout
 
-Each OS ([macOS](macOS) and [iOS](iOS)) have the same code layout:
+Each OS ([macOS](macOS) and [iOS](iOS)) app has the same basic layout:
 
 * `App` -- code and configury for the application that hosts the AUv3 app extension
 * `Extension` -- code and configury for the extension itself
-* `Framework` -- code configury for the framework that contains the shared code by the app and the extension
 
-The [Shared](Shared) folder holds all of the code that is used by the above products. In it you will find
-
-* [LFO](Shared/Kernel/LFO.h) -- simple low-frequency oscillator that varies the delay amount
-* [FilterKernel](Shared/Kernel/FilterKernel.h) -- another C++ class that does the rendering of audio samples by sending them through the filter.
-* [FilterAudioUnit](Shared/FilterAudioUnit.swift) -- the actual AUv3 AudioUnit written in Swift.
-* [FilterViewController](Shared/User%20Interface/FilterViewController.swift) -- a custom view controller that
-works with both UIView and NSView views to show the effect's controls. Note that this works in both macOS and
-iOS, but that may not be for the best.
-
-Additional supporting files can be found in [Support](Shared/Support).
+However, most of the code you will find elsewhere, either in the Swift Packages Sources folder that holds some code and resources common to both platforms, or
+more likely in the [AUv3Support Swift package](https://github.com/bradhowes/AUv3Support) mentioned above.
 
 ## Rolling Your Own
 
@@ -92,4 +83,5 @@ Additional supporting files can be found in [Support](Shared/Support).
 > someone's UI, icons, samples, or any other assets if you are going to distribute your effect on the App Store.
 
 Feel free to fork and do as you please. If you have improvements, I would definitely welcome your feedback. If you are interested in working out your own AUv3
-plugins have a look at my [AUv3Template](https://github.com/bradhowes/AUv3Template) project which tries to offer a good place to start.
+plugins have a look at my [AUv3Template](https://github.com/bradhowes/AUv3Template) project which tries to offer a good place to start with something that you 
+can call your own.
