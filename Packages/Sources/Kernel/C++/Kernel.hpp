@@ -6,20 +6,20 @@
 #import <string>
 #import <AVFoundation/AVFoundation.h>
 
-#import "BoolParameter.hpp"
-#import "DelayBuffer.hpp"
-#import "EventProcessor.hpp"
-#import "MillisecondsParameter.hpp"
-#import "LFO.hpp"
-#import "PercentageParameter.hpp"
-#import "PhaseShifter.hpp"
+#import "DSPHeaders/BoolParameter.hpp"
+#import "DSPHeaders/DelayBuffer.hpp"
+#import "DSPHeaders/EventProcessor.hpp"
+#import "DSPHeaders/MillisecondsParameter.hpp"
+#import "DSPHeaders/LFO.hpp"
+#import "DSPHeaders/PercentageParameter.hpp"
+#import "DSPHeaders/PhaseShifter.hpp"
 
 /**
  The audio processing kernel that transforms audio samples into those with a phased effect.
  */
-class Kernel : public EventProcessor<Kernel> {
+class Kernel : public DSPHeaders::EventProcessor<Kernel> {
 public:
-  using super = EventProcessor<Kernel>;
+  using super = DSPHeaders::EventProcessor<Kernel>;
   friend super;
 
   /**
@@ -69,7 +69,7 @@ private:
     lfo_.setSampleRate(sampleRate);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      phaseShifters_.emplace_back(PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
+      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
     }
     os_log_info(log_, "initialize END");
   }
@@ -84,7 +84,14 @@ private:
     }
   }
 
-  void doRendering(std::vector<AUValue*>& ins, std::vector<AUValue*>& outs, AUAudioFrameCount frameCount) {
+  AUAudioUnitStatus doPullInput(const AudioTimeStamp* timestamp, AUAudioFrameCount frameCount, NSInteger inputBusNumber,
+                                AURenderPullInputBlock pullInputBlock)
+  {
+    return pullInput(timestamp, frameCount, inputBusNumber, pullInputBlock);
+  }
+
+  void doRendering(NSInteger outputBusNumber, std::vector<AUValue*>& ins, std::vector<AUValue*>& outs,
+                   AUAudioFrameCount frameCount) {
     os_log_info(log_, "doRendering BEGIN %ld %ld %d", ins.size(), outs.size(), frameCount);
 
     // Advance by frames in outer loop so we can ramp values when they change without having to save/restore state.
@@ -113,11 +120,11 @@ private:
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
 
-  LFO<AUValue> lfo_;
-  PercentageParameter<AUValue> depth_;
-  PercentageParameter<AUValue> intensity_;
-  PercentageParameter<AUValue> dry_;
-  PercentageParameter<AUValue> wet_;
-  BoolParameter odd90_;
-  std::vector<PhaseShifter<AUValue>> phaseShifters_;
+  DSPHeaders::LFO<AUValue> lfo_;
+  DSPHeaders::Parameters::PercentageParameter<AUValue> depth_;
+  DSPHeaders::Parameters::PercentageParameter<AUValue> intensity_;
+  DSPHeaders::Parameters::PercentageParameter<AUValue> dry_;
+  DSPHeaders::Parameters::PercentageParameter<AUValue> wet_;
+  DSPHeaders::Parameters::BoolParameter odd90_;
+  std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_;
 };
