@@ -7,6 +7,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "DSPHeaders/BoolParameter.hpp"
+#import "DSPHeaders/BusBuffers.hpp"
 #import "DSPHeaders/DelayBuffer.hpp"
 #import "DSPHeaders/EventProcessor.hpp"
 #import "DSPHeaders/MillisecondsParameter.hpp"
@@ -27,7 +28,7 @@ public:
 
    @param name the name to use for logging purposes.
    */
-  Kernel(const std::string& name) : super(os_log_create(name.c_str(), "Kernel"))
+  Kernel(std::string name) : super(name)
   {
     os_log_info(log_, "Kernel BEGIN");
     lfo_.setWaveform(LFOWaveform::triangle);
@@ -36,12 +37,13 @@ public:
   /**
    Update kernel and buffers to support the given format.
 
+   @param busCount the number of busses to support
    @param format the audio format to render
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    */
-  void setRenderingFormat(AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
+  void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
     os_log_info(log_, "setRenderingFormat BEGIN");
-    super::setRenderingFormat(format, maxFramesToRender);
+    super::setRenderingFormat(busCount, format, maxFramesToRender);
     initialize(format.channelCount, format.sampleRate);
     os_log_info(log_, "setRenderingFormat END");
   }
@@ -84,13 +86,7 @@ private:
     }
   }
 
-  AUAudioUnitStatus doPullInput(const AudioTimeStamp* timestamp, AUAudioFrameCount frameCount, NSInteger inputBusNumber,
-                                AURenderPullInputBlock pullInputBlock)
-  {
-    return pullInput(timestamp, frameCount, inputBusNumber, pullInputBlock);
-  }
-
-  void doRendering(NSInteger outputBusNumber, std::vector<AUValue*>& ins, std::vector<AUValue*>& outs,
+  void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) {
     os_log_info(log_, "doRendering BEGIN %ld %ld %d", ins.size(), outs.size(), frameCount);
 

@@ -24,9 +24,10 @@
   return self;
 }
 
-- (void)setRenderingFormat:(AVAudioFormat*)format maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
+- (void)setRenderingFormat:(NSInteger)busCount format:(AVAudioFormat*)format
+         maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
   os_log_info(log_, "setRenderingFormat BEGIN");
-  kernel_->setRenderingFormat(format, maxFramesToRender);
+  kernel_->setRenderingFormat(busCount, format, maxFramesToRender);
   os_log_info(log_, "setRenderingFormat END");
 }
 
