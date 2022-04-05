@@ -71,7 +71,7 @@ private:
     lfo_.setSampleRate(sampleRate);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.internal(), 20);
+      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.get(), 20);
     }
     os_log_info(log_, "initialize END");
   }
