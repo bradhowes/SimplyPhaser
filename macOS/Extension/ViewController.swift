@@ -21,9 +21,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   private let parameters = AudioUnitParameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
-  // private var parameterObserverToken: AUParameterObserverToken?
   private var keyValueObserverToken: NSKeyValueObservation?
-  private var hasActiveLabel = false
 
   @IBOutlet private weak var controlsView: NSView!
 
@@ -52,7 +50,9 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     .wet: (wetMixControl, wetMixValueLabel)
   ]
 
-  var editors = [ParameterAddress : AUParameterEditor]()
+  var editors = [AUParameterEditor]()
+  var editorMap = [ParameterAddress : AUParameterEditor]()
+
   public var audioUnit: FilterAudioUnit? {
     didSet {
       DispatchQueue.main.async {
@@ -124,10 +124,15 @@ private extension ViewController {
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
                                         formatter: parameters.valueFormatter(parameterAddress),
                                         rangedControl: knob, label: label)
-      editors[parameterAddress] = editor
+      editors.append(editor)
+      editorMap[parameterAddress] = editor
     }
 
-    editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    editors.append(editor)
+    editorMap[.odd90] = editor
+
+    keyValueObserverToken = Self.updateEditorsOnPresetChange(audioUnit!, editors: editors)
   }
 
   @IBAction func handleKnobValueChange(_ control: Knob) {
@@ -150,6 +155,6 @@ private extension ViewController {
     // When user changes something and a factory preset was active, clear it.
     audioUnit.clearCurrentPresetIfFactoryPreset()
 
-    editors[address]?.controlChanged(source: control)
+    editorMap[address]?.controlChanged(source: control)
   }
 }
