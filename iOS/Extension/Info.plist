@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Desdemona.ttf</string>
-	</array>
 	<key>AU_BASE_NAME</key>
 	<string>$(AU_BASE_NAME)</string>
 	<key>AU_COMPONENT_MANUFACTURER</key>
@@ -64,7 +60,7 @@
 					<key>type</key>
 					<string>$(AU_COMPONENT_TYPE)</string>
 					<key>version</key>
-					<real>65536</real>
+					<real>131075</real>
 				</dict>
 			</array>
 		</dict>
@@ -73,5 +69,9 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.AudioUnit-UI</string>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Desdemona.ttf</string>
+	</array>
 </dict>
 </plist>
