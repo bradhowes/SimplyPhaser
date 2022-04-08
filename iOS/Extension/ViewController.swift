@@ -20,8 +20,8 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   public let log = Shared.logger(Bundle.main.auBaseName + "AU", "ViewController")
 
   private let parameters = AudioUnitParameters()
-
   private var viewConfig: AUAudioUnitViewConfiguration!
+  private var keyValueToken: NSKeyValueObservation?
 
   @IBOutlet private weak var controlsView: View!
 
@@ -69,7 +69,9 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   // The bottom constraint of the editingBackground that controls the vertical position of the editor
   @IBOutlet private weak var editingBackgroundBottomConstraint: NSLayoutConstraint!
 
-  private var editors = [ParameterAddress : AUParameterEditor]()
+  private var editors = [AUParameterEditor]()
+  private var editorMap = [ParameterAddress : AUParameterEditor]()
+
   private var audioUnit: FilterAudioUnit? {
     didSet {
       DispatchQueue.main.async {
@@ -138,11 +140,16 @@ private extension ViewController {
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
                                         formatter: parameters.valueFormatter(parameterAddress),
                                         rangedControl: knob, label: label)
-      editors[parameterAddress] = editor
+      editors.append(editor)
+      editorMap[parameterAddress] = editor
       editor.setValueEditor(valueEditor: valueEditor, tapToEdit: tapEdit)
     }
 
-    editors[.odd90] = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    editors.append(editor)
+    editorMap[.odd90] = editor
+
+    keyValueToken = Self.updateEditorsOnPresetChange(audioUnit!, editors: editors)
   }
 
   @IBAction func handleKnobValueChange(_ control: Knob) {
@@ -165,7 +172,7 @@ private extension ViewController {
     // When user changes something and a factory preset was active, clear it.
     audioUnit.clearCurrentPresetIfFactoryPreset()
 
-    editors[address]?.controlChanged(source: control)
+    editorMap[address]?.controlChanged(source: control)
 
     os_log(.debug, log: log, "controlChanged END")
   }
