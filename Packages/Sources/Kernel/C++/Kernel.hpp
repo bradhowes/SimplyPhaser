@@ -28,9 +28,9 @@ public:
 
    @param name the name to use for logging purposes.
    */
-  Kernel(std::string name) : super(name)
+  Kernel(std::string name) noexcept : super(), name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
-    os_log_info(log_, "Kernel BEGIN");
+    os_log_debug(log_, "constructor");
     lfo_.setWaveform(LFOWaveform::triangle);
   }
 
@@ -123,4 +123,6 @@ private:
   DSPHeaders::Parameters::PercentageParameter<AUValue> wet_;
   DSPHeaders::Parameters::BoolParameter odd90_;
   std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_;
+  std::string name_;
+  os_log_t log_;
 };
