@@ -31,23 +31,21 @@
   os_log_info(log_, "setRenderingFormat END");
 }
 
-- (void)renderingStopped {
-  os_log_info(log_, "renderingStopped BEGIN");
-  kernel_->renderingStopped();
-  os_log_info(log_, "renderingStopped END");
-}
+- (void)deallocateRenderResources { kernel_->deallocateRenderResources(); }
 
-- (AUInternalRenderBlock)internalRenderBlock {
-  os_log_info(log_, "internalRenderBlock");
-  auto& kernel = *kernel_;
-  auto& log = log_;
-  NSInteger bus = 0;
-
+- (AUInternalRenderBlock)internalRenderBlock:(nullable AUHostTransportStateBlock)tsb {
+  __block auto kernel = kernel_;
+  __block auto transportStateBlock = tsb;
   return ^AUAudioUnitStatus(AudioUnitRenderActionFlags* flags, const AudioTimeStamp* timestamp,
-                            AUAudioFrameCount frameCount, NSInteger, AudioBufferList* output,
+                            AUAudioFrameCount frameCount, NSInteger outputBusNumber, AudioBufferList* output,
                             const AURenderEvent* realtimeEventListHead, AURenderPullInputBlock pullInputBlock) {
-    os_log_info(log_, "internalRenderBlock - calling processAndRender");
-    return kernel.processAndRender(timestamp, frameCount, bus, output, realtimeEventListHead, pullInputBlock);
+    if (transportStateBlock) {
+      AUHostTransportStateFlags flags;
+      transportStateBlock(&flags, NULL, NULL, NULL);
+      bool rendering = flags & AUHostTransportStateMoving;
+      kernel->setRendering(rendering);
+    }
+    return kernel->processAndRender(timestamp, frameCount, outputBusNumber, output, realtimeEventListHead, pullInputBlock);
   };
 }
 

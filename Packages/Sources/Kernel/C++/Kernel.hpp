@@ -86,6 +86,15 @@ private:
     }
   }
 
+  void doRenderingStateChanged(bool rendering) {
+    if (!rendering) {
+      depth_.stopRamping();
+      intensity_.stopRamping();
+      dry_.stopRamping();
+      wet_.stopRamping();
+    }
+  }
+
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) {
     os_log_info(log_, "doRendering BEGIN %ld %ld %d", ins.size(), outs.size(), frameCount);
