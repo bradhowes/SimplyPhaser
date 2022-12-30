@@ -126,11 +126,11 @@ private:
   void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
 
   DSPHeaders::LFO<AUValue> lfo_;
-  DSPHeaders::Parameters::PercentageParameter<AUValue> depth_;
-  DSPHeaders::Parameters::PercentageParameter<AUValue> intensity_;
-  DSPHeaders::Parameters::PercentageParameter<AUValue> dry_;
-  DSPHeaders::Parameters::PercentageParameter<AUValue> wet_;
-  DSPHeaders::Parameters::BoolParameter odd90_;
+  DSPHeaders::Parameters::PercentageParameter<> depth_;
+  DSPHeaders::Parameters::PercentageParameter<> intensity_;
+  DSPHeaders::Parameters::PercentageParameter<> dry_;
+  DSPHeaders::Parameters::PercentageParameter<> wet_;
+  DSPHeaders::Parameters::BoolParameter<> odd90_;
   std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_;
   std::string name_;
   os_log_t log_;

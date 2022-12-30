@@ -21,7 +21,7 @@ public final class AudioUnitParameters: NSObject, ParameterSource {
   public let parameters: [AUParameter] = ParameterAddress.allCases.map { $0.parameterDefinition.parameter }
 
   /// Array of 2-tuple values that pair a factory preset name and its definition
-  public let factoryPresetValues: [(name: String, preset: FilterPreset)] = [
+  public let factoryPresetValues: [(name: String, preset: Configuration)] = [
     ("Gently Sweeps", .init(rate: 0.04, depth: 50,intensity: 75, dry: 50, wet: 50, odd90: 0)),
     ("Slo-Jo", .init(rate: 0.10, depth: 100,intensity: 90, dry: 50, wet: 50, odd90: 1)),
     ("Psycho Phase", .init(rate: 1.0, depth: 40, intensity: 90, dry: 0, wet: 100, odd90: 1)),
@@ -63,10 +63,6 @@ extension AudioUnitParameters {
     parameterTree.parameter(withAddress: address.parameterAddress) ?? missingParameter
   }
 
-  public func valueFormatter(_ address: ParameterAddress) -> (AUValue) -> String {
-    self[address].valueFormatter
-  }
-
   private func installParameterValueFormatter() {
     parameterTree.implementorStringFromValueCallback = { param, valuePtr in
       let value: AUValue
@@ -75,7 +71,7 @@ extension AudioUnitParameters {
       } else {
         value = param.value
       }
-      return String(format: param.stringFormatForValue, value) + param.suffix
+      return param.displayValueFormatter(value)
     }
   }
 
@@ -83,32 +79,27 @@ extension AudioUnitParameters {
    Accept new values for the filter settings. Uses the AUParameterTree framework for communicating the changes to the
    AudioUnit.
    */
-  private func setValues(_ preset: FilterPreset) {
-    self[.rate].value = preset.rate
-    self[.depth].value = preset.depth
-    self[.intensity].value = preset.intensity
-    self[.dry].value = preset.dry
-    self[.wet].value = preset.wet
-    self[.odd90].value = preset.odd90
+  private func setValues(_ configuration: Configuration) {
+    self[.rate].value = configuration.rate
+    self[.depth].value = configuration.depth
+    self[.intensity].value = configuration.intensity
+    self[.dry].value = configuration.dry
+    self[.wet].value = configuration.wet
+    self[.odd90].value = configuration.odd90
   }
 }
 
-extension AUParameter {
+extension AUParameter: AUParameterFormatting {
 
   /// Obtain string to use to separate a formatted value from its units name
-  var unitSeparator: String { parameterAddress == .rate ? " " : "" }
+  public var unitSeparator: String { parameterAddress == .rate ? " " : "" }
   /// Obtain the suffix to apply to a formatted value
-  var suffix: String { unitSeparator + (unitName ?? "") }
+  public var suffix: String { makeFormattingSuffix(from: unitName) }
   /// Obtain the format to use in String(format:value) when formatting a values
-  var stringFormatForValue: String {
-    switch parameterAddress {
-    case .rate, .depth, .intensity: return "%.2f"
-    case .dry, .wet: return "%.0f"
-    default: return "?"
+  public var stringFormatForDisplayValue: String {
+    switch self.parameterAddress {
+    case .depth, .dry, .wet: return "%.0f"
+    default: return "%.2f"
     }
-  }
-  /// Obtain a closure that will format parameter values into a string
-  var valueFormatter: (AUValue) -> String {
-    { value in String(format: self.stringFormatForValue, value) + self.suffix }
   }
 }

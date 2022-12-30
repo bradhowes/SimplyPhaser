@@ -3,7 +3,7 @@
 import AudioUnit
 
 /// Collection of parameters values that define a filter preset.
-public struct FilterPreset {
+public struct Configuration {
   public let rate: AUValue
   public let depth: AUValue
   public let intensity: AUValue
