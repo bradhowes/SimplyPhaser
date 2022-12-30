@@ -21,7 +21,6 @@ extension Knob: AUParameterValueProvider, RangedControl {}
 
   private let parameters = AudioUnitParameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
-  private var keyValueToken: NSKeyValueObservation?
 
   @IBOutlet private weak var controlsView: View!
 
@@ -114,6 +113,14 @@ extension ViewController: AUAudioUnitFactory {
   }
 }
 
+extension ViewController: AUParameterEditorDelegate {
+  public func parameterEditorEditingDone(changed: Bool) {
+    if changed {
+      audioUnit?.clearCurrentPresetIfFactoryPreset()
+    }
+  }
+}
+
 // MARK: - Private
 
 private extension ViewController {
@@ -136,44 +143,55 @@ private extension ViewController {
       knob.trackLineWidth = trackWidth
       knob.progressLineWidth = progressWidth
       knob.indicatorLineWidth = progressWidth
+      knob.addTarget(self, action: #selector(handleKnobChanged(_:)), for: .valueChanged)
 
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
-                                        formatter: parameters.valueFormatter(parameterAddress),
+                                        formatting: parameters[parameterAddress],
                                         rangedControl: knob, label: label)
+      editor.delegate = self
       editors.append(editor)
       editorMap[parameterAddress] = editor
       editor.setValueEditor(valueEditor: valueEditor, tapToEdit: tapEdit)
     }
 
     let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    odd90Control.addTarget(self, action: #selector(handleSwitchChanged(_:)), for: .valueChanged)
     editors.append(editor)
     editorMap[.odd90] = editor
-
-    keyValueToken = Self.updateEditorsOnPresetChange(audioUnit!, editors: editors)
   }
 
-  @IBAction func handleKnobValueChange(_ control: Knob) {
-    guard let address = control.parameterAddress else { fatalError("misconfigured knob tag") }
-    controlChanged(control, address: address)
+  @IBAction func handleKnobChanged(_ control: Knob) {
+    guard let address = control.parameterAddress else { fatalError() }
+    handleControlChanged(control, address: address)
   }
 
-  @IBAction func handleOdd90Change(_ control: Switch) {
-    controlChanged(control, address: .odd90)
+  @IBAction func handleSwitchChanged(_ control: Switch) {
+    guard let address = control.parameterAddress else { fatalError() }
+    handleControlChanged(control, address: address)
   }
 
-  func controlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
-    os_log(.debug, log: log, "controlChanged BEGIN - %d %f", address.rawValue, control.value)
+  func handleControlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
+    os_log(.debug, log: log, "controlChanged BEGIN - %d %f %f", address.rawValue, control.value,
+           parameters[address].value)
 
     guard let audioUnit = audioUnit else {
       os_log(.debug, log: log, "controlChanged END - nil audioUnit")
       return
     }
 
-    // When user changes something and a factory preset was active, clear it.
-    audioUnit.clearCurrentPresetIfFactoryPreset()
+    guard let editor = editorMap[address] else {
+      os_log(.debug, log: log, "controlChanged END - nil editor")
+      return
+    }
 
-    editorMap[address]?.controlChanged(source: control)
+    if editor.differs {
+      // When user changes something and a factory preset was active, clear it.
+      if let preset = audioUnit.currentPreset, preset.number >= 0 {
+        os_log(.debug, log: log, "controlChanged - clearing currentPreset")
+        audioUnit.currentPreset = nil
+      }
+    }
 
-    os_log(.debug, log: log, "controlChanged END")
+    editor.controlChanged(source: control)
   }
 }

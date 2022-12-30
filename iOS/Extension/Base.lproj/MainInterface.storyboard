@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v2.1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-H3-AaS" userLabel="APP_VERSION">
-                                <rect key="frame" x="332" y="384.5" width="39.5" height="18"/>
+                                <rect key="frame" x="331.5" y="384.5" width="40" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" name="title"/>
                                 <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTt-pC-dYn" userLabel="Controls">
-                                <rect key="frame" x="3.5" y="209.5" width="368" height="248.5"/>
+                                <rect key="frame" x="3.5" y="209" width="368" height="249"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hui-tD-xRO" customClass="Knob" customModule="Knob_iOS">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -44,9 +44,6 @@
                                             <constraint firstAttribute="height" constant="120" id="XNk-0T-Igy"/>
                                             <constraint firstAttribute="width" constant="120" id="wlx-rv-DBt"/>
                                         </constraints>
-                                        <connections>
-                                            <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="hbt-au-NKt"/>
-                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-Sd-KDy">
                                         <rect key="frame" x="0.0" y="112" width="120" height="24"/>
@@ -65,9 +62,6 @@
                                             <constraint firstAttribute="height" constant="120" id="kc7-LR-0xH"/>
                                             <constraint firstAttribute="width" constant="120" id="rGa-hf-xLW"/>
                                         </constraints>
-                                        <connections>
-                                            <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="f34-oc-isH"/>
-                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Depth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-HR-UOg" userLabel="Value">
                                         <rect key="frame" x="124" y="112" width="120" height="24"/>
@@ -86,9 +80,6 @@
                                             <constraint firstAttribute="width" constant="120" id="QHV-yg-ThV"/>
                                             <constraint firstAttribute="height" constant="120" id="jf1-Ig-22b"/>
                                         </constraints>
-                                        <connections>
-                                            <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="KK4-bF-EC6"/>
-                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Intensity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TX-4e-MBG" userLabel="Intensity">
                                         <rect key="frame" x="248" y="112" width="120" height="24"/>
@@ -101,15 +92,12 @@
                                         <rect key="frame" x="248" y="112" width="120" height="30"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUC-u4-A8f" userLabel="Mixes">
-                                        <rect key="frame" x="67" y="150" width="234.5" height="98.5"/>
+                                        <rect key="frame" x="67" y="150" width="234.5" height="99"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-33-WqX" userLabel="Odd 90°">
-                                                <rect key="frame" x="1.5" y="33.5" width="51" height="31"/>
+                                                <rect key="frame" x="1.5" y="34" width="51" height="31"/>
                                                 <color key="onTintColor" name="knob"/>
                                                 <color key="thumbTintColor" name="label"/>
-                                                <connections>
-                                                    <action selector="handleOdd90Change:" destination="BYZ-38-t0r" eventType="valueChanged" id="PLO-KJ-e6J"/>
-                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odd 90°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aT-Gu-trr">
                                                 <rect key="frame" x="0.0" y="75.5" width="52" height="16"/>
@@ -124,19 +112,16 @@
                                                     <constraint firstAttribute="height" constant="80" id="6oC-7g-8AI"/>
                                                     <constraint firstAttribute="width" constant="80" id="hnM-Xb-fyQ"/>
                                                 </constraints>
-                                                <connections>
-                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="za7-gs-OLM"/>
-                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-20-gAu" userLabel="Value">
-                                                <rect key="frame" x="88.5" y="72" width="36" height="20.5"/>
+                                                <rect key="frame" x="88.5" y="72" width="36" height="21"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="4"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="label"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-kZ-hpS" userLabel="TapEdit">
-                                                <rect key="frame" x="66.5" y="72" width="80" height="26.5"/>
+                                                <rect key="frame" x="66.5" y="72" width="80" height="27"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjB-dE-KcA" customClass="Knob" customModule="Knob_iOS">
                                                 <rect key="frame" x="154.5" y="0.0" width="80" height="80"/>
@@ -145,19 +130,16 @@
                                                     <constraint firstAttribute="width" constant="80" id="Ogz-zI-bPr"/>
                                                     <constraint firstAttribute="height" constant="80" id="hUd-gk-rXl"/>
                                                 </constraints>
-                                                <connections>
-                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="gLD-3x-ckf"/>
-                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFy-GK-jEJ" userLabel="Value">
-                                                <rect key="frame" x="176.5" y="72" width="36" height="20.5"/>
+                                                <rect key="frame" x="176.5" y="72" width="36" height="21"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="label"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lM5-yt-nYm" userLabel="TapEdit">
-                                                <rect key="frame" x="154.5" y="72" width="80" height="26.5"/>
+                                                <rect key="frame" x="154.5" y="72" width="80" height="27"/>
                                             </view>
                                         </subviews>
                                         <constraints>

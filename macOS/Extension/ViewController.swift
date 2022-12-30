@@ -120,7 +120,7 @@ private extension ViewController {
       knob.indicatorColor = knobColor
 
       knob.target = self
-      knob.action = #selector(handleKnobValueChanged(_:))
+      knob.action = #selector(handleKnobChanged(_:))
 
       let trackWidth: CGFloat = parameterAddress == .dry || parameterAddress == .wet ? 8 : 10
       let progressWidth = trackWidth - 2.0
@@ -138,18 +138,18 @@ private extension ViewController {
 
     let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
     odd90Control.target = self
-    odd90Control.action = #selector(handleSwitchValueChanged(_:))
+    odd90Control.action = #selector(handleSwitchChanged(_:))
 
     editors.append(editor)
     editorMap[.odd90] = editor
   }
 
-  @IBAction func handleKnobValueChanged(_ control: Knob) {
+  @IBAction func handleKnobChanged(_ control: Knob) {
     guard let address = control.parameterAddress else { fatalError() }
     handleControlChanged(control, address: address)
   }
 
-  @IBAction func handleSwitchValueChanged(_ control: Switch) {
+  @IBAction func handleSwitchChanged(_ control: Switch) {
     guard let address = control.parameterAddress else { fatalError() }
     handleControlChanged(control, address: address)
   }
