@@ -19,7 +19,7 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   // NOTE: this special form sets the subsystem name and must run before any other logger calls.
   public let log = Shared.logger(Bundle.main.auBaseName + "AU", "ViewController")
 
-  private let parameters = AudioUnitParameters()
+  private let parameters = Parameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
 
   @IBOutlet private weak var controlsView: View!

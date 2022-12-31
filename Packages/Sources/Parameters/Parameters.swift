@@ -13,7 +13,7 @@ private extension Array where Element == AUParameter {
 /**
  Definitions for the runtime parameters of the filter.
  */
-public final class AudioUnitParameters: NSObject, ParameterSource {
+public final class Parameters: NSObject, ParameterSource {
 
   private let log = Shared.logger("AudioUnitParameters")
 
@@ -55,7 +55,7 @@ public final class AudioUnitParameters: NSObject, ParameterSource {
   }
 }
 
-extension AudioUnitParameters {
+extension Parameters {
 
   private var missingParameter: AUParameter { fatalError() }
 
