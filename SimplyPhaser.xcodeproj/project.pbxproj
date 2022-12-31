@@ -33,6 +33,7 @@
 		BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDDF1059295FD66C00792FCB /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDDF1058295FD66C00792FCB /* AUv3-Support-iOS */; };
+		BDDF105B295FD72D00792FCB /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDDF105A295FD72D00792FCB /* AUv3-Support-macOS */; };
 		BDE537F127B25036008ACA93 /* Knob-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F027B25036008ACA93 /* Knob-iOS */; };
 		BDE537F327B25036008ACA93 /* Knob-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F227B25036008ACA93 /* Knob-macOS */; };
 		BDE537F527B25060008ACA93 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F427B25060008ACA93 /* Kernel */; };
@@ -203,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB7CE93249EC556009580D5 /* Accelerate.framework in Frameworks */,
+				BDDF105B295FD72D00792FCB /* AUv3-Support-macOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +486,7 @@
 			);
 			name = SimplyPhaser;
 			packageProductDependencies = (
+				BDDF105A295FD72D00792FCB /* AUv3-Support-macOS */,
 			);
 			productName = "AUv3Filter macOS";
 			productReference = C437FE7A2223688D008D6C09 /* SimplyPhaser.app */;
@@ -1625,6 +1628,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BDDF1057295FD65800792FCB /* XCRemoteSwiftPackageReference "AUv3Support" */;
 			productName = "AUv3-Support-iOS";
+		};
+		BDDF105A295FD72D00792FCB /* AUv3-Support-macOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDDF1057295FD65800792FCB /* XCRemoteSwiftPackageReference "AUv3Support" */;
+			productName = "AUv3-Support-macOS";
 		};
 		BDE537F027B25036008ACA93 /* Knob-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
