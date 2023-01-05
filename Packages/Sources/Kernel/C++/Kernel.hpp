@@ -41,7 +41,7 @@ public:
    @param format the audio format to render
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    */
-  void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) {
+  void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) noexcept {
     os_log_info(log_, "setRenderingFormat BEGIN");
     super::setRenderingFormat(busCount, format, maxFramesToRender);
     initialize(format.channelCount, format.sampleRate);
@@ -54,7 +54,18 @@ public:
    @param address the address of the parameter that changed
    @param value the new value for the parameter
    */
-  void setParameterValue(AUParameterAddress address, AUValue value);
+  void setParameterValue(AUParameterAddress address, AUValue value) noexcept {
+    setRampedParameterValue(address, value, AUAudioFrameCount(50));
+  }
+
+  /**
+   Process an AU parameter value change by updating the kernel.
+
+   @param address the address of the parameter that changed
+   @param value the new value for the parameter
+   @param duration the number of samples to adjust over
+   */
+  void setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
 
   /**
    Obtain from the kernel the current value of an AU parameter.
@@ -62,11 +73,11 @@ public:
    @param address the address of the parameter to return
    @returns current parameter value
    */
-  AUValue getParameterValue(AUParameterAddress address) const;
+  AUValue getParameterValue(AUParameterAddress address) const noexcept;
 
 private:
 
-  void initialize(int channelCount, double sampleRate) {
+  void initialize(int channelCount, double sampleRate) noexcept {
     os_log_info(log_, "initialize BEGIN - %d %f", channelCount, sampleRate);
     lfo_.setSampleRate(sampleRate);
     phaseShifters_.clear();
@@ -76,30 +87,22 @@ private:
     os_log_info(log_, "initialize END");
   }
 
-  void setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration);
-
-  void setParameterFromEvent(const AUParameterEvent& event) {
-    if (event.rampDurationSampleFrames == 0) {
-      setParameterValue(event.parameterAddress, event.value);
-    } else {
-      setRampedParameterValue(event.parameterAddress, event.value, event.rampDurationSampleFrames);
-    }
+  void setParameterFromEvent(const AUParameterEvent& event) noexcept {
+    setRampedParameterValue(event.parameterAddress, event.value, event.rampDurationSampleFrames);
   }
 
-  void doRenderingStateChanged(bool rendering) {
+  void doRenderingStateChanged(bool rendering) noexcept {
     if (!rendering) {
       depth_.stopRamping();
       intensity_.stopRamping();
       dry_.stopRamping();
       wet_.stopRamping();
+      lfo_.stopRamping();
     }
   }
 
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
-                   AUAudioFrameCount frameCount) {
-    os_log_info(log_, "doRendering BEGIN %ld %ld %d", ins.size(), outs.size(), frameCount);
-
-    // Advance by frames in outer loop so we can ramp values when they change without having to save/restore state.
+                   AUAudioFrameCount frameCount) noexcept {
     for (int frame = 0; frame < frameCount; ++frame) {
 
       auto depth = depth_.frameValue();
@@ -123,7 +126,7 @@ private:
     }
   }
 
-  void doMIDIEvent(const AUMIDIEvent& midiEvent) {}
+  void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
 
   DSPHeaders::LFO<AUValue> lfo_;
   DSPHeaders::Parameters::PercentageParameter<> depth_;

@@ -10,14 +10,11 @@
 // KernelBridge package which exposes the KernelBridge to Swift code and adds the protocols it adopts.
 
 @implementation KernelBridge {
-  os_log_t log_;
   Kernel* kernel_;
 }
 
 - (instancetype)init:(NSString*)appExtensionName {
   if (self = [super init]) {
-    self->log_ = os_log_create([appExtensionName UTF8String], "KernelBridge");
-    os_log_info(log_, "init");
     self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String));
   }
 
@@ -26,9 +23,7 @@
 
 - (void)setRenderingFormat:(NSInteger)busCount format:(AVAudioFormat*)format
          maxFramesToRender:(AUAudioFrameCount)maxFramesToRender {
-  os_log_info(log_, "setRenderingFormat BEGIN");
   kernel_->setRenderingFormat(busCount, format, maxFramesToRender);
-  os_log_info(log_, "setRenderingFormat END");
 }
 
 - (void)deallocateRenderResources { kernel_->deallocateRenderResources(); }

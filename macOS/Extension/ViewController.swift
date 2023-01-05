@@ -113,7 +113,6 @@ private extension ViewController {
 
   func createEditors() {
     let knobColor = NSColor(named: "knob")!
-    odd90Control.setTint(knobColor)
 
     for (parameterAddress, (knob, label)) in controls {
       knob.progressColor = knobColor
@@ -137,19 +136,20 @@ private extension ViewController {
     }
 
     let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    odd90Control.setTint(knobColor)
     odd90Control.target = self
     odd90Control.action = #selector(handleSwitchChanged(_:))
-
+    editor.delegate = self
     editors.append(editor)
     editorMap[.odd90] = editor
   }
 
-  @IBAction func handleKnobChanged(_ control: Knob) {
+  @objc func handleKnobChanged(_ control: Knob) {
     guard let address = control.parameterAddress else { fatalError() }
     handleControlChanged(control, address: address)
   }
 
-  @IBAction func handleSwitchChanged(_ control: Switch) {
+  @objc func handleSwitchChanged(_ control: Switch) {
     guard let address = control.parameterAddress else { fatalError() }
     handleControlChanged(control, address: address)
   }
