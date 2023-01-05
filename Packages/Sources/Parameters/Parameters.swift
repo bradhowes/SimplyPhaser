@@ -22,8 +22,9 @@ public final class Parameters: NSObject, ParameterSource {
 
   /// Array of 2-tuple values that pair a factory preset name and its definition
   public let factoryPresetValues: [(name: String, preset: Configuration)] = [
-    ("Gently Sweeps", .init(rate: 0.04, depth: 50,intensity: 75, dry: 50, wet: 50, odd90: 0)),
-    ("Slo-Jo", .init(rate: 0.10, depth: 100,intensity: 90, dry: 50, wet: 50, odd90: 1)),
+    ("Gently Sweeps", .init(rate: 0.04, depth: 50, intensity: 75, dry: 50, wet: 50, odd90: 0)),
+    ("Airy Rainbows", .init(rate: 0.04, depth: 50, intensity: 75, dry: 50, wet: 50, odd90: 1)),
+    ("Slo-Jo", .init(rate: 0.10, depth: 100, intensity: 90, dry: 50, wet: 50, odd90: 1)),
     ("Psycho Phase", .init(rate: 1.0, depth: 40, intensity: 90, dry: 0, wet: 100, odd90: 1)),
     ("Phaser Blast", .init(rate: 1.0, depth: 100, intensity: 90, dry: 0, wet: 100, odd90: 0)),
     ("Noxious", .init(rate: 20.0, depth: 30, intensity: 75, dry: 0, wet: 100, odd90: 1))
