@@ -64,7 +64,7 @@
 					<key>type</key>
 					<string>$(AU_COMPONENT_TYPE)</string>
 					<key>version</key>
-					<real>131075</real>
+					<real>196608</real>
 				</dict>
 			</array>
 		</dict>
