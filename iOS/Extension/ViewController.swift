@@ -105,7 +105,8 @@ extension ViewController: AUAudioUnitFactory {
     os_log(.info, log: log, "createAudioUnit BEGIN")
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
                                                       parameters: parameters,
-                                                      kernel: KernelBridge(Bundle.main.auBaseName),
+                                                      kernel: KernelBridge(Bundle.main.auBaseName,
+                                                                           samplesPerFilterUpdate: 1),
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
     os_log(.info, log: log, "createAudioUnit END")
