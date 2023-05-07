@@ -27,7 +27,7 @@ public final class Parameters: NSObject, ParameterSource {
     ("Slo-Jo", .init(rate: 0.10, depth: 100, intensity: 90, dry: 50, wet: 50, odd90: 1)),
     ("Psycho Phase", .init(rate: 1.0, depth: 40, intensity: 90, dry: 0, wet: 100, odd90: 1)),
     ("Phaser Blast", .init(rate: 1.0, depth: 100, intensity: 90, dry: 0, wet: 100, odd90: 0)),
-    ("Noxious", .init(rate: 20.0, depth: 30, intensity: 75, dry: 0, wet: 100, odd90: 1))
+    ("Noxious", .init(rate: 8, depth: 30, intensity: 75, dry: 0, wet: 100, odd90: 1))
   ]
 
   /// Array of `AUAudioUnitPreset` for the factory presets.

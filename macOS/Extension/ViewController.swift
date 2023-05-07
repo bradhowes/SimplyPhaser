@@ -92,7 +92,8 @@ extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
                                                       parameters: parameters,
-                                                      kernel: KernelBridge(Bundle.main.auBaseName),
+                                                      kernel: KernelBridge(Bundle.main.auBaseName,
+                                                                           samplesPerFilterUpdate: 1),
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
     return audioUnit
@@ -120,12 +121,6 @@ private extension ViewController {
 
       knob.target = self
       knob.action = #selector(handleKnobChanged(_:))
-
-      let trackWidth: CGFloat = parameterAddress == .dry || parameterAddress == .wet ? 8 : 10
-      let progressWidth = trackWidth - 2.0
-      knob.trackLineWidth = trackWidth
-      knob.progressLineWidth = progressWidth
-      knob.indicatorLineWidth = progressWidth
 
       let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
                                         formatting: parameters[parameterAddress],

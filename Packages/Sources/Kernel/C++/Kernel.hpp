@@ -28,9 +28,9 @@ public:
 
    @param name the name to use for logging purposes.
    */
-  Kernel(std::string name) noexcept : super(), name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
+  Kernel(std::string name, int samplesPerFilterUpdate) noexcept :
+  super(), samplesPerFilterUpdate_{samplesPerFilterUpdate}, name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
-    os_log_debug(log_, "constructor");
     lfo_.setWaveform(LFOWaveform::triangle);
   }
 
@@ -42,10 +42,8 @@ public:
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    */
   void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) noexcept {
-    os_log_info(log_, "setRenderingFormat BEGIN");
     super::setRenderingFormat(busCount, format, maxFramesToRender);
     initialize(format.channelCount, format.sampleRate);
-    os_log_info(log_, "setRenderingFormat END");
   }
 
   /**
@@ -78,16 +76,16 @@ public:
 private:
 
   void initialize(int channelCount, double sampleRate) noexcept {
-    os_log_info(log_, "initialize BEGIN - %d %f", channelCount, sampleRate);
     lfo_.setSampleRate(sampleRate);
+    phaseShifters_.reserve(channelCount);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.get(), 20);
+      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.get(),
+                                  samplesPerFilterUpdate_);
     }
-    os_log_info(log_, "initialize END");
   }
 
-  void setParameterFromEvent(const AUParameterEvent& event) noexcept {
+  void doParameterEvent(const AUParameterEvent& event) noexcept {
     setRampedParameterValue(event.parameterAddress, event.value, event.rampDurationSampleFrames);
   }
 
@@ -101,40 +99,60 @@ private:
     }
   }
 
+  void writeSample(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, AUValue intensity, AUValue evenModDepth,
+                   AUValue oddModDepth, AUValue wetMix, AUValue dryMix) noexcept {
+    for (int channel = 0; channel < ins.size(); ++channel) {
+      auto inputSample = *ins[channel]++;
+      auto& shifter = phaseShifters_[channel];
+      shifter.setIntensity(intensity);
+      auto filteredSample = shifter.process(((channel & 1) ? oddModDepth : evenModDepth), inputSample);
+      *outs[channel]++ = wetMix * filteredSample + dryMix * inputSample;
+    }
+  }
+
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
-    for (int frame = 0; frame < frameCount; ++frame) {
-
+    auto odd90 = odd90_.get();
+    if (isRamping() || frameCount == 1) {
       auto depth = depth_.frameValue();
-      auto intensity = intensity_.frameValue();
-
-      auto evenMod = lfo_.value();
-      auto oddMod = odd90_ ? lfo_.quadPhaseValue() : evenMod;
-
+      auto evenModDepth = lfo_.value() * depth;
+      auto oddModDepth = odd90 ? (lfo_.quadPhaseValue() * depth) : evenModDepth;
       lfo_.increment();
+      writeSample(ins, outs, intensity_.frameValue(), evenModDepth, oddModDepth, wet_.frameValue(), dry_.frameValue());
+    } else {
+      auto depth = depth_.normalized();
+      auto intensity = intensity_.normalized();
+      auto wet = wet_.normalized();
+      auto dry = dry_.normalized();
 
-      auto dry = dry_.frameValue();
-      auto wet = wet_.frameValue();
-
-      for (int channel = 0; channel < ins.size(); ++channel) {
-        auto inputSample = *ins[channel]++;
-        auto& shifter = phaseShifters_[channel];
-        shifter.setIntensity(intensity);
-        auto filteredSample = shifter.process(((channel & 1) ? oddMod : evenMod) * depth, inputSample);
-        *outs[channel]++ = dry * inputSample + wet * filteredSample;
+      // Special-casing when odd90 is enabled. Probably not worth it.
+      if (odd90) {
+        while (frameCount-- > 0) {
+          auto evenModDepth = lfo_.value() * depth;
+          auto oddModDepth = lfo_.quadPhaseValue() * depth;
+          lfo_.increment();
+          writeSample(ins, outs, intensity, evenModDepth, oddModDepth, wet, dry);
+        }
+      } else {
+        while (frameCount-- > 0) {
+          auto evenModDepth = lfo_.value() * depth;
+          lfo_.increment();
+          writeSample(ins, outs, intensity, evenModDepth, evenModDepth, wet, dry);
+        }
       }
     }
   }
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
 
+  int samplesPerFilterUpdate_;
   DSPHeaders::LFO<AUValue> lfo_;
   DSPHeaders::Parameters::PercentageParameter<> depth_;
   DSPHeaders::Parameters::PercentageParameter<> intensity_;
   DSPHeaders::Parameters::PercentageParameter<> dry_;
   DSPHeaders::Parameters::PercentageParameter<> wet_;
   DSPHeaders::Parameters::BoolParameter<> odd90_;
-  std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_;
+  std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_{};
   std::string name_;
   os_log_t log_;
 };

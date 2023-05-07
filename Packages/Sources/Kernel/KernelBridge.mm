@@ -13,9 +13,9 @@
   Kernel* kernel_;
 }
 
-- (instancetype)init:(NSString*)appExtensionName {
+- (instancetype)init:(NSString*)appExtensionName samplesPerFilterUpdate:(int)count {
   if (self = [super init]) {
-    self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String));
+    self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String), count);
   }
 
   return self;

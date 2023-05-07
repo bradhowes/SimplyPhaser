@@ -12,33 +12,33 @@ final class ParameterAddressTests: XCTestCase {
   func testParameterDefinitions() throws {
     let rate = ParameterAddress.rate.parameterDefinition
     XCTAssertEqual(rate.range.lowerBound, 0.01)
-    XCTAssertEqual(rate.range.upperBound, 20.0)
+    XCTAssertEqual(rate.range.upperBound, 8.0)
     XCTAssertEqual(rate.unit, .hertz)
     XCTAssertTrue(rate.ramping)
     XCTAssertTrue(rate.logScale)
 
     let depth = ParameterAddress.depth.parameterDefinition
-    XCTAssertEqual(depth.range.lowerBound, 0.0)
+    XCTAssertEqual(depth.range.lowerBound, 0.1)
     XCTAssertEqual(depth.range.upperBound, 100.0)
     XCTAssertEqual(depth.unit, .percent)
     XCTAssertTrue(depth.ramping)
     XCTAssertFalse(depth.logScale)
 
     let intensity = ParameterAddress.intensity.parameterDefinition
-    XCTAssertEqual(intensity.range.lowerBound, 0.0)
-    XCTAssertEqual(intensity.range.upperBound, 100.0)
+    XCTAssertEqual(intensity.range.lowerBound, 0.1)
+    XCTAssertEqual(intensity.range.upperBound, 99.0)
     XCTAssertEqual(intensity.unit, .percent)
     XCTAssertTrue(intensity.ramping)
     XCTAssertFalse(intensity.logScale)
 
-    let wet = ParameterAddress.intensity.parameterDefinition
+    let wet = ParameterAddress.wet.parameterDefinition
     XCTAssertEqual(wet.range.lowerBound, 0.0)
     XCTAssertEqual(wet.range.upperBound, 100.0)
     XCTAssertEqual(wet.unit, .percent)
     XCTAssertTrue(wet.ramping)
     XCTAssertFalse(wet.logScale)
 
-    let dry = ParameterAddress.intensity.parameterDefinition
+    let dry = ParameterAddress.dry.parameterDefinition
     XCTAssertEqual(dry.range.lowerBound, 0.0)
     XCTAssertEqual(dry.range.upperBound, 100.0)
     XCTAssertEqual(dry.unit, .percent)
