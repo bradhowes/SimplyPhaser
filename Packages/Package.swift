@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
   name: "Packages",
-  platforms: [.iOS(.v13), .macOS(.v10_15)],
+  platforms: [.iOS(.v13), .macOS(.v11)],
   products: [
     .library(name: "KernelBridge", targets: ["KernelBridge"]),
     .library(name: "Kernel", targets: ["Kernel"]),
@@ -12,7 +12,7 @@ let package = Package(
     .library(name: "ParameterAddress", targets: ["ParameterAddress"])
   ],
   dependencies: [
-    .package(name: "AUv3SupportPackage", url: "https://github.com/bradhowes/AUv3Support", branch: "main"),
+    .package(name: "AUv3SupportPackage", url: "https://github.com/bradhowes/AUv3Support", from: "9.0.0"),
   ],
   targets: [
     .target(
@@ -63,5 +63,5 @@ let package = Package(
       dependencies: ["Parameters"]
     ),
   ],
-  cxxLanguageStandard: .cxx17
+  cxxLanguageStandard: .cxx20
 )
