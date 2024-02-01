@@ -6,13 +6,13 @@
 #import <string>
 #import <AVFoundation/AVFoundation.h>
 
-#import "DSPHeaders/BoolParameter.hpp"
 #import "DSPHeaders/BusBuffers.hpp"
 #import "DSPHeaders/DelayBuffer.hpp"
 #import "DSPHeaders/EventProcessor.hpp"
-#import "DSPHeaders/MillisecondsParameter.hpp"
 #import "DSPHeaders/LFO.hpp"
-#import "DSPHeaders/PercentageParameter.hpp"
+#import "DSPHeaders/Parameters/Bool.hpp"
+#import "DSPHeaders/Parameters/Milliseconds.hpp"
+#import "DSPHeaders/Parameters/Percentage.hpp"
 #import "DSPHeaders/PhaseShifter.hpp"
 
 /**
@@ -32,6 +32,11 @@ public:
   super(), samplesPerFilterUpdate_{samplesPerFilterUpdate}, name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
     lfo_.setWaveform(LFOWaveform::triangle);
+    registerParameter(depth_);
+    registerParameter(intensity_);
+    registerParameter(dry_);
+    registerParameter(wet_);
+    registerParameter(odd90_);
   }
 
   /**
@@ -52,9 +57,7 @@ public:
    @param address the address of the parameter that changed
    @param value the new value for the parameter
    */
-  void setParameterValue(AUParameterAddress address, AUValue value) noexcept {
-    setRampedParameterValue(address, value, AUAudioFrameCount(50));
-  }
+  void setParameterValuePending(AUParameterAddress address, AUValue value) noexcept;
 
   /**
    Process an AU parameter value change by updating the kernel.
@@ -63,7 +66,7 @@ public:
    @param value the new value for the parameter
    @param duration the number of samples to adjust over
    */
-  void setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
+  AUAudioFrameCount setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
 
   /**
    Obtain from the kernel the current value of an AU parameter.
@@ -71,7 +74,7 @@ public:
    @param address the address of the parameter to return
    @returns current parameter value
    */
-  AUValue getParameterValue(AUParameterAddress address) const noexcept;
+  AUValue getParameterValuePending(AUParameterAddress address) const noexcept;
 
 private:
 
@@ -85,19 +88,11 @@ private:
     }
   }
 
-  void doParameterEvent(const AUParameterEvent& event) noexcept {
-    setRampedParameterValue(event.parameterAddress, event.value, event.rampDurationSampleFrames);
+  AUAudioFrameCount doParameterEvent(const AUParameterEvent& event, AUAudioFrameCount duration) noexcept {
+    return setRampedParameterValue(event.parameterAddress, event.value, duration);
   }
 
-  void doRenderingStateChanged(bool rendering) noexcept {
-    if (!rendering) {
-      depth_.stopRamping();
-      intensity_.stopRamping();
-      dry_.stopRamping();
-      wet_.stopRamping();
-      lfo_.stopRamping();
-    }
-  }
+  void doRenderingStateChanged(bool rendering) noexcept {}
 
   void writeSample(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, AUValue intensity, AUValue evenModDepth,
                    AUValue oddModDepth, AUValue wetMix, AUValue dryMix) noexcept {
@@ -113,17 +108,17 @@ private:
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
     auto odd90 = odd90_.get();
-    if (isRamping() || frameCount == 1) {
+    if (frameCount == 1) {
       auto depth = depth_.frameValue();
       auto evenModDepth = lfo_.value() * depth;
       auto oddModDepth = odd90 ? (lfo_.quadPhaseValue() * depth) : evenModDepth;
       lfo_.increment();
       writeSample(ins, outs, intensity_.frameValue(), evenModDepth, oddModDepth, wet_.frameValue(), dry_.frameValue());
     } else {
-      auto depth = depth_.normalized();
-      auto intensity = intensity_.normalized();
-      auto wet = wet_.normalized();
-      auto dry = dry_.normalized();
+      auto depth = depth_.get();
+      auto intensity = intensity_.get();
+      auto wet = wet_.get();
+      auto dry = dry_.get();
 
       // Special-casing when odd90 is enabled. Probably not worth it.
       if (odd90) {
@@ -147,11 +142,11 @@ private:
 
   int samplesPerFilterUpdate_;
   DSPHeaders::LFO<AUValue> lfo_;
-  DSPHeaders::Parameters::PercentageParameter<> depth_;
-  DSPHeaders::Parameters::PercentageParameter<> intensity_;
-  DSPHeaders::Parameters::PercentageParameter<> dry_;
-  DSPHeaders::Parameters::PercentageParameter<> wet_;
-  DSPHeaders::Parameters::BoolParameter<> odd90_;
+  DSPHeaders::Parameters::Percentage depth_;
+  DSPHeaders::Parameters::Percentage intensity_;
+  DSPHeaders::Parameters::Percentage dry_;
+  DSPHeaders::Parameters::Percentage wet_;
+  DSPHeaders::Parameters::Bool odd90_;
   std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_{};
   std::string name_;
   os_log_t log_;

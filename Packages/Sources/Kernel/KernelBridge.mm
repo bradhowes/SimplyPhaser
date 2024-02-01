@@ -47,16 +47,16 @@
 - (void)setBypass:(BOOL)state { kernel_->setBypass(state); }
 
 - (AUImplementorValueObserver)parameterValueObserverBlock {
-  __block auto kernel = kernel_;
+  __block auto dsp = kernel_;
   return ^(AUParameter* parameter, AUValue value) {
-    kernel_->setParameterValue(parameter.address, value);
+    dsp->setParameterValuePending(parameter.address, value);
   };
 }
 
 - (AUImplementorValueProvider)parameterValueProviderBlock {
-  __block auto kernel = kernel_;
+  __block auto dsp = kernel_;
   return ^AUValue(AUParameter* address) {
-    return kernel_->getParameterValue(address.address);
+    return dsp->getParameterValuePending(address.address);
   };
 }
 
