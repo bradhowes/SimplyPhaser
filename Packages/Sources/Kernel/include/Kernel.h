@@ -1,4 +1,4 @@
-// Copyright © 2021 Brad Howes. All rights reserved.
+// Copyright © 2021, 2024 Brad Howes. All rights reserved.
 
 #pragma once
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns AUInternalRenderBlock instance
  */
-- (AUInternalRenderBlock)internalRenderBlock:(nullable AUHostTransportStateBlock)tsb;
+- (AUInternalRenderBlock)internalRenderBlock;
 
 /**
  Set the bypass state.
