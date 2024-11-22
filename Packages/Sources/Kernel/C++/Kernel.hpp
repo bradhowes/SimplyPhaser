@@ -39,14 +39,30 @@ public:
     registerParameter(odd90_);
   }
 
+  /**
+   Update kernel and buffers to support the given format and channel count
+
+   @param format the audio format to render
+   @param maxFramesToRender the maximum number of samples we will be asked to render in one go
+   @param samplesPerFilterUpdate the number of samples between phaser parameter updates
+   */
+  void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender,
+                          int samplesPerFilterUpdate) noexcept {
+    super::setRenderingFormat(busCount, format, maxFramesToRender);
+    initialize(format.channelCount, format.sampleRate, samplesPerFilterUpdate);
+  }
+
 private:
 
-  void initialize(int channelCount, double sampleRate) noexcept {
+  void initialize(int channelCount, double sampleRate, int samplesPerFilterUpdate) noexcept {
+    samplesPerFilterUpdate_ = samplesPerFilterUpdate;
     lfo_.setSampleRate(sampleRate);
     phaseShifters_.reserve(channelCount);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.getImmediate(),
+      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal,
+                                  sampleRate,
+                                  intensity_.getImmediate(),
                                   samplesPerFilterUpdate_);
     }
   }
@@ -99,7 +115,7 @@ private:
 
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
-    auto odd90 = odd90_.frameValue();
+    auto odd90 = odd90_.getImmediate();
     if (frameCount == 1) {
       auto depth = depth_.frameValue();
       auto evenModDepth = lfo_.value() * depth;
@@ -132,7 +148,7 @@ private:
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
 
-  int samplesPerFilterUpdate_{10};
+  int samplesPerFilterUpdate_;
   DSPHeaders::LFO<AUValue> lfo_;
   DSPHeaders::Parameters::Percentage depth_;
   DSPHeaders::Parameters::Percentage intensity_;

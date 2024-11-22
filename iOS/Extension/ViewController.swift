@@ -9,7 +9,7 @@ import ParameterAddress
 import Parameters
 import os.log
 
-extension Knob: AUParameterValueProvider, RangedControl {}
+extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedControl {}
 
 /**
  Controller for the AUv3 filter view. Handles wiring up of the controls with AUParameter settings.
@@ -68,6 +68,8 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   // The bottom constraint of the editingBackground that controls the vertical position of the editor
   @IBOutlet private weak var editingBackgroundBottomConstraint: NSLayoutConstraint!
 
+  @IBOutlet weak var versionTag: UILabel!
+
   private var editors = [AUParameterEditor]()
   private var editorMap = [ParameterAddress : AUParameterEditor]()
 
@@ -100,14 +102,22 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 // MARK: - AUAudioUnitFactory
 
-extension ViewController: AUAudioUnitFactory {
+extension ViewController: @preconcurrency AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     os_log(.info, log: log, "createAudioUnit BEGIN")
-    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
-                                                      parameters: parameters,
-                                                      kernel: KernelBridge(Bundle.main.auBaseName,
-                                                                           samplesPerFilterUpdate: 1),
-                                                      viewConfigurationManager: self)
+    let bundle = InternalConstants.bundle
+
+    DispatchQueue.main.async {
+      self.versionTag.text = bundle.versionTag
+    }
+
+    let kernel = KernelBridge(bundle.auBaseName)
+    let audioUnit = try FilterAudioUnitFactory.create(
+      componentDescription: componentDescription,
+      parameters: parameters,
+      kernel: kernel,
+      viewConfigurationManager: self
+    )
     self.audioUnit = audioUnit
     os_log(.info, log: log, "createAudioUnit END")
     return audioUnit
@@ -190,4 +200,9 @@ private extension ViewController {
 
     editor.controlChanged(source: control)
   }
+}
+
+private enum InternalConstants {
+  private class EmptyClass {}
+  static let bundle = Bundle(for: InternalConstants.EmptyClass.self)
 }

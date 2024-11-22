@@ -27,7 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param inputFormat the current format of the input bus
  @param maxFramesToRender the max frames to expect in a render request
  */
-- (void)setRenderingFormat:(NSInteger)busCount format:(AVAudioFormat*)format
+- (void)setRenderingFormat:(NSInteger)busCount
+                    format:(AVAudioFormat*)format
          maxFramesToRender:(AUAudioFrameCount)maxFramesToRender;
 
 /**

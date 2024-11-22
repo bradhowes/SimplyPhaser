@@ -11,7 +11,7 @@ bool Kernel::doSetImmediateParameterValue(AUParameterAddress address, AUValue va
     case ParameterAddressIntensity: intensity_.setImmediate(value, duration); return true;
     case ParameterAddressDry: dry_.setImmediate(value, duration); return true;
     case ParameterAddressWet: wet_.setImmediate(value, duration); return true;
-    case ParameterAddressOdd90: odd90_.setImmediate(value, 0); return true;
+    case ParameterAddressOdd90: odd90_.setImmediate(value, 0); return false;
   }
 }
 
@@ -22,7 +22,7 @@ bool Kernel::doSetPendingParameterValue(AUParameterAddress address, AUValue valu
     case ParameterAddressIntensity: intensity_.setPending(value); return true;
     case ParameterAddressDry: dry_.setPending(value); return true;
     case ParameterAddressWet: wet_.setPending(value); return true;
-    case ParameterAddressOdd90: odd90_.setPending(value);return true;
+    case ParameterAddressOdd90: odd90_.setPending(value);return false;
   }
   return false;
 }
