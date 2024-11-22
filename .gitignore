@@ -21,7 +21,9 @@ xcuserdata/
 !**/*.playground/playground.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
 
 DerivedData/
-
+.DerivedData-*
+coverage_*
+percentage_*
 **/*.old
 
 Gemfile
