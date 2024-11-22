@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface KernelBridge : NSObject
 
-- (nonnull id)init:(NSString*)appExtensionName samplesPerFilterUpdate:(int)count;
+- (nonnull id)init:(NSString*)appExtensionName;
 
 @end
 

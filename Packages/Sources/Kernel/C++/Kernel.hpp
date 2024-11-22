@@ -28,8 +28,8 @@ public:
 
    @param name the name to use for logging purposes.
    */
-  Kernel(std::string name, int samplesPerFilterUpdate) noexcept :
-  super(), samplesPerFilterUpdate_{samplesPerFilterUpdate}, name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
+  Kernel(std::string name) noexcept :
+  super(), name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
     lfo_.setWaveform(LFOWaveform::triangle);
     registerParameter(depth_);
@@ -39,43 +39,6 @@ public:
     registerParameter(odd90_);
   }
 
-  /**
-   Update kernel and buffers to support the given format.
-
-   @param busCount the number of busses to support
-   @param format the audio format to render
-   @param maxFramesToRender the maximum number of samples we will be asked to render in one go
-   */
-  void setRenderingFormat(NSInteger busCount, AVAudioFormat* format, AUAudioFrameCount maxFramesToRender) noexcept {
-    super::setRenderingFormat(busCount, format, maxFramesToRender);
-    initialize(format.channelCount, format.sampleRate);
-  }
-
-  /**
-   Process an AU parameter value change by updating the kernel.
-
-   @param address the address of the parameter that changed
-   @param value the new value for the parameter
-   */
-  void setParameterValuePending(AUParameterAddress address, AUValue value) noexcept;
-
-  /**
-   Process an AU parameter value change by updating the kernel.
-
-   @param address the address of the parameter that changed
-   @param value the new value for the parameter
-   @param duration the number of samples to adjust over
-   */
-  AUAudioFrameCount setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
-
-  /**
-   Obtain from the kernel the current value of an AU parameter.
-
-   @param address the address of the parameter to return
-   @returns current parameter value
-   */
-  AUValue getParameterValuePending(AUParameterAddress address) const noexcept;
-
 private:
 
   void initialize(int channelCount, double sampleRate) noexcept {
@@ -83,16 +46,45 @@ private:
     phaseShifters_.reserve(channelCount);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
-      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.get(),
+      phaseShifters_.emplace_back(DSPHeaders::PhaseShifter<AUValue>::ideal, sampleRate, intensity_.getImmediate(),
                                   samplesPerFilterUpdate_);
     }
   }
 
-  AUAudioFrameCount doParameterEvent(const AUParameterEvent& event, AUAudioFrameCount duration) noexcept {
-    return setRampedParameterValue(event.parameterAddress, event.value, duration);
-  }
+  /**
+   Set a paramete value from within the render loop.
 
-  void doRenderingStateChanged(bool rendering) noexcept {}
+   @param address the parameter to change
+   @param value the new value to use
+   @param duration the ramping duration to transition to the new value
+   */
+  bool doSetImmediateParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
+
+  /**
+   Set a paramete value from the UI via the parameter tree. Will be recognized and handled in the next render pass.
+
+   @param address the parameter to change
+   @param value the new value to use
+   */
+  bool doSetPendingParameterValue(AUParameterAddress address, AUValue value) noexcept;
+
+  /**
+   Get the paramete value last set in the render thread. NOTE: this does not account for any ramping that might be in
+   effect.
+
+   @param address the parameter to access
+   @returns parameter value
+   */
+  AUValue doGetImmediateParameterValue(AUParameterAddress address) const noexcept;
+
+  /**
+   Get the paramete value last set by the UI / parameter tree. NOTE: this does not account for any ramping that might
+   be in effect.
+
+   @param address the parameter to access
+   @returns parameter value
+   */
+  AUValue doGetPendingParameterValue(AUParameterAddress address) const noexcept;
 
   void writeSample(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, AUValue intensity, AUValue evenModDepth,
                    AUValue oddModDepth, AUValue wetMix, AUValue dryMix) noexcept {
@@ -107,7 +99,7 @@ private:
 
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
-    auto odd90 = odd90_.get();
+    auto odd90 = odd90_.frameValue();
     if (frameCount == 1) {
       auto depth = depth_.frameValue();
       auto evenModDepth = lfo_.value() * depth;
@@ -115,10 +107,10 @@ private:
       lfo_.increment();
       writeSample(ins, outs, intensity_.frameValue(), evenModDepth, oddModDepth, wet_.frameValue(), dry_.frameValue());
     } else {
-      auto depth = depth_.get();
-      auto intensity = intensity_.get();
-      auto wet = wet_.get();
-      auto dry = dry_.get();
+      auto depth = depth_.frameValue();
+      auto intensity = intensity_.frameValue();
+      auto wet = wet_.frameValue();
+      auto dry = dry_.frameValue();
 
       // Special-casing when odd90 is enabled. Probably not worth it.
       if (odd90) {
@@ -140,7 +132,7 @@ private:
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
 
-  int samplesPerFilterUpdate_;
+  int samplesPerFilterUpdate_{10};
   DSPHeaders::LFO<AUValue> lfo_;
   DSPHeaders::Parameters::Percentage depth_;
   DSPHeaders::Parameters::Percentage intensity_;

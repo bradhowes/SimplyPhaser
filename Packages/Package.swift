@@ -1,33 +1,38 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 
 import PackageDescription
 
 let package = Package(
   name: "Packages",
-  platforms: [.iOS(.v13), .macOS(.v11)],
+  platforms: [.iOS(.v16), .macOS(.v14)],
   products: [
     .library(name: "KernelBridge", targets: ["KernelBridge"]),
     .library(name: "Kernel", targets: ["Kernel"]),
     .library(name: "Parameters", targets: ["Parameters"]),
-    .library(name: "ParameterAddress", targets: ["ParameterAddress"])
+    .library(name: "ParameterAddress", targets: ["ParameterAddress"]),
+    .library(name: "Theme", targets: ["Theme"])
   ],
   dependencies: [
-    .package(url: "https://github.com/bradhowes/AUv3Support", from: "11.0.0"),
+    .package(url: "https://github.com/bradhowes/AUv3Support", from: "14.0.2"),
   ],
   targets: [
+    .target(
+      name: "Theme",
+      resources: [.process("Resources")]
+    ),
     .target(
       name: "KernelBridge",
       dependencies: [
         "Kernel",
-        .productItem(name: "AUv3-Support", package: "AUv3Support", condition: .none),
+        .product(name: "AUv3-Support", package: "AUv3Support", condition: .none),
       ],
       exclude: ["README.md"]
     ),
     .target(
       name: "Kernel",
       dependencies: [
-        .productItem(name: "AUv3-Support", package: "AUv3Support", condition: .none),
-        .productItem(name: "AUv3-DSP-Headers", package: "AUv3Support", condition: .none),
+        .product(name: "AUv3-Support", package: "AUv3Support", condition: .none),
+        .product(name: "AUv3-DSP-Headers", package: "AUv3Support", condition: .none),
         "ParameterAddress"
       ],
       exclude: ["README.md"],
@@ -36,14 +41,14 @@ let package = Package(
     .target(
       name: "ParameterAddress",
       dependencies: [
-        .productItem(name: "AUv3-Support", package: "AUv3Support", condition: .none),
+        .product(name: "AUv3-Support", package: "AUv3Support", condition: .none),
       ],
       exclude: ["README.md"]
     ),
     .target(
       name: "Parameters",
       dependencies: [
-        .productItem(name: "AUv3-Support", package: "AUv3Support", condition: .none),
+        .product(name: "AUv3-Support", package: "AUv3Support", condition: .none),
         "Kernel"
       ],
       exclude: ["README.md"]

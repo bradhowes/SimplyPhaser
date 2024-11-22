@@ -13,9 +13,9 @@
   Kernel* kernel_;
 }
 
-- (instancetype)init:(NSString*)appExtensionName samplesPerFilterUpdate:(int)count {
+- (instancetype)init:(NSString*)appExtensionName {
   if (self = [super init]) {
-    self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String), count);
+    self->kernel_ = new Kernel(std::string(appExtensionName.UTF8String));
   }
 
   return self;
@@ -42,14 +42,14 @@
 - (AUImplementorValueObserver)parameterValueObserverBlock {
   __block auto dsp = kernel_;
   return ^(AUParameter* parameter, AUValue value) {
-    dsp->setParameterValuePending(parameter.address, value);
+    dsp->setParameterValue(parameter.address, value);
   };
 }
 
 - (AUImplementorValueProvider)parameterValueProviderBlock {
   __block auto dsp = kernel_;
   return ^AUValue(AUParameter* address) {
-    return dsp->getParameterValuePending(address.address);
+    return dsp->getParameterValue(address.address);
   };
 }
 
