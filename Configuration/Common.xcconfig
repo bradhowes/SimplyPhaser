@@ -29,7 +29,7 @@ AU_FACTORY_FUNCTION = SimplyPhaserAU.ViewController
 CURRENT_PROJECT_VERSION = 20241122214535
 
 // The visible version (eg. 1.2.3)
-MARKETING_VERSION = 3.1.0
+MARKETING_VERSION = 3.2.0
 
 // The bundle ID prefix to use for the app host and app extension.
 APP_BUNDLE_IDENTIFIER_PREFIX = com.braysoftware
@@ -49,6 +49,8 @@ AU_PRODUCT_NAME = $(AU_BASE_NAME)AU
 // The bundle that holds the AUv3 component
 AUDIO_COMPONENT_BUNDLE = $(HOST_PRODUCT_BUNDLE_IDENTIFIER).framework
 
+// The minimum iOS version that we support -- affects build, but not SPM Package. Must edit there as well.
 MIN_IOS_DEPLOYMENT_TARGET = 16.4
-MIN_MACOSX_DEPLOYMENT_TARGET = 14.6
 
+// The minimum macOS version that we support
+MIN_MACOSX_DEPLOYMENT_TARGET = 14.6
