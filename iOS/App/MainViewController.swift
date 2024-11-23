@@ -1,4 +1,4 @@
-// Copyright © 2021 Brad Howes. All rights reserved.
+// Copyright © 2021, 2024 Brad Howes. All rights reserved.
 
 import AUv3Support
 import AUv3Support_iOS
@@ -20,10 +20,15 @@ final class MainViewController: UIViewController {
                                               componentManufacturer: bundle.auComponentManufacturer,
                                               componentFlags: 0, componentFlagsMask: 0)
 
-    let tintColor = UIColor(named: "label")!
-    let config = HostViewConfig(name: bundle.auBaseName, version: bundle.releaseVersionNumber, appDelegate: delegate,
-                                appStoreId: bundle.appStoreId, componentDescription: component, sampleLoop: .sample1,
-                                tintColor: tintColor) { url in
+    let tintColor = UIColor.knobLabel
+    let config = HostViewConfig(
+      name: bundle.auBaseName,
+      appDelegate: delegate,
+      appStoreId: bundle.appStoreId,
+      componentDescription: component,
+      sampleLoop: .sample1,
+      tintColor: tintColor
+    ) { url in
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 

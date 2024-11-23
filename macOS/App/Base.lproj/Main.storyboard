@@ -221,7 +221,7 @@
                             <customView autoresizesSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVM-k6-jTo" userLabel="Content View">
                                 <rect key="frame" x="10" y="10" width="447" height="394"/>
                                 <subviews>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iO5-GT-K4x">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iO5-GT-K4x">
                                         <rect key="frame" x="172" y="183" width="103" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Loading…" id="fyr-Jd-O0Q">
                                             <font key="font" metaFont="system" size="24"/>

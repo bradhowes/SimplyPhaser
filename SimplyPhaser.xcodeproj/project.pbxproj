@@ -842,6 +842,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BDE2CE1824A3E8DB004AC8FA /* Staging.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1169,6 +1170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BDE2CE1724A3E887004AC8FA /* Dev.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1583,7 +1585,7 @@
 			repositoryURL = "https://github.com/bradhowes/Knob";
 			requirement = {
 				kind = exactVersion;
-				version = 3.0.3;
+				version = 3.0.4;
 			};
 		};
 		BD9FF68A2CF0FBA80065A93C /* XCRemoteSwiftPackageReference "AUv3Support" */ = {
@@ -1591,7 +1593,7 @@
 			repositoryURL = "https://github.com/bradhowes/AUv3Support";
 			requirement = {
 				kind = exactVersion;
-				version = 14.0.2;
+				version = 14.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

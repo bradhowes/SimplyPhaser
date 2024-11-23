@@ -1,4 +1,4 @@
-// Copyright © 2022 Brad Howes. All rights reserved.
+// Copyright © 2022, 2024 Brad Howes. All rights reserved.
 
 import AUv3Support
 import CoreAudioKit
@@ -125,7 +125,7 @@ extension ViewController: AUParameterEditorDelegate {
 private extension ViewController {
 
   func createEditors() {
-    let knobColor = NSColor(named: "knob")!
+    let knobColor = NSColor.knobProgress
 
     for (parameterAddress, (knob, label)) in controls {
       knob.progressColor = knobColor

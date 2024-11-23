@@ -36,7 +36,9 @@ extension MainViewController {
     // We can only connect up a HostViewManager when all the pieces are available, and when `view.window` is set appears
     // to be as good as anything else to use as a signal to continue.
     guard view.window != nil else {
-      windowObserver = view.observe(\.window) { _, _ in self.makeHostViewManager() }
+      windowObserver = view.observe(\.window) { _, _ in
+        DispatchQueue.main.async { self.makeHostViewManager() }
+      }
       return
     }
 
@@ -53,17 +55,18 @@ extension MainViewController {
                                                          componentSubType: bundle.auComponentSubtype,
                                                          componentManufacturer: bundle.auComponentManufacturer,
                                                          componentFlags: 0, componentFlagsMask: 0)
-    let config = HostViewConfig(componentName: audioUnitName,
-                                componentVersion: bundle.releaseVersionNumber,
-                                componentDescription: componentDescription,
-                                sampleLoop: .sample1,
-                                playButton: windowController.playButton,
-                                bypassButton: windowController.bypassButton,
-                                presetsButton: windowController.presetsButton,
-                                playMenuItem: appDelegate.playMenuItem,
-                                bypassMenuItem: appDelegate.bypassMenuItem,
-                                presetsMenu: appDelegate.presetsMenu,
-                                viewController: self, containerView: containerView)
+    let config = HostViewConfig(
+      componentName: audioUnitName,
+      componentDescription: componentDescription,
+      sampleLoop: .sample1,
+      playButton: windowController.playButton,
+      bypassButton: windowController.bypassButton,
+      presetsButton: windowController.presetsButton,
+      playMenuItem: appDelegate.playMenuItem,
+      bypassMenuItem: appDelegate.bypassMenuItem,
+      presetsMenu: appDelegate.presetsMenu,
+      viewController: self, containerView: containerView
+    )
     hostViewManager = .init(config: config)
   }
 

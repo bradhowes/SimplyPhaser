@@ -165,7 +165,7 @@
                                         <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CNL-iH-G9D" userLabel="Odd 90">
                                             <rect key="frame" x="0.0" y="21" width="52" height="46"/>
                                             <subviews>
-                                                <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
+                                                <switch wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-e6-r9o">
                                                     <rect key="frame" x="5" y="22" width="42" height="25"/>
                                                 </switch>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tiC-B9-JFy" userLabel="Odd 90°">
