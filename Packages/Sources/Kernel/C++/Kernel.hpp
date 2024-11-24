@@ -15,6 +15,8 @@
 #import "DSPHeaders/Parameters/Percentage.hpp"
 #import "DSPHeaders/PhaseShifter.hpp"
 
+@import ParameterAddress;
+
 /**
  The audio processing kernel that transforms audio samples into those with a phased effect.
  */
@@ -31,12 +33,7 @@ public:
   Kernel(std::string name) noexcept :
   super(), name_{name}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
-    lfo_.setWaveform(LFOWaveform::triangle);
-    registerParameter(depth_);
-    registerParameter(intensity_);
-    registerParameter(dry_);
-    registerParameter(wet_);
-    registerParameter(odd90_);
+    registerParameters({rate_, depth_, intensity_, dry_, wet_, odd90_});
   }
 
   /**
@@ -57,6 +54,7 @@ private:
   void initialize(int channelCount, double sampleRate, int samplesPerFilterUpdate) noexcept {
     samplesPerFilterUpdate_ = samplesPerFilterUpdate;
     lfo_.setSampleRate(sampleRate);
+    lfo_.setWaveform(LFOWaveform::triangle);
     phaseShifters_.reserve(channelCount);
     phaseShifters_.clear();
     for (auto index = 0; index < channelCount; ++index) {
@@ -66,41 +64,6 @@ private:
                                   samplesPerFilterUpdate_);
     }
   }
-
-  /**
-   Set a paramete value from within the render loop.
-
-   @param address the parameter to change
-   @param value the new value to use
-   @param duration the ramping duration to transition to the new value
-   */
-  bool doSetImmediateParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
-
-  /**
-   Set a paramete value from the UI via the parameter tree. Will be recognized and handled in the next render pass.
-
-   @param address the parameter to change
-   @param value the new value to use
-   */
-  bool doSetPendingParameterValue(AUParameterAddress address, AUValue value) noexcept;
-
-  /**
-   Get the paramete value last set in the render thread. NOTE: this does not account for any ramping that might be in
-   effect.
-
-   @param address the parameter to access
-   @returns parameter value
-   */
-  AUValue doGetImmediateParameterValue(AUParameterAddress address) const noexcept;
-
-  /**
-   Get the paramete value last set by the UI / parameter tree. NOTE: this does not account for any ramping that might
-   be in effect.
-
-   @param address the parameter to access
-   @returns parameter value
-   */
-  AUValue doGetPendingParameterValue(AUParameterAddress address) const noexcept;
 
   void writeSample(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, AUValue intensity, AUValue evenModDepth,
                    AUValue oddModDepth, AUValue wetMix, AUValue dryMix) noexcept {
@@ -146,15 +109,14 @@ private:
     }
   }
 
-  void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
-
   int samplesPerFilterUpdate_;
-  DSPHeaders::LFO<AUValue> lfo_;
-  DSPHeaders::Parameters::Percentage depth_;
-  DSPHeaders::Parameters::Percentage intensity_;
-  DSPHeaders::Parameters::Percentage dry_;
-  DSPHeaders::Parameters::Percentage wet_;
-  DSPHeaders::Parameters::Bool odd90_;
+  DSPHeaders::Parameters::Float rate_{ParameterAddressRate};
+  DSPHeaders::Parameters::Percentage depth_{ParameterAddressDepth};
+  DSPHeaders::Parameters::Percentage intensity_{ParameterAddressIntensity};
+  DSPHeaders::Parameters::Percentage dry_{ParameterAddressDry};
+  DSPHeaders::Parameters::Percentage wet_{ParameterAddressWet};
+  DSPHeaders::Parameters::Bool odd90_{ParameterAddressOdd90};
+  DSPHeaders::LFO<AUValue> lfo_{rate_};
   std::vector<DSPHeaders::PhaseShifter<AUValue>> phaseShifters_{};
   std::string name_;
   os_log_t log_;
