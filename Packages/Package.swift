@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 
 import PackageDescription
 
@@ -13,7 +13,7 @@ let package = Package(
     .library(name: "Theme", targets: ["Theme"])
   ],
   dependencies: [
-    .package(url: "https://github.com/bradhowes/AUv3Support", from: "15.0.2"),
+    .package(url: "https://github.com/bradhowes/AUv3Support", from: "16.0.0"),
   ],
   targets: [
     .target(
