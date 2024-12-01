@@ -9,8 +9,6 @@ import ParameterAddress
 import Parameters
 import os.log
 
-extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedControl {}
-
 /**
  Controller for the AUv3 filter view. Handles wiring up of the controls with AUParameter settings.
  */
@@ -19,7 +17,6 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
   // NOTE: this special form sets the subsystem name and must run before any other logger calls.
   public let log = Shared.logger(Bundle.main.auBaseName + "AU", "ViewController")
 
-  private let parameters = Parameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
 
   @IBOutlet private weak var controlsView: View!
@@ -102,25 +99,26 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 // MARK: - AUAudioUnitFactory
 
-extension ViewController: @preconcurrency AUAudioUnitFactory {
-  @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    os_log(.info, log: log, "createAudioUnit BEGIN")
-    let bundle = InternalConstants.bundle
+extension ViewController: AUAudioUnitFactory {
+  nonisolated public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
+    try DispatchQueue.main.sync {
+      os_log(.info, log: log, "createAudioUnit BEGIN")
 
-    DispatchQueue.main.async {
+      let bundle = InternalConstants.bundle
+      let kernel = KernelBridge(bundle.auBaseName)
+      let audioUnit = try FilterAudioUnitFactory.create(
+        componentDescription: componentDescription,
+        parameters: Parameters(),
+        kernel: kernel,
+        viewConfigurationManager: self
+      )
+
       self.versionTag.text = bundle.versionTag
-    }
+      self.audioUnit = audioUnit
 
-    let kernel = KernelBridge(bundle.auBaseName)
-    let audioUnit = try FilterAudioUnitFactory.create(
-      componentDescription: componentDescription,
-      parameters: parameters,
-      kernel: kernel,
-      viewConfigurationManager: self
-    )
-    self.audioUnit = audioUnit
-    os_log(.info, log: log, "createAudioUnit END")
-    return audioUnit
+      os_log(.info, log: log, "createAudioUnit END")
+      return audioUnit
+    }
   }
 }
 
@@ -137,6 +135,12 @@ extension ViewController: AUParameterEditorDelegate {
 private extension ViewController {
 
   func createEditors() {
+    guard let audioUnit,
+          let parameterTree = audioUnit.parameterTree
+    else {
+      return
+    }
+
     let knobColor = UIColor.knobProgress
 
     let valueEditor = ValueEditor(containerView: editingContainerView, backgroundView: editingBackground,
@@ -151,8 +155,8 @@ private extension ViewController {
 
       knob.addTarget(self, action: #selector(handleKnobChanged(_:)), for: .valueChanged)
 
-      let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
-                                        formatting: parameters[parameterAddress],
+      let editor = FloatParameterEditor(parameter: parameterTree[parameterAddress],
+                                        formatting: parameterTree[parameterAddress],
                                         rangedControl: knob, label: label)
       editor.delegate = self
       editors.append(editor)
@@ -160,7 +164,7 @@ private extension ViewController {
       editor.setValueEditor(valueEditor: valueEditor, tapToEdit: tapEdit)
     }
 
-    let editor = BooleanParameterEditor(parameter: parameters[.odd90], booleanControl: odd90Control)
+    let editor = BooleanParameterEditor(parameter: parameterTree[.odd90], booleanControl: odd90Control)
     odd90Control.addTarget(self, action: #selector(handleSwitchChanged(_:)), for: .valueChanged)
     editors.append(editor)
     editorMap[.odd90] = editor
@@ -177,13 +181,14 @@ private extension ViewController {
   }
 
   func handleControlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
-    os_log(.debug, log: log, "controlChanged BEGIN - %d %f %f", address.rawValue, control.value,
-           parameters[address].value)
-
-    guard let audioUnit = audioUnit else {
-      os_log(.debug, log: log, "controlChanged END - nil audioUnit")
+    guard let audioUnit,
+          let parameterTree = audioUnit.parameterTree
+    else {
       return
     }
+
+    os_log(.debug, log: log, "controlChanged BEGIN - %d %f %f", address.rawValue, control.value,
+           parameterTree[address].value)
 
     guard let editor = editorMap[address] else {
       os_log(.debug, log: log, "controlChanged END - nil editor")
@@ -205,4 +210,15 @@ private extension ViewController {
 private enum InternalConstants {
   private class EmptyClass {}
   static let bundle = Bundle(for: InternalConstants.EmptyClass.self)
+}
+
+extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedControl {}
+
+extension AUParameterTree {
+  fileprivate subscript (_ parameter: ParameterAddress) -> AUParameter {
+    guard let parameter = self.parameter(source: parameter) else {
+      fatalError("Unexpected parameter address \(parameter)")
+    }
+    return parameter
+  }
 }

@@ -884,7 +884,7 @@
 				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = NO;
 				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
 				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1217,7 +1217,7 @@
 				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = NO;
 				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
 				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1599,7 +1599,7 @@
 			repositoryURL = "https://github.com/bradhowes/AUv3Support";
 			requirement = {
 				kind = exactVersion;
-				version = 16.0.0;
+				version = 16.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
