@@ -13,6 +13,7 @@
 		BD63B15624AE26020015236D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = BD49661924A3605800A81F0B /* LICENSE.md */; };
 		BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BD75B6B925DAA6680071F55E /* Credits.rtf */; };
 		BD78FDC224C2F6530091A854 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78FDC124C2F6530091A854 /* MainWindowController.swift */; };
+		BD83CB852E32EE1B00EB501D /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BD83CB842E32EE1B00EB501D /* KernelBridge */; };
 		BD8D4DDB27B2BB87007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
 		BD8D4DDC27B2BB87007011A5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD827B2BB0F007011A5 /* Media.xcassets */; };
 		BD8D4DDD27B2BB8A007011A5 /* Desdemona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8D4DD927B2BB0F007011A5 /* Desdemona.ttf */; };
@@ -39,7 +40,6 @@
 		BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7CE9D249FC152009580D5 /* Accelerate.framework */; };
 		BDE537F527B25060008ACA93 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F427B25060008ACA93 /* Kernel */; };
-		BDE537F727B25060008ACA93 /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F627B25060008ACA93 /* KernelBridge */; };
 		BDE537F927B25060008ACA93 /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537F827B25060008ACA93 /* ParameterAddress */; };
 		BDE537FB27B25060008ACA93 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BDE537FA27B25060008ACA93 /* Parameters */; };
 		BDE537FE27B250EA008ACA93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5910DA27B193A700246864 /* ViewController.swift */; };
@@ -195,9 +195,9 @@
 				BDE537F927B25060008ACA93 /* ParameterAddress in Frameworks */,
 				BD9FF68E2CF0FBDE0065A93C /* AUv3-Support in Frameworks */,
 				BDE537F527B25060008ACA93 /* Kernel in Frameworks */,
-				BDE537F727B25060008ACA93 /* KernelBridge in Frameworks */,
 				BD9FF6902CF0FBF80065A93C /* Knob-iOS in Frameworks */,
 				BDE537FB27B25060008ACA93 /* Parameters in Frameworks */,
+				BD83CB852E32EE1B00EB501D /* KernelBridge in Frameworks */,
 				BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,11 +465,11 @@
 			name = "iOS Extension";
 			packageProductDependencies = (
 				BDE537F427B25060008ACA93 /* Kernel */,
-				BDE537F627B25060008ACA93 /* KernelBridge */,
 				BDE537F827B25060008ACA93 /* ParameterAddress */,
 				BDE537FA27B25060008ACA93 /* Parameters */,
 				BD9FF68D2CF0FBDE0065A93C /* AUv3-Support */,
 				BD9FF68F2CF0FBF80065A93C /* Knob-iOS */,
+				BD83CB842E32EE1B00EB501D /* KernelBridge */,
 			);
 			productName = "AUv3FilterExtension iOS";
 			productReference = C437FE632223686D008D6C09 /* SimplyPhaserAU.appex */;
@@ -1599,12 +1599,16 @@
 			repositoryURL = "https://github.com/bradhowes/AUv3Support";
 			requirement = {
 				kind = exactVersion;
-				version = 16.1.0;
+				version = 16.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BD83CB842E32EE1B00EB501D /* KernelBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KernelBridge;
+		};
 		BD8D4DF127B2CDD9007011A5 /* Kernel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Kernel;
@@ -1654,10 +1658,6 @@
 		BDE537F427B25060008ACA93 /* Kernel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Kernel;
-		};
-		BDE537F627B25060008ACA93 /* KernelBridge */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = KernelBridge;
 		};
 		BDE537F827B25060008ACA93 /* ParameterAddress */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -105,8 +105,9 @@ def locateFiles(cond: PathPredicate) -> PathList:
     found = []
     for dirname, dirnames, filenames in os.walk('.'):
         for exclude in ['DerivedData', '.build']:
-            if exclude in dirnames:
-                dirnames.remove(exclude)
+            for dir in dirnames:
+                if exclude in dir:
+                    dirnames.remove(dir)
         for path in filenames:
             if cond(path):
                 found.append(os.path.join(dirname, path))
@@ -119,12 +120,12 @@ def locateProjectFiles() -> PathList:
     return locateFiles(cond)
 
 
-def getCurrentMarketingVersion(projectFiles: PathList) -> MarketingVersion:
-    '''Visit all project files, compare MARKETING_VERSION values to make sure they all match, and return one.
+def getCurrentMarketingVersion(configs: PathList) -> MarketingVersion:
+    '''Visit all Common.xcconfig files, compare MARKETING_VERSION values to make sure they all match, and return one.
     '''
     pattern = re.compile(r'MARKETING_VERSION = ([0-9]+)\.([0-9]+)\.([0-9]+)')
     version = None
-    for file in projectFiles:
+    for file in configs:
         with open(file, 'r') as fd:
             contents = fd.read()
         versions = pattern.findall(contents)
@@ -189,6 +190,26 @@ def runPlistBuddy(path, setArg) -> None:
         error('failed to process', path, setArg)
 
 
+def locateCommonFiles() -> PathList:
+    def cond(path):
+        return path == 'Common.xcconfig'
+    return locateFiles(cond)
+
+
+def updateCommonContents(contents: str, marketingVersion: MarketingVersion, projectVersion: ProjectVersion) -> str:
+    contents = re.sub(r'(MARKETING_VERSION =) ([0-9]+\.[0-9]+\.[0-9]+)', f'\\1 {marketingVersion}', contents)
+    contents = re.sub(r'(CURRENT_PROJECT_VERSION =) ([0-9]*)', f'\\1 {projectVersion}', contents)
+    return contents
+
+
+def updateCommonFiles(commonFiles: PathList, marketingVersion: MarketingVersion, projectVersion: ProjectVersion) -> None:
+    for path in commonFiles:
+        log(f"processing Common.xcconfig file")
+        contents = getAndBackupFile(path)
+        contents = updateCommonContents(contents, marketingVersion, projectVersion)
+        saveFile(path, contents)
+
+
 def locateInfoFiles() -> PathList:
     def cond(path):
         return path == 'Info.plist'
@@ -218,8 +239,9 @@ def main(args):
     if parsed.dir:
         os.chdir(parsed.dir)
 
+    configFiles = locateCommonFiles()
     projectFiles = locateProjectFiles()
-    marketingVersion = getCurrentMarketingVersion(projectFiles)
+    marketingVersion = getCurrentMarketingVersion(configFiles)
     log(f"current marketingVersion: {marketingVersion}")
     projectVersion = getNewProjectVersion()
     log(f"new projectVersion: {projectVersion}")
@@ -236,6 +258,7 @@ def main(args):
     log(f"new marketingVersion: {marketingVersion}")
     log(f"new projectVersion: {projectVersion}")
     updateProjectFiles(projectFiles, marketingVersion, projectVersion)
+    updateCommonFiles(configFiles, marketingVersion, projectVersion)
     updateUIFiles(locateUIFiles(), marketingVersion)
     updateInfoFiles(locateInfoFiles(), marketingVersion)
 
