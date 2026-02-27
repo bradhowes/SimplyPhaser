@@ -26,7 +26,7 @@ AU_COMPONENT_MANUFACTURER = BRay
 AU_FACTORY_FUNCTION = SimplyPhaserAU.ViewController
 
 // The "build" version -- the `bumpVersions.py -b` option sets this to a date/time stamp
-CURRENT_PROJECT_VERSION = 20250724223718
+CURRENT_PROJECT_VERSION = 20260227083534
 
 // The visible version (eg. 1.2.3)
 MARKETING_VERSION = 3.5.2
