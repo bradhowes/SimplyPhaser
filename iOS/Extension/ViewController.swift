@@ -81,11 +81,14 @@ import os.log
   }
 }
 
+
 public extension ViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .black
+
+    preferredContentSize = .init(width: 600, height: 500)
 
     if audioUnit != nil {
       createEditors()
